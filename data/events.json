@@ -1,0 +1,1255 @@
+[
+  {
+    "year": 2000,
+    "country": "Marshall Islands",
+    "type": "Biological",
+    "affected": 218,
+    "event_count": 1
+  },
+  {
+    "year": 2000,
+    "country": "Micronesia (FS)",
+    "type": "Biological",
+    "affected": 3431,
+    "event_count": 1
+  },
+  {
+    "year": 2000,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 5000,
+    "event_count": 1
+  },
+  {
+    "year": 2001,
+    "country": "Cook Islands",
+    "type": "Meteorological",
+    "affected": 744,
+    "event_count": 1
+  },
+  {
+    "year": 2001,
+    "country": "Papua New Guinea",
+    "type": "Biological",
+    "affected": 1395,
+    "event_count": 1
+  },
+  {
+    "year": 2001,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 201,
+    "event_count": 1
+  },
+  {
+    "year": 2001,
+    "country": "Samoa",
+    "type": "Hydrological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2001,
+    "country": "Tonga",
+    "type": "Meteorological",
+    "affected": 16500,
+    "event_count": 1
+  },
+  {
+    "year": 2001,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 4500,
+    "event_count": 1
+  },
+  {
+    "year": 2001,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 1300,
+    "event_count": 2
+  },
+  {
+    "year": 2002,
+    "country": "Guam",
+    "type": "Meteorological",
+    "affected": 15144,
+    "event_count": 2
+  },
+  {
+    "year": 2002,
+    "country": "Micronesia (FS)",
+    "type": "Meteorological",
+    "affected": 1623,
+    "event_count": 2
+  },
+  {
+    "year": 2002,
+    "country": "N. Mariana Islands",
+    "type": "Meteorological",
+    "affected": 300,
+    "event_count": 1
+  },
+  {
+    "year": 2002,
+    "country": "Papua New Guinea",
+    "type": "Biological",
+    "affected": 2215,
+    "event_count": 2
+  },
+  {
+    "year": 2002,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 18470,
+    "event_count": 3
+  },
+  {
+    "year": 2002,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 174,
+    "event_count": 1
+  },
+  {
+    "year": 2002,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 1110,
+    "event_count": 1
+  },
+  {
+    "year": 2002,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 1003,
+    "event_count": 2
+  },
+  {
+    "year": 2002,
+    "country": "Vanuatu",
+    "type": "Hydrological",
+    "affected": 3001,
+    "event_count": 1
+  },
+  {
+    "year": 2003,
+    "country": "American Samoa",
+    "type": "Hydrological",
+    "affected": 3,
+    "event_count": 1
+  },
+  {
+    "year": 2003,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 30000,
+    "event_count": 1
+  },
+  {
+    "year": 2003,
+    "country": "Micronesia (FS)",
+    "type": "Meteorological",
+    "affected": 1000,
+    "event_count": 1
+  },
+  {
+    "year": 2003,
+    "country": "N. Mariana Islands",
+    "type": "Geophysical",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2003,
+    "country": "New Caledonia",
+    "type": "Biological",
+    "affected": 437,
+    "event_count": 1
+  },
+  {
+    "year": 2003,
+    "country": "New Caledonia",
+    "type": "Meteorological",
+    "affected": 1100,
+    "event_count": 1
+  },
+  {
+    "year": 2003,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 621,
+    "event_count": 2
+  },
+  {
+    "year": 2003,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 425,
+    "event_count": 2
+  },
+  {
+    "year": 2004,
+    "country": "American Samoa",
+    "type": "Meteorological",
+    "affected": 23060,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Fiji",
+    "type": "Hydrological",
+    "affected": 600,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 5000,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Guam",
+    "type": "Meteorological",
+    "affected": 300,
+    "event_count": 2
+  },
+  {
+    "year": 2004,
+    "country": "Micronesia (FS)",
+    "type": "Meteorological",
+    "affected": 6008,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "N. Mariana Islands",
+    "type": "Meteorological",
+    "affected": 200,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Niue",
+    "type": "Meteorological",
+    "affected": 702,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 9600,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 10000,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Samoa",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Tonga",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2004,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 54008,
+    "event_count": 1
+  },
+  {
+    "year": 2005,
+    "country": "American Samoa",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2005,
+    "country": "Cook Islands",
+    "type": "Meteorological",
+    "affected": 608,
+    "event_count": 1
+  },
+  {
+    "year": 2005,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 15200,
+    "event_count": 2
+  },
+  {
+    "year": 2005,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 2493,
+    "event_count": 1
+  },
+  {
+    "year": 2005,
+    "country": "Samoa",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2005,
+    "country": "Tokelau",
+    "type": "Meteorological",
+    "affected": 26,
+    "event_count": 1
+  },
+  {
+    "year": 2005,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 5000,
+    "event_count": 1
+  },
+  {
+    "year": 2006,
+    "country": "Fiji",
+    "type": "Hydrological",
+    "affected": 224,
+    "event_count": 1
+  },
+  {
+    "year": 2006,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 168,
+    "event_count": 1
+  },
+  {
+    "year": 2006,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 3299,
+    "event_count": 2
+  },
+  {
+    "year": 2006,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 22700,
+    "event_count": 4
+  },
+  {
+    "year": 2006,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2007,
+    "country": "Fiji",
+    "type": "Hydrological",
+    "affected": 900,
+    "event_count": 2
+  },
+  {
+    "year": 2007,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 69,
+    "event_count": 2
+  },
+  {
+    "year": 2007,
+    "country": "Papua New Guinea",
+    "type": "Meteorological",
+    "affected": 162140,
+    "event_count": 1
+  },
+  {
+    "year": 2007,
+    "country": "Solomon Islands",
+    "type": "Geophysical",
+    "affected": 2384,
+    "event_count": 1
+  },
+  {
+    "year": 2008,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2008,
+    "country": "Kiribati",
+    "type": "Hydrological",
+    "affected": 85,
+    "event_count": 1
+  },
+  {
+    "year": 2008,
+    "country": "Marshall Islands",
+    "type": "Hydrological",
+    "affected": 600,
+    "event_count": 1
+  },
+  {
+    "year": 2008,
+    "country": "Micronesia (FS)",
+    "type": "Hydrological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2008,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2008,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 75300,
+    "event_count": 2
+  },
+  {
+    "year": 2008,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 9000,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "American Samoa",
+    "type": "Geophysical",
+    "affected": 2500,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Cook Islands",
+    "type": "Biological",
+    "affected": 1247,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Fiji",
+    "type": "Hydrological",
+    "affected": 10556,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 3845,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Papua New Guinea",
+    "type": "Biological",
+    "affected": 7391,
+    "event_count": 3
+  },
+  {
+    "year": 2009,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Samoa",
+    "type": "Geophysical",
+    "affected": 5584,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Solomon Islands",
+    "type": "Hydrological",
+    "affected": 7000,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Tonga",
+    "type": "Geophysical",
+    "affected": 507,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 400,
+    "event_count": 1
+  },
+  {
+    "year": 2009,
+    "country": "Vanuatu",
+    "type": "Hydrological",
+    "affected": 950,
+    "event_count": 1
+  },
+  {
+    "year": 2010,
+    "country": "Cook Islands",
+    "type": "Meteorological",
+    "affected": 2202,
+    "event_count": 1
+  },
+  {
+    "year": 2010,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 39101,
+    "event_count": 1
+  },
+  {
+    "year": 2010,
+    "country": "French Polynesia",
+    "type": "Meteorological",
+    "affected": 3411,
+    "event_count": 1
+  },
+  {
+    "year": 2010,
+    "country": "Solomon Islands",
+    "type": "Geophysical",
+    "affected": 1126,
+    "event_count": 1
+  },
+  {
+    "year": 2010,
+    "country": "Solomon Islands",
+    "type": "Hydrological",
+    "affected": 16017,
+    "event_count": 1
+  },
+  {
+    "year": 2010,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 795,
+    "event_count": 1
+  },
+  {
+    "year": 2011,
+    "country": "Papua New Guinea",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2011,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2011,
+    "country": "Tonga",
+    "type": "Meteorological",
+    "affected": 7600,
+    "event_count": 1
+  },
+  {
+    "year": 2011,
+    "country": "Tuvalu",
+    "type": "Climatological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2011,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 32000,
+    "event_count": 2
+  },
+  {
+    "year": 2012,
+    "country": "Fiji",
+    "type": "Hydrological",
+    "affected": 19545,
+    "event_count": 2
+  },
+  {
+    "year": 2012,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 8400,
+    "event_count": 1
+  },
+  {
+    "year": 2012,
+    "country": "Palau",
+    "type": "Meteorological",
+    "affected": 1250,
+    "event_count": 1
+  },
+  {
+    "year": 2012,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 200000,
+    "event_count": 2
+  },
+  {
+    "year": 2012,
+    "country": "Samoa",
+    "type": "Meteorological",
+    "affected": 12703,
+    "event_count": 1
+  },
+  {
+    "year": 2012,
+    "country": "Solomon Islands",
+    "type": "Hydrological",
+    "affected": 4836,
+    "event_count": 1
+  },
+  {
+    "year": 2012,
+    "country": "Wallis and Futuna",
+    "type": "Meteorological",
+    "affected": 1252,
+    "event_count": 1
+  },
+  {
+    "year": 2013,
+    "country": "Marshall Islands",
+    "type": "Climatological",
+    "affected": 6384,
+    "event_count": 1
+  },
+  {
+    "year": 2013,
+    "country": "Palau",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2013,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 35000,
+    "event_count": 1
+  },
+  {
+    "year": 2013,
+    "country": "Solomon Islands",
+    "type": "Biological",
+    "affected": 6700,
+    "event_count": 1
+  },
+  {
+    "year": 2013,
+    "country": "Solomon Islands",
+    "type": "Geophysical",
+    "affected": 3329,
+    "event_count": 1
+  },
+  {
+    "year": 2013,
+    "country": "Solomon Islands",
+    "type": "Hydrological",
+    "affected": 10227,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Kiribati",
+    "type": "Hydrological",
+    "affected": 220,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Marshall Islands",
+    "type": "Hydrological",
+    "affected": 360,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 1380,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 27000,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Papua New Guinea",
+    "type": "Meteorological",
+    "affected": 12346,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Solomon Islands",
+    "type": "Hydrological",
+    "affected": 52000,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Tonga",
+    "type": "Meteorological",
+    "affected": 4014,
+    "event_count": 1
+  },
+  {
+    "year": 2014,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 20006,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Fiji",
+    "type": "Climatological",
+    "affected": 67000,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Kiribati",
+    "type": "Meteorological",
+    "affected": 1500,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Marshall Islands",
+    "type": "Climatological",
+    "affected": 21000,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Micronesia (FS)",
+    "type": "Meteorological",
+    "affected": 35000,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "N. Mariana Islands",
+    "type": "Meteorological",
+    "affected": 360,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Palau",
+    "type": "Climatological",
+    "affected": 14200,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Papua New Guinea",
+    "type": "Climatological",
+    "affected": 2520000,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 20000,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Papua New Guinea",
+    "type": "Meteorological",
+    "affected": 9199,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Samoa",
+    "type": "Climatological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Solomon Islands",
+    "type": "Climatological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 44496,
+    "event_count": 2
+  },
+  {
+    "year": 2015,
+    "country": "Tonga",
+    "type": "Climatological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Tuvalu",
+    "type": "Meteorological",
+    "affected": 4613,
+    "event_count": 1
+  },
+  {
+    "year": 2015,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 188000,
+    "event_count": 1
+  },
+  {
+    "year": 2016,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 545558,
+    "event_count": 2
+  },
+  {
+    "year": 2016,
+    "country": "Micronesia (FS)",
+    "type": "Climatological",
+    "affected": 100000,
+    "event_count": 1
+  },
+  {
+    "year": 2016,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 6600,
+    "event_count": 1
+  },
+  {
+    "year": 2016,
+    "country": "Solomon Islands",
+    "type": "Biological",
+    "affected": 13242,
+    "event_count": 1
+  },
+  {
+    "year": 2016,
+    "country": "Solomon Islands",
+    "type": "Geophysical",
+    "affected": 9770,
+    "event_count": 1
+  },
+  {
+    "year": 2016,
+    "country": "Tonga",
+    "type": "Meteorological",
+    "affected": 392,
+    "event_count": 3
+  },
+  {
+    "year": 2016,
+    "country": "Vanuatu",
+    "type": "Biological",
+    "affected": 351,
+    "event_count": 1
+  },
+  {
+    "year": 2017,
+    "country": "French Polynesia",
+    "type": "Hydrological",
+    "affected": 5004,
+    "event_count": 1
+  },
+  {
+    "year": 2017,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 11000,
+    "event_count": 1
+  },
+  {
+    "year": 2017,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 2564,
+    "event_count": 1
+  },
+  {
+    "year": 2018,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 179200,
+    "event_count": 2
+  },
+  {
+    "year": 2018,
+    "country": "N. Mariana Islands",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2018,
+    "country": "Palau",
+    "type": "Biological",
+    "affected": 124,
+    "event_count": 1
+  },
+  {
+    "year": 2018,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 545036,
+    "event_count": 4
+  },
+  {
+    "year": 2018,
+    "country": "Samoa",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2018,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 1000,
+    "event_count": 1
+  },
+  {
+    "year": 2018,
+    "country": "Tonga",
+    "type": "Meteorological",
+    "affected": 87000,
+    "event_count": 1
+  },
+  {
+    "year": 2018,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 13586,
+    "event_count": 2
+  },
+  {
+    "year": 2019,
+    "country": "Fiji",
+    "type": "Biological",
+    "affected": 14,
+    "event_count": 1
+  },
+  {
+    "year": 2019,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 7780,
+    "event_count": 1
+  },
+  {
+    "year": 2019,
+    "country": "Marshall Islands",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2019,
+    "country": "Micronesia (FS)",
+    "type": "Meteorological",
+    "affected": 10000,
+    "event_count": 1
+  },
+  {
+    "year": 2019,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 16451,
+    "event_count": 2
+  },
+  {
+    "year": 2019,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 350,
+    "event_count": 2
+  },
+  {
+    "year": 2019,
+    "country": "Samoa",
+    "type": "Biological",
+    "affected": 5617,
+    "event_count": 1
+  },
+  {
+    "year": 2019,
+    "country": "Tonga",
+    "type": "Biological",
+    "affected": 501,
+    "event_count": 2
+  },
+  {
+    "year": 2020,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 205115,
+    "event_count": 3
+  },
+  {
+    "year": 2020,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 61000,
+    "event_count": 5
+  },
+  {
+    "year": 2020,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 150000,
+    "event_count": 1
+  },
+  {
+    "year": 2020,
+    "country": "Tonga",
+    "type": "Meteorological",
+    "affected": 25000,
+    "event_count": 1
+  },
+  {
+    "year": 2020,
+    "country": "Tuvalu",
+    "type": "Meteorological",
+    "affected": 5500,
+    "event_count": 1
+  },
+  {
+    "year": 2020,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 130120,
+    "event_count": 1
+  },
+  {
+    "year": 2021,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 82751,
+    "event_count": 1
+  },
+  {
+    "year": 2021,
+    "country": "New Caledonia",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2021,
+    "country": "Palau",
+    "type": "Meteorological",
+    "affected": 7288,
+    "event_count": 1
+  },
+  {
+    "year": 2021,
+    "country": "Tuvalu",
+    "type": "Climatological",
+    "affected": 10204,
+    "event_count": 1
+  },
+  {
+    "year": 2021,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 3383,
+    "event_count": 1
+  },
+  {
+    "year": 2022,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 69564,
+    "event_count": 1
+  },
+  {
+    "year": 2022,
+    "country": "Marshall Islands",
+    "type": "Climatological",
+    "affected": 4480,
+    "event_count": 1
+  },
+  {
+    "year": 2022,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 1969,
+    "event_count": 1
+  },
+  {
+    "year": 2022,
+    "country": "Tonga",
+    "type": "Geophysical",
+    "affected": 84176,
+    "event_count": 1
+  },
+  {
+    "year": 2023,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 230000,
+    "event_count": 1
+  },
+  {
+    "year": 2023,
+    "country": "Guam",
+    "type": "Meteorological",
+    "affected": 100000,
+    "event_count": 1
+  },
+  {
+    "year": 2023,
+    "country": "Micronesia (FS)",
+    "type": "Climatological",
+    "affected": 113401,
+    "event_count": 1
+  },
+  {
+    "year": 2023,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 16274,
+    "event_count": 1
+  },
+  {
+    "year": 2023,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 22319,
+    "event_count": 1
+  },
+  {
+    "year": 2023,
+    "country": "Vanuatu",
+    "type": "Meteorological",
+    "affected": 593702,
+    "event_count": 3
+  },
+  {
+    "year": 2024,
+    "country": "Marshall Islands",
+    "type": "Climatological",
+    "affected": 13924,
+    "event_count": 1
+  },
+  {
+    "year": 2024,
+    "country": "Marshall Islands",
+    "type": "Meteorological",
+    "affected": 19532,
+    "event_count": 1
+  },
+  {
+    "year": 2024,
+    "country": "Papua New Guinea",
+    "type": "Geophysical",
+    "affected": 5002,
+    "event_count": 1
+  },
+  {
+    "year": 2024,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 7849,
+    "event_count": 2
+  },
+  {
+    "year": 2024,
+    "country": "Vanuatu",
+    "type": "Geophysical",
+    "affected": 80265,
+    "event_count": 1
+  },
+  {
+    "year": 2025,
+    "country": "Papua New Guinea",
+    "type": "Hydrological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2026,
+    "country": "Fiji",
+    "type": "Meteorological",
+    "affected": 75000,
+    "event_count": 1
+  },
+  {
+    "year": 2026,
+    "country": "Guam",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2026,
+    "country": "Micronesia (FS)",
+    "type": "Meteorological",
+    "affected": 34000,
+    "event_count": 1
+  },
+  {
+    "year": 2026,
+    "country": "N. Mariana Islands",
+    "type": "Meteorological",
+    "affected": 0,
+    "event_count": 1
+  },
+  {
+    "year": 2026,
+    "country": "Papua New Guinea",
+    "type": "Meteorological",
+    "affected": 200007,
+    "event_count": 1
+  },
+  {
+    "year": 2026,
+    "country": "Solomon Islands",
+    "type": "Meteorological",
+    "affected": 340641,
+    "event_count": 1
+  }
+]

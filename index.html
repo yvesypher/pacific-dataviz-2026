@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Coastal Paradox -how the Pacific's greatest asset can also be its greatest vulnerability</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+
+<style>
+:root{
+  --abyss:#05202f; --deep:#0a3a54; --sea:#0f6a86; --turq:#1fa2b4;
+  --lagoon:#57d8cf; --shallow:#9fe6dc; --rain:#a9d8ef;
+  --sand:#e6d7b8; --dune:#d4b47a; --ember:#e8894a;
+  --foam:#f0f8f6; --mist:rgba(240,248,246,.6);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;color:var(--foam);
+  font:400 17px/1.7 "Public Sans",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(130vw 85vh at 8% 2%,   rgba(31,162,180,.46) 0%, transparent 58%),
+    radial-gradient(110vw 75vh at 92% 18%, rgba(15,106,134,.56) 0%, transparent 58%),
+    radial-gradient(140vw 95vh at 25% 48%, rgba(10,58,84,.78)  0%, transparent 62%),
+    radial-gradient(100vw 80vh at 80% 72%, rgba(31,162,180,.32) 0%, transparent 58%),
+    radial-gradient(120vw 90vh at 15% 96%, rgba(15,106,134,.48) 0%, transparent 60%),
+    var(--abyss);
+  background-attachment:fixed;background-repeat:no-repeat;
+}
+
+#waves{
+  position:fixed;inset:0;width:100%;height:100%;z-index:-1;
+  pointer-events:none;transition:opacity .7s ease;
+}
+#waves.hidden{opacity:0}
+.hero,.chapter,.interstitial,.outro,.credits{position:relative;z-index:1}
+
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:300;font-optical-sizing:auto}
+p{max-width:60ch}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+#rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:6;
+  display:flex;flex-direction:column;gap:14px}
+#rail button{width:9px;height:9px;padding:0;border-radius:50%;cursor:pointer;
+  background:rgba(240,248,246,.22);border:1px solid transparent;transition:all .3s}
+#rail button[aria-current="true"]{background:var(--sand);transform:scale(1.5)}
+#rail button:focus-visible{outline:2px solid var(--lagoon);outline-offset:3px}
+@media(max-width:1000px){#rail{display:none}}
+
+.hero{height:100svh;display:flex;align-items:flex-end}
+.hero-copy{padding:0 24px 9vh;max-width:1180px;margin:0 auto;width:100%}
+h1{font-size:clamp(46px,9vw,120px);line-height:.94;margin:0 0 18px;letter-spacing:-.02em}
+.standfirst{font-size:clamp(18px,2.2vw,23px);max-width:36ch;color:#d8efec;margin:0}
+.scroll-cue{margin-top:34px;font-size:13px;letter-spacing:.06em;color:var(--mist)}
+
+.chapter{padding:13vh 0 7vh}
+.chapter h2{font-size:clamp(30px,5.2vw,58px);line-height:1.06;margin:0 0 20px;max-width:20ch}
+.chapter p{font-size:19px;color:#dceeeb}
+
+.interstitial{padding:22vh 0;text-align:center}
+.interstitial p{font-family:Fraunces,Georgia,serif;font-weight:300;
+  font-size:clamp(28px,5vw,56px);line-height:1.16;max-width:17ch;margin:0 auto;color:var(--sand)}
+.interstitial small{display:block;margin-top:26px;font-family:"Public Sans",sans-serif;
+  font-size:14px;color:var(--mist);letter-spacing:.04em}
+
+.scrolly{position:relative;display:grid;grid-template-columns:1fr .8fr;gap:44px;align-items:start}
+.sticky{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center}
+.figure{width:100%;aspect-ratio:4/3;max-height:78svh;display:flex;flex-direction:column}
+.figure svg{width:100%;flex:1;overflow:visible}
+.steps{padding:32vh 0 38vh}
+.step{margin:0 0 56vh;padding:22px 26px;border-radius:4px;
+  background:rgba(5,32,47,0);opacity:.28;transition:opacity .45s ease,background .45s ease}
+.step:last-child{margin-bottom:16vh}
+.step.is-active{opacity:1;background:rgba(5,32,47,.5);backdrop-filter:blur(4px)}
+.step h3{font-size:25px;line-height:1.2;margin:0 0 10px;color:var(--sand)}
+.step p{font-size:17px;margin:0;color:#dceeeb}
+.hint{display:block;margin-top:10px;font-size:13.5px;color:var(--mist)}
+
+#tip{
+  position:fixed !important;pointer-events:none;z-index:999;opacity:0;
+  transform:translate(-50%,-125%);transition:opacity .12s;
+  background:rgba(4,24,35,.96);border:1px solid rgba(87,216,207,.45);
+  border-radius:4px;padding:9px 12px;font-size:13.5px;line-height:1.45;
+  max-width:250px;box-shadow:0 8px 22px rgba(0,0,0,.5);
+}
+#tip b{color:var(--sand);font-weight:600}
+.chrome{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:8px;font-size:13px;min-height:22px;
+  align-items:center}
+.chrome button{display:flex;align-items:center;gap:7px;background:none;border:0;
+  padding:2px 0;color:var(--mist);font:inherit;cursor:pointer}
+.chrome button[aria-pressed="true"]{color:var(--foam)}
+.chrome button:focus-visible{outline:2px solid var(--lagoon);outline-offset:3px}
+.chrome label{display:flex;gap:10px;align-items:center;color:var(--mist)}
+.swatch{width:11px;height:11px;border-radius:2px;display:inline-block}
+.mark{cursor:pointer}
+.dim{opacity:.16}
+
+.outro{padding:13vh 0 20vh}
+.sources{font-size:14px;color:var(--mist);margin-top:40px;max-width:74ch}
+.sources a{color:var(--lagoon)}
+.credits{padding:0 0 6vh;font-size:13px;color:var(--mist)}
+.credits p{max-width:74ch;margin:0 0 8px}
+.credits a{color:var(--lagoon)}
+code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  background:rgba(5,32,47,.6);padding:2px 6px;border-radius:3px}
+
+@media (max-width:860px){
+  .scrolly{grid-template-columns:1fr;gap:0}
+  
+  .sticky{position:static;height:auto;margin:0 -24px 24px;padding:0 12px;
+    background:linear-gradient(rgba(5,32,47,.55),rgba(5,32,47,.55))}
+  .figure{aspect-ratio:1/1;max-height:52svh}
+  .steps{padding:3vh 0 10vh}
+  .step{margin-bottom:28vh}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<canvas id="waves" aria-hidden="true"></canvas>
+<div id="tip" role="tooltip"></div>
+<nav id="rail" aria-label="Chapters"></nav>
+
+<header class="hero" id="sec-hero" data-label="Opening">
+  <div class="hero-copy">
+    <h1>The Coastal Paradox</h1>
+    <p class="standfirst">How the Pacific's greatest asset can also be its greatest vulnerability.</p>
+    <p class="scroll-cue">Scroll</p>
+  </div>
+</header>
+
+
+<section class="chapter" id="sec-map" data-label="The region">
+  <div class="wrap"><h2>A region measured in water, not land</h2></div>
+  <div class="wrap scrolly">
+    <div class="sticky"><div class="figure" id="fig-map"></div></div>
+    <div class="steps" data-viz="map">
+      <div class="step" data-step="0"><h3>Twenty-two countries, barely visible</h3>
+        <p>The Pacific is defined by the ocean. It feeds, connects and sustains these communities, and hands them control over enormous stretches of sea. Twenty-two countries and territories sit across this region -on the map, most of them barely register, land area tiny against the water around it.
+        <span class="hint">Hover any territory for its numbers.</span></p></div>
+      <div class="step" data-step="1"><h3>Draw the water they govern, and the picture changes</h3>
+        <p>Declared exclusive economic zones around every island group, shaded by how much ocean each holds per unit of land. These countries may have little land, but they carry responsibility for a vast share of the Pacific. There is a practical consequence too: little room to move away from the coast. For many communities, the coast is where homes, infrastructure, businesses and essential services all sit at once.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="chapter" id="sec-events" data-label="The risks">
+  <div class="wrap"><h2>The risks are not occasional</h2></div>
+  <div class="wrap scrolly">
+    <div class="sticky"><div class="figure" id="fig-events"></div></div>
+    <div class="steps" data-viz="events">
+      <div class="step" data-step="0"><h3>Not isolated shocks</h3>
+        <p>Since 2001, disasters have been reported across the region year after year. Some years are quiet. Others bring a sharp spike. But the pattern underneath is clear: these are not isolated shocks. They are a recurring feature of life in the Pacific.</p></div>
+      <div class="step" data-step="1"><h3>Frequency is only part of the story</h3>
+        <p>Meteorological events -cyclones chief among them -account for much of the activity. But hydrological, climatological, geophysical and biological hazards add to the burden too. Counting disasters tells us how often they occur. It doesn't tell us how many people they reach.
+        <span class="hint">Use the key to isolate a category.</span></p></div>
+      <div class="step" data-step="2"><h3>Change the question</h3>
+        <p>Instead of counting events, count people, and the picture changes completely. A single year with fewer disasters can still carry a far larger human toll. Frequency and consequence are not the same thing.</p></div>
+      <div class="step" data-step="3"><h3>And then there is the cost</h3>
+        <p>Beyond any single event, average annual loss is a modelled estimate of what disasters cost a country in a typical year. The differences across the region are substantial -for some economies the expected cost runs into the millions annually; for Fiji, it reaches nine figures. The burden isn't just how often a disaster arrives. It's how much there is to lose when it does.
+        <span class="hint">Click a country to follow it into the next chapter.</span></p></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="chapter" id="sec-drivers" data-label="The cause">
+  <div class="wrap"><h2>Why the water behaves differently</h2></div>
+  <div class="wrap scrolly">
+    <div class="sticky"><div class="figure" id="fig-drivers"></div></div>
+    <div class="steps" data-viz="drivers">
+      <div class="step" data-step="0"><h3>The sea is warmer</h3>
+        <p>Sea surface temperature anomalies across the region since 1850. The line moves up and down year to year, but the recent period stands out -the ocean is warmer than its historical average. That matters, because warm water is the energy a tropical cyclone draws on to develop.
+        <span class="hint">Move across the chart to read any year.</span></p></div>
+      <div class="step" data-step="1"><h3>And higher</h3>
+        <p>Sea level in the western Pacific has risen faster than the global mean, so coastal flooding and storm surge now begin from a higher baseline. The difference sounds small in millimetres -but when the starting point is higher, the same storm produces greater coastal impact.</p></div>
+      <div class="step" data-step="2"><h3>And more erratic</h3>
+        <p>The story with rainfall isn't simply more or less of it. It's that rainfall now swings sharply in both directions -one period brings drought, the next brings intense flooding. For communities that depend on predictable weather for water, farming and infrastructure, that variability is its own kind of risk.</p></div>
+      <div class="step" data-step="3"><h3>The difficult part of the paradox</h3>
+        <p>The countries facing these risks do not contribute equally to the forces driving them. Greenhouse gas emissions per person vary enormously across the Pacific -plotted here on a log scale, because on a conventional axis the differences are so large that most countries would flatten into a line near zero. Exposure, it turns out, is not evenly matched by responsibility.
+        <span class="hint">Hover over the chart to highlight a specific country.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="sec-response" data-label="The response">
+  <div class="wrap"><h2>What have governments actually done?</h2></div>
+  <div class="wrap scrolly">
+    <div class="sticky"><div class="figure" id="fig-response"></div></div>
+    <div class="steps" data-viz="response">
+      <div class="step" data-step="0"><h3>Who has a plan at the local level</h3>
+        <p>A national disaster-risk-reduction strategy is important, but when a cyclone approaches, it's local governments that organise evacuation centres and coordinate the response on the ground. In 2021, eleven countries reported on the share of their local governments that had adopted and were implementing a DRR strategy aligned with the national plan. Palau, Vanuatu, Tuvalu and Nauru reported full coverage. Others reported substantially less. Some reported none at all.
+        <span class="hint">Each square is one percentage point. Click a country to follow it.</span></p></div>
+      <div class="step" data-step="1"><h3>Who is shifting away from diesel</h3>
+        <p>Renewable energy won't prevent a cyclone or stop a sea from rising. But it can loosen a region's dependence on imported fuel, and make its energy systems less vulnerable to disrupted supply chains. Progress here is uneven: Papua New Guinea and Solomon Islands lead on hydropower, while several smaller economies remain under 10%. The transition is happening -just not at the same pace everywhere.
+        <span class="hint">Hover any line to follow one country's path.</span></p></div>
+      <div class="step" data-step="2"><h3>What about environmental taxes</h3>
+        <p>Levies on fuel, vehicles, waste or extraction are a fiscal tool governments can use without a donor's sign-off. Pinned to 2020, only four of the twenty-two countries and territories in this story reported collecting any at all. Samoa had reported doing so once, but its own reporting doesn't reach 2020. The question isn't only whether the instrument exists -it's whether a government has the capacity to use it, and keep using it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="outro" id="sec-outro" data-label="Close">
+  <div class="wrap">
+    <h2>The paradox</h2>
+    <p>The Pacific's relationship with the ocean is complicated. The sea provides opportunity; it supports livelihoods, trade, food, and command over vast maritime resources. But that same geography leaves many communities highly exposed to whatever happens along the coast. The environment is changing. Disasters keep imposing real human and economic costs. And the capacity to prepare and respond differs enormously from one country to the next.</p>
+    <p>None of this is a scoreboard. A reported zero doesn't necessarily mean nothing has been done, just as full coverage doesn't guarantee a country is fully protected. But one pattern is hard to miss: the risks are uneven, the resources are uneven, and the capacity to respond is uneven. That is the paradox. The Pacific's greatest asset is also one of its greatest vulnerabilities -and understanding that is essential to understanding the region's future.</p>
+
+  </div>
+</section>
+
+<footer class="credits">
+  <div class="wrap">
+    <p>This project is built with JavaScript and <a href="https://d3js.org/">D3.js</a>. The data is sourced from the <a href="https://pacificdata.org/">Pacific Data Hub</a>, and the exact datasets are linked in the sources above.</p>
+    <p>Made by Minh Nguyen for the <a href="https://pacificdatavizchallenge.org/">Pacific Data Visualisation Challenge</a>.</p>
+  </div>
+</footer>
+
+<script>
+const PICT = [ [ "Papua New Guinea", "PG", 462840, 2402, -6.3, 143.9 ], [ "Solomon Islands", "SB", 28896, 1590, -9.6, 160.2 ], [ "Vanuatu", "VU", 12189, 680, -15.4, 166.9 ], [ "New Caledonia", "NC", 18575, 1423, -21.3, 165.5 ], [ "Fiji", "FJ", 18333, 1282, -17.7, 178 ], [ "Tonga", "TO", 747, 665, -21.2, -175.2 ], [ "Samoa", "WS", 2831, 131, -13.8, -172.1 ], [ "American Samoa", "AS", 199, 405, -14.3, -170.7 ], [ "Niue", "NU", 259, 317, -19.1, -169.9 ], [ "Cook Islands", "CK", 237, 1960, -21.2, -159.8 ], [ "French Polynesia", "PF", 3521, 4767, -17.6, -149.4 ], [ "Wallis and Futuna", "WF", 142, 258, -13.3, -176.2 ], [ "Tokelau", "TK", 12, 319, -9.2, -171.8 ], [ "Tuvalu", "TV", 26, 752, -8, 178.1 ], [ "Kiribati", "KI", 811, 3441, 1.9, -157.4 ], [ "Nauru", "NR", 21, 310, -.5, 166.9 ], [ "Marshall Islands", "MH", 181, 1993, 7.1, 171.4 ], [ "Micronesia (FS)", "FM", 701, 2993, 6.9, 158.2 ], [ "Palau", "PW", 444, 604, 7.5, 134.6 ], [ "Guam", "GU", 541, 218, 13.4, 144.8 ], [ "N. Mariana Islands", "MP", 457, 777, 15.2, 145.7 ], [ "Pitcairn", "PN", 47, 842, -25.1, -130.1 ] ].map(([name, iso, land, eez, lat, lon]) => ({
+  name: name,
+  iso: iso,
+  land: land,
+  eez: eez,
+  lat: lat,
+  lon: lon,
+  ratio: eez * 1e3 / land
+}));
+
+const HAZARDS = [ "Meteorological", "Hydrological", "Climatological", "Geophysical", "Biological" ];
+
+const HAZ_COLOR = {
+  Meteorological: "#e8894a",
+  Hydrological: "#57d8cf",
+  Climatological: "#d4b47a",
+  Geophysical: "#1fa2b4",
+  Biological: "#a9d8ef"
+};
+
+let seed = 42;
+
+const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+
+const EVENTS = [];
+
+d3.range(1995, 2025).forEach(year => {
+  const n = 3 + Math.floor(rnd() * 11);
+  d3.range(n).forEach(() => {
+    const type = rnd() < .46 ? "Meteorological" : HAZARDS[1 + Math.floor(rnd() * 4)];
+    EVENTS.push({
+      year: year,
+      type: type,
+      country: PICT[Math.floor(rnd() * PICT.length)].name,
+      affected: Math.round(Math.pow(10, 2.4 + rnd() * 3.5))
+    });
+  });
+});
+
+const SAMPLE = {
+  events: EVENTS,
+  anomaliesSst: d3.range(1990, 2025).map(y => ({
+    year: y,
+    value: (y - 1990) * .018 + (rnd() - .5) * .22
+  })),
+  anomaliesSea: d3.range(1990, 2025).map(y => ({
+    year: y,
+    value: (y - 1990) * 3.9 + (rnd() - .5) * 38
+  })),
+  anomaliesRain: d3.range(1990, 2025).map(y => ({
+    year: y,
+    value: (rnd() - .5) * (1 + (y - 1990) * .05) * 220
+  })),
+  ghg_series: (() => {
+    const res = [];
+    const countries = [ "Fiji", "Vanuatu", "Samoa", "Tonga", "Papua New Guinea", "Palau", "New Caledonia" ];
+    d3.range(1970, 2025).forEach(y => {
+      countries.forEach((c, i) => {
+        let base = .5 + i * .2;
+        if (c === "Palau") base = 50 + (y - 1970) * 1.5; else if (c === "New Caledonia") base = 15 + (y - 1970) * .2; else base = base + (y - 1970) * .03 + (Math.random() - .5) * .2;
+        res.push({
+          year: y,
+          country: c,
+          value: Math.max(0, base)
+        });
+      });
+    });
+    return res;
+  })(),
+  loss: [ {
+    iso: "FJ",
+    name: "Fiji",
+    valueM: 12.4,
+    nYears: 5
+  }, {
+    iso: "VU",
+    name: "Vanuatu",
+    valueM: 8.1,
+    nYears: 4
+  }, {
+    iso: "TO",
+    name: "Tonga",
+    valueM: 5.6,
+    nYears: 3
+  }, {
+    iso: "SB",
+    name: "Solomon Islands",
+    valueM: 3.2,
+    nYears: 3
+  }, {
+    iso: "WS",
+    name: "Samoa",
+    valueM: 2.9,
+    nYears: 2
+  }, {
+    iso: "PG",
+    name: "Papua New Guinea",
+    valueM: 1.8,
+    nYears: 3
+  } ],
+  drr: [ {
+    iso: "VU",
+    name: "Vanuatu",
+    value: 72,
+    year: 2021
+  }, {
+    iso: "TV",
+    name: "Tuvalu",
+    value: 64,
+    year: 2022
+  }, {
+    iso: "MH",
+    name: "Marshall Islands",
+    value: 41,
+    year: 2022
+  }, {
+    iso: "KI",
+    name: "Kiribati",
+    value: 22,
+    year: 2021
+  }, {
+    iso: "FM",
+    name: "Micronesia (FS)",
+    value: 9,
+    year: 2021
+  }, {
+    iso: "WS",
+    name: "Samoa",
+    value: 5,
+    year: 2023
+  }, {
+    iso: "FJ",
+    name: "Fiji",
+    value: 0,
+    year: 2022
+  }, {
+    iso: "NR",
+    name: "Nauru",
+    value: 0,
+    year: 2022
+  }, {
+    iso: "PG",
+    name: "Papua New Guinea",
+    value: 0,
+    year: 2020
+  } ],
+  renew: [ {
+    iso: "PG",
+    name: "Papua New Guinea",
+    value: 48,
+    year: 2022
+  }, {
+    iso: "SB",
+    name: "Solomon Islands",
+    value: 47,
+    year: 2022
+  }, {
+    iso: "KI",
+    name: "Kiribati",
+    value: 39,
+    year: 2022
+  }, {
+    iso: "WS",
+    name: "Samoa",
+    value: 29,
+    year: 2022
+  }, {
+    iso: "VU",
+    name: "Vanuatu",
+    value: 26,
+    year: 2022
+  }, {
+    iso: "FJ",
+    name: "Fiji",
+    value: 25,
+    year: 2022
+  }, {
+    iso: "MH",
+    name: "Marshall Islands",
+    value: 11,
+    year: 2022
+  }, {
+    iso: "NC",
+    name: "New Caledonia",
+    value: 9,
+    year: 2022
+  } ],
+  envtax: [ {
+    iso: "SB",
+    name: "Solomon Islands",
+    value: 3.6,
+    year: 2020
+  }, {
+    iso: "FJ",
+    name: "Fiji",
+    value: .4,
+    year: 2020
+  }, {
+    iso: "WS",
+    name: "Samoa",
+    value: .15,
+    year: 2008
+  }, {
+    iso: "NR",
+    name: "Nauru",
+    value: .14,
+    year: 2020
+  }, {
+    iso: "PG",
+    name: "Papua New Guinea",
+    value: .01,
+    year: 2020
+  } ]
+};
+
+const C = {
+  abyss: "#05202f",
+  deep: "#0a3a54",
+  sea: "#0f6a86",
+  turq: "#1fa2b4",
+  lagoon: "#57d8cf",
+  shallow: "#9fe6dc",
+  rain: "#a9d8ef",
+  sand: "#e6d7b8",
+  dune: "#d4b47a",
+  ember: "#e8894a",
+  foam: "#f0f8f6",
+  mist: "rgba(240,248,246,.6)"
+};
+
+const fmt = n => d3.format(",")(Math.round(n));
+
+let selectedIso = null;
+
+const hazardFilter = new Set(HAZARDS);
+
+let LAND = null;
+
+let EEZ = null;
+
+const tip = document.getElementById("tip");
+
+function showTip(ev, html) {
+  tip.innerHTML = html;
+  tip.style.left = ev.clientX + "px";
+  tip.style.top = ev.clientY - 10 + "px";
+  tip.style.opacity = "1";
+}
+
+const hideTip = () => tip.style.opacity = "0";
+
+document.addEventListener("scroll", hideTip, {
+  passive: true
+});
+
+function stage(el, opts = {}) {
+  const w = el.clientWidth || 640;
+  if (el.__stage && el.__stage.w === w && el.__stage.chromeOn === !!opts.chrome) return el.__stage;
+  el.innerHTML = "";
+  let chrome = null;
+  if (opts.chrome) {
+    chrome = document.createElement("div");
+    chrome.className = "chrome";
+    el.appendChild(chrome);
+  }
+  const h = (el.clientHeight || 480) - (opts.chrome ? 30 : 0);
+  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMidYMid meet");
+  el.__stage = {
+    svg: svg,
+    w: w,
+    h: h,
+    chrome: chrome,
+    chromeOn: !!opts.chrome
+  };
+  return el.__stage;
+}
+
+function clearStages() {
+  Object.values(FIGS).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.__stage = null;
+  });
+}
+
+const T = () => d3.transition().duration(750).ease(d3.easeCubicInOut);
+
+const axStyle = g => {
+  g.selectAll("text").attr("fill", C.mist).attr("font-size", 12);
+  g.selectAll(".domain,.tick line").attr("stroke", "rgba(159,230,220,.22)");
+};
+
+const PLOTS = {
+  map(el, step) {
+    const {svg: svg, w: w, h: h} = stage(el);
+    svg.selectAll("*").remove();
+    const proj = d3.geoEquirectangular().rotate([ -195, 0 ]).fitExtent([ [ 20, 20 ], [ w - 20, h - 38 ] ], {
+      type: "MultiPoint",
+      coordinates: PICT.map(d => [ d.lon, d.lat ])
+    });
+    const path = d3.geoPath(proj);
+    svg.append("path").attr("d", path(d3.geoGraticule().step([ 20, 20 ])())).attr("fill", "none").attr("stroke", "rgba(159,230,220,.12)").attr("stroke-width", .7);
+    svg.append("path").attr("d", path({
+      type: "LineString",
+      coordinates: [ [ 100, 0 ], [ 180, 0 ], [ 260, 0 ] ]
+    })).attr("fill", "none").attr("stroke", "rgba(230,215,184,.26)").attr("stroke-dasharray", "3 6");
+    if (LAND) svg.append("path").attr("d", path(LAND)).attr("fill", "rgba(230,215,184,.55)").attr("stroke", "rgba(230,215,184,.9)").attr("stroke-width", .5);
+    const shade = d3.scaleLinear().domain(d3.extent(PICT, d => Math.log10(d.ratio))).range([ .28, .62 ]);
+    const BLUE = "31,162,180";
+    const HILITE = "240,248,246";
+    if (EEZ) {
+      svg.append("g").selectAll("path").data(EEZ.features).join("path").attr("class", "mark eez-zone").attr("data-iso", f => f.properties.iso).attr("d", path).attr("fill", f => {
+        const p = PICT.find(x => x.iso === f.properties.iso);
+        if (step === 0) return "transparent";
+        if (!p) return `rgba(${BLUE},.35)`;
+        return `rgba(${BLUE},${shade(Math.log10(p.ratio)).toFixed(3)})`;
+      }).attr("stroke", step === 0 ? "transparent" : `rgba(${BLUE},.7)`).attr("stroke-width", .9).style("transition", "fill .18s ease, stroke .18s ease, stroke-width .18s ease").on("mousemove", function(ev, f) {
+        const p = PICT.find(x => x.iso === f.properties.iso);
+        if (!p) return;
+        d3.select(this).attr("fill", `rgba(${HILITE},.28)`).attr("stroke", `rgba(${HILITE},.95)`).attr("stroke-width", 1.8).raise();
+        showTip(ev, `<b>${p.name}</b><br>Land ${fmt(p.land)} km²<br>` + `Ocean ${fmt(p.eez)},000 km²<br>${fmt(p.ratio)} km² of sea per km² of land`);
+      }).on("mouseleave", function(ev, f) {
+        const p = PICT.find(x => x.iso === f.properties.iso);
+        d3.select(this).attr("fill", step === 0 ? "transparent" : p ? `rgba(${BLUE},${shade(Math.log10(p.ratio)).toFixed(3)})` : `rgba(${BLUE},.35)`).attr("stroke", step === 0 ? "transparent" : `rgba(${BLUE},.7)`).attr("stroke-width", .9);
+        hideTip();
+      });
+    } else {
+      const circle = d3.geoCircle().radius(3.33);
+      svg.append("g").selectAll("path").data(PICT).join("path").attr("class", "mark").attr("d", d => path(circle.center([ d.lon, d.lat ])())).attr("fill", `rgba(${BLUE},.08)`).attr("stroke", `rgba(${BLUE},.3)`).attr("stroke-width", .7).attr("opacity", step === 0 ? 0 : 1);
+    }
+    const labelPos = PICT.map(p => {
+      let cx, cy;
+      if (EEZ) {
+        const feats = EEZ.features.filter(f => f.properties.iso === p.iso);
+        if (feats.length) {
+          const biggest = feats.reduce((a, b) => Math.abs(d3.geoArea(a)) > Math.abs(d3.geoArea(b)) ? a : b);
+          [cx, cy] = path.centroid(biggest);
+        }
+      }
+      if (cx == null || !Number.isFinite(cx)) {
+        [cx, cy] = proj([ p.lon, p.lat ]);
+      }
+      return {
+        ...p,
+        cx: cx,
+        cy: cy
+      };
+    });
+    const nodes = labelPos.map(p => ({
+      ...p,
+      x: p.cx,
+      y: p.cy - 8,
+      rx: Math.max(16, p.name.length * 3)
+    }));
+    d3.forceSimulation(nodes).force("x", d3.forceX(d => d.cx).strength(.4)).force("y", d3.forceY(d => d.cy - 8).strength(.7)).force("collide", d3.forceCollide(d => d.rx).strength(.95).iterations(4)).stop().tick(220);
+    svg.append("g").attr("class", "country-labels").selectAll("text").data(nodes).join("text").attr("x", d => d.x).attr("y", d => d.y).attr("text-anchor", "middle").attr("pointer-events", "none").attr("font-size", 10).attr("font-family", "'Public Sans',sans-serif").attr("fill", C.foam).attr("stroke", "rgba(4,24,35,.85)").attr("stroke-width", 3).attr("paint-order", "stroke").text(d => d.name);
+    svg.append("text").attr("x", 20).attr("y", h - 8).attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "22 countries and territories" : EEZ ? "Exclusive economic zones, shaded by ocean area per unit of land" : "Loading exclusive economic zones…");
+  },
+  events(el, step) {
+    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
+      chrome: true
+    });
+    chrome.innerHTML = "";
+    const mode = step === 3 ? "loss" : "waffle";
+    if (el.__eventsMode !== mode) svg.selectAll("*").remove();
+    el.__eventsMode = mode;
+    if (step === 3) {
+      const rows = [ ...SAMPLE.loss ].sort((a, b) => b.valueM - a.valueM);
+      const y = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).padding(.32);
+      const x = d3.scaleLinear().domain([ 0, d3.max(rows, d => d.valueM) ]).nice().range([ 176, w - 40 ]);
+      svg.selectAll("rect").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIso && d.iso !== selectedIso ? " dim" : "")).attr("x", 176).attr("y", d => y(d.name)).attr("height", y.bandwidth()).attr("rx", 2).attr("fill", d => d.iso === selectedIso ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (_, d) => {
+        selectedIso = selectedIso === d.iso ? null : d.iso;
+        repaint([ "events", "response" ]);
+      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>US${d.valueM.toFixed(1)}M average annual loss<br>` + `from ${d.nYears} estimate${d.nYears === 1 ? "" : "s"} since 2010`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x(d.valueM) - 176));
+      svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y(d.name) + y.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
+      svg.append("g").attr("transform", `translate(0,${h - 46})`).call(d3.axisBottom(x).ticks(5).tickFormat(d => "$" + d + "M")).call(axStyle);
+      svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("average annual loss, US$ millions, 2010 onward");
+      svg.append("text").attr("x", 176 + (w - 176 - 40) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Average annual loss (US$ millions)");
+      svg.append("text").attr("x", 166).attr("y", y.range()[0] - 12).attr("text-anchor", "end").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
+      return;
+    }
+    const [minYr, maxYr] = d3.extent(SAMPLE.events, d => d.year);
+    const years = d3.range(minYr, maxYr + 1);
+    if (step >= 1) {
+      HAZARDS.forEach(t => {
+        const b = document.createElement("button");
+        b.setAttribute("aria-pressed", hazardFilter.has(t));
+        b.innerHTML = `<i class="swatch" style="background:${HAZ_COLOR[t]}"></i>${t}`;
+        b.onclick = () => {
+          hazardFilter.has(t) ? hazardFilter.delete(t) : hazardFilter.add(t);
+          if (!hazardFilter.size) HAZARDS.forEach(x => hazardFilter.add(x));
+          PLOTS.events(el, state.events ?? 0);
+        };
+        chrome.appendChild(b);
+      });
+    }
+    const left = 40, base = h - 40, top = 14;
+    const colW = (w - left - 12) / years.length;
+    const active = step === 0 ? HAZARDS : HAZARDS.filter(t => hazardFilter.has(t));
+    const cells = [];
+    years.forEach((y, yi) => {
+      let k = 0;
+      active.forEach(type => {
+        const evs = SAMPLE.events.filter(e => e.year === y && e.type === type);
+        const n = step === 2 ? Math.round(d3.sum(evs, e => e.affected) / 1e4) : evs.length;
+        for (let i = 0; i < Math.min(n, 260); i++, k++) cells.push({
+          key: `${y}-${type}-${i}`,
+          y: y,
+          yi: yi,
+          type: type,
+          idx: k,
+          n: n,
+          country: evs[i]?.country ?? ""
+        });
+      });
+    });
+    const maxStack = d3.max(cells, c => c.idx) + 1 || 1;
+    const barUnit = (base - top) / maxStack;
+    const cw = Math.max(2.5, Math.min(7, colW / 4.2));
+    const perRow = Math.max(2, Math.floor((colW - 2) / (cw + 1)));
+    const rows = Math.ceil(maxStack / perRow) || 1;
+    const ch = Math.max(2, Math.min(cw, (base - top) / rows - 1));
+    const geom = c => step <= 1 ? {
+      x: left + c.yi * colW,
+      y: base - (c.idx + 1) * barUnit,
+      w: Math.max(3, colW - 3),
+      h: barUnit + .6,
+      r: 0
+    } : {
+      x: left + c.yi * colW + c.idx % perRow * (cw + 1),
+      y: base - Math.floor(c.idx / perRow) * (ch + 1) - ch,
+      w: cw,
+      h: ch,
+      r: 1
+    };
+    const fill = c => step === 0 ? C.turq : HAZ_COLOR[c.type];
+    const g = svg.selectAll("g.plot").data([ 0 ]).join("g").attr("class", "plot");
+    g.selectAll("rect").data(cells, d => d.key).join(enter => enter.append("rect").attr("class", "mark").attr("x", c => geom(c).x).attr("y", base).attr("width", c => geom(c).w).attr("height", 0).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", 0).call(s => s.transition(T()).delay(c => c.yi * 8).attr("y", c => geom(c).y).attr("height", c => geom(c).h).attr("opacity", .94)), update => update.call(s => s.transition(T()).delay(c => step === 2 ? c.idx * 1.4 + c.yi * 6 : c.yi * 6).attr("x", c => geom(c).x).attr("y", c => geom(c).y).attr("width", c => geom(c).w).attr("height", c => geom(c).h).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", .94)), exit => exit.call(s => s.transition(T()).attr("y", base).attr("height", 0).attr("opacity", 0).remove())).on("mousemove", (ev, c) => showTip(ev, step === 2 ? `<b>${c.y} · ${c.type}</b><br>one square = 10,000 people<br>${fmt(c.n * 1e4)} affected this year` : step === 1 ? `<b>${c.y} · ${c.type}</b><br>${cells.filter(x => x.y === c.y && x.type === c.type).length} ${c.type.toLowerCase()} events` : `<b>${c.y}</b><br>${cells.filter(x => x.y === c.y).length} events reported`)).on("mouseleave", hideTip);
+    const ax = svg.selectAll("g.ax").data([ 0 ]).join("g").attr("class", "ax").attr("transform", `translate(0,${h - 32})`);
+    ax.call(d3.axisBottom(d3.scaleLinear().domain([ minYr, maxYr ]).range([ left + colW / 2, left + colW * (years.length - .5) ])).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
+    svg.selectAll("text.unit").data([ 0 ]).join("text").attr("class", "unit").attr("x", left).attr("y", 10).attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "reported events per year" : step === 1 ? "reported events per year, by disaster subgroup" : "one square = 10,000 people affected");
+    svg.selectAll("text.axis-x").data([ 0 ]).join("text").attr("class", "axis-x").attr("x", left + (w - left - 12) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
+    svg.selectAll("text.axis-y").data([ 0 ]).join("text").attr("class", "axis-y").attr("transform", `translate(13,${top + (base - top) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text(step === 2 ? "People affected (×10,000)" : "Number of events");
+  },
+  drivers(el, step) {
+    const {svg: svg, w: w, h: h} = stage(el);
+    svg.selectAll("*").remove();
+    if (step === 3) {
+      const data = SAMPLE.ghg_series.map(d => ({
+        ...d,
+        logValue: Math.log10(Math.max(d.value, .05))
+      }));
+      const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([ 64, w - 26 ]);
+      const y = d3.scaleLinear().domain(d3.extent(data, d => d.logValue)).nice().range([ h - 48, 36 ]);
+      svg.append("g").attr("transform", `translate(0,${h - 48})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
+      svg.append("g").attr("transform", "translate(64,0)").call(d3.axisLeft(y).ticks(6)).call(axStyle);
+      const drawLayer = svg.append("g");
+      const grouped = d3.group(data, d => d.country);
+      const line = d3.line().x(d => x(d.year)).y(d => y(d.logValue)).curve(d3.curveMonotoneX);
+      Array.from(grouped.entries()).forEach(([name, values]) => {
+        const p = drawLayer.append("path").datum(values).attr("fill", "none").attr("stroke", C.ember).attr("stroke-width", 1.5).attr("opacity", .6).attr("d", line);
+        const L = p.node().getTotalLength();
+        p.attr("stroke-dasharray", `${L} ${L}`).attr("stroke-dashoffset", L).transition().duration(1200).ease(d3.easeCubicOut).attr("stroke-dashoffset", 0);
+      });
+      svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", C.mist).text("Tonnes CO₂e per person per year");
+      svg.append("text").attr("x", 64 + (w - 90) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
+      svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Tonnes CO₂e per person (in log transformation)");
+      const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
+      cross.append("line").attr("y1", 36).attr("y2", h - 48).attr("stroke", "rgba(240,248,246,.3)");
+      const dot = cross.append("circle").attr("r", 5).attr("fill", C.sand);
+      svg.append("rect").attr("x", 64).attr("y", 36).attr("width", w - 90).attr("height", h - 84).attr("fill", "transparent").style("cursor", "crosshair").on("mousemove", function(ev) {
+        const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
+        const vals = data.filter(r => r.year === yr);
+        if (!vals.length) return;
+        const my = d3.pointer(ev, svg.node())[1];
+        const valY = y.invert(my);
+        let closest = vals[0];
+        let minDist = Infinity;
+        vals.forEach(v => {
+          const dist = Math.abs(v.logValue - valY);
+          if (dist < minDist) {
+            minDist = dist;
+            closest = v;
+          }
+        });
+        cross.style("opacity", 1).select("line").attr("x1", x(yr)).attr("x2", x(yr));
+        dot.attr("cx", x(yr)).attr("cy", y(closest.logValue));
+        drawLayer.selectAll("path").attr("opacity", d => d[0].country === closest.country ? 1 : .15).attr("stroke-width", d => d[0].country === closest.country ? 2.5 : 1.5).attr("stroke", d => d[0].country === closest.country ? C.sand : C.ember).filter(d => d[0].country === closest.country).raise();
+        showTip(ev, `<b>${closest.country} · ${yr}</b><br>${closest.value.toFixed(1)} t CO₂e per person<br>log₁₀ = ${closest.logValue.toFixed(2)}`);
+      }).on("mouseleave", () => {
+        cross.style("opacity", 0);
+        hideTip();
+        drawLayer.selectAll("path").attr("opacity", .6).attr("stroke-width", 1.5).attr("stroke", C.ember);
+      });
+      return;
+    }
+    const spec = [ {
+      key: "sst",
+      color: C.ember,
+      units: "°C above baseline",
+      dp: 2
+    }, {
+      key: "sea",
+      color: C.lagoon,
+      units: "mm above baseline",
+      dp: 0
+    }, {
+      key: "rain",
+      color: C.rain,
+      units: "mm from normal",
+      dp: 0
+    } ][step];
+    const data = [ SAMPLE.anomaliesSst, SAMPLE.anomaliesSea, SAMPLE.anomaliesRain ][step];
+    const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([ 64, w - 26 ]);
+    const y = d3.scaleLinear().domain(d3.extent(data, d => d.value)).nice().range([ h - 48, 36 ]);
+    const defs = svg.append("defs");
+    const gradSst = defs.append("linearGradient").attr("id", "grad-sst").attr("x1", "0%").attr("y1", "100%").attr("x2", "0%").attr("y2", "0%");
+    gradSst.selectAll("stop").data([ {
+      o: "0%",
+      c: "#fff4d4",
+      op: .95
+    }, {
+      o: "35%",
+      c: "#ff7326",
+      op: .8
+    }, {
+      o: "75%",
+      c: "#f9312f",
+      op: .4
+    }, {
+      o: "100%",
+      c: "#ab1324",
+      op: 0
+    } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
+    const gradSea = defs.append("linearGradient").attr("id", "grad-sea").attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+    gradSea.selectAll("stop").data([ {
+      o: "0%",
+      c: C.lagoon,
+      op: .7
+    }, {
+      o: "100%",
+      c: "#05202f",
+      op: .1
+    } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
+    const wipeClipId = "wipe-clip";
+    defs.append("clipPath").attr("id", wipeClipId).append("rect").attr("x", 64).attr("y", 0).attr("width", 0).attr("height", h).transition().duration(1400).ease(d3.easeCubicInOut).attr("width", w - 64);
+    const drawLayer = svg.append("g").attr("clip-path", `url(#${wipeClipId})`);
+    if (step === 0 || step === 1) {
+      drawLayer.append("path").datum(data).attr("fill", step === 0 ? "url(#grad-sst)" : "url(#grad-sea)").attr("d", d3.area().x(d => x(d.year)).y1(d => y(d.value)).y0(h - 48).curve(d3.curveMonotoneX));
+    }
+    svg.append("line").attr("x1", 64).attr("x2", w - 26).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "rgba(230,215,184,.4)");
+    drawLayer.append("path").datum(data).attr("fill", "none").attr("stroke", spec.color).attr("stroke-width", 2.4).attr("d", d3.line().x(d => x(d.year)).y(d => y(d.value)).curve(d3.curveMonotoneX));
+    if (step === 0) {
+      const bubbles = drawLayer.append("g").selectAll("circle.ember").data(d3.range(35)).join("circle").attr("class", "ember").attr("cx", () => 64 + Math.random() * (w - 90)).attr("cy", h - 48).attr("r", () => Math.random() * 3 + 1.5).attr("fill", () => Math.random() > .4 ? "#ff7326" : "#f9312f").attr("opacity", 0);
+      function floatUp() {
+        const startX = d3.select(this).attr("cx");
+        d3.select(this).attr("cy", h - 48).attr("opacity", .9).transition().duration(() => 1500 + Math.random() * 2500).ease(d3.easeQuadOut).attr("cy", () => 36 + Math.random() * (h / 2)).attr("cx", () => +startX + (Math.random() - .5) * 45).attr("opacity", 0).on("end", floatUp);
+      }
+      bubbles.each(floatUp);
+    }
+    if (step === 1) {
+      const seaClipId = "sea-clip";
+      defs.append("clipPath").attr("id", seaClipId).append("path").datum(data).attr("d", d3.area().x(d => x(d.year)).y1(d => y(d.value)).y0(h - 48).curve(d3.curveMonotoneX));
+      const waveLayer = drawLayer.append("g").attr("clip-path", `url(#${seaClipId})`).style("mix-blend-mode", "screen");
+      const bands = [ {
+        yFrac: .1,
+        amp: 6,
+        len: 50,
+        speed: 1300,
+        c: C.shallow,
+        top: .3,
+        band: 74
+      }, {
+        yFrac: .28,
+        amp: 9,
+        len: 66,
+        speed: 980,
+        c: C.lagoon,
+        top: .34,
+        band: 88
+      }, {
+        yFrac: .46,
+        amp: 7,
+        len: 40,
+        speed: 720,
+        c: C.foam,
+        top: .2,
+        band: 60
+      }, {
+        yFrac: .62,
+        amp: 11,
+        len: 78,
+        speed: 1100,
+        c: C.turq,
+        top: .38,
+        band: 100
+      }, {
+        yFrac: .78,
+        amp: 8,
+        len: 52,
+        speed: 640,
+        c: C.lagoon,
+        top: .3,
+        band: 70
+      }, {
+        yFrac: .92,
+        amp: 13,
+        len: 94,
+        speed: 1450,
+        c: C.shallow,
+        top: .32,
+        band: 110
+      } ];
+      bands.forEach((b, i) => {
+        const gradId = `wave-grad-${step}-${i}`;
+        const grad = defs.append("linearGradient").attr("id", gradId).attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+        grad.selectAll("stop").data([ {
+          o: "0%",
+          c: b.c,
+          op: b.top
+        }, {
+          o: "55%",
+          c: b.c,
+          op: b.top * .35
+        }, {
+          o: "100%",
+          c: b.c,
+          op: 0
+        } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
+        const baseY = 36 + (h - 84) * b.yFrac;
+        const totalW = w - 64 + b.len * 2;
+        const pts = d3.range(0, totalW + b.len, 4).map(px => [ px, baseY + Math.sin(px / b.len * Math.PI * 2) * b.amp ]);
+        const area = d3.area().curve(d3.curveBasis).x(d => d[0]).y0(d => d[1]).y1(d => d[1] + b.band);
+        const path = waveLayer.append("path").attr("fill", `url(#${gradId})`).attr("d", area(pts)).attr("transform", `translate(${64 - b.len},0)`);
+        (function loop() {
+          path.attr("transform", `translate(${64 - b.len},0)`).transition().duration(b.speed).ease(d3.easeLinear).attr("transform", `translate(${64},0)`).on("end", loop);
+        })();
+      });
+    }
+    if (step === 2) {
+      const rainClipId = "rain-clip";
+      defs.append("clipPath").attr("id", rainClipId).append("path").datum(data).attr("d", d3.area().x(d => x(d.year)).y1(d => y(d.value)).y0(h - 48).curve(d3.curveMonotoneX));
+      const rainLayer = drawLayer.append("g").attr("clip-path", `url(#${rainClipId})`);
+      const drops = rainLayer.selectAll("line.rain").data(d3.range(70)).join("line").attr("class", "rain").attr("x1", () => 64 + Math.random() * (w - 90)).attr("y1", () => 36 + Math.random() * 50).attr("opacity", 0).attr("stroke", C.rain).attr("stroke-width", 1.2);
+      function rainFall() {
+        const drop = d3.select(this);
+        const nx = 64 + Math.random() * (w - 90);
+        drop.attr("x1", nx).attr("x2", nx + 2).attr("y1", 36).attr("y2", 46).attr("opacity", .7).transition().duration(() => 350 + Math.random() * 400).ease(d3.easeLinear).attr("y1", h - 48).attr("y2", h - 38).attr("opacity", 0).on("end", rainFall);
+      }
+      drops.each(rainFall);
+      const flash = drawLayer.append("rect").attr("x", 64).attr("y", 36).attr("width", w - 90).attr("height", h - 84).attr("fill", "white").attr("opacity", 0).style("pointer-events", "none").attr("clip-path", `url(#${rainClipId})`);
+      function strike() {
+        flash.transition().delay(() => 2e3 + Math.random() * 4e3).duration(40).attr("opacity", .35).transition().duration(40).attr("opacity", 0).transition().duration(40).attr("opacity", .2).transition().duration(400).attr("opacity", 0).on("end", strike);
+      }
+      strike();
+    }
+    svg.append("g").attr("transform", `translate(0,${h - 48})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
+    svg.append("g").attr("transform", "translate(64,0)").call(d3.axisLeft(y).ticks(5)).call(axStyle);
+    svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", spec.color).text(spec.units);
+    svg.append("text").attr("x", 64 + (w - 90) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
+    svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text(spec.units);
+    const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
+    cross.append("line").attr("y1", 36).attr("y2", h - 48).attr("stroke", spec.color);
+    const dot = cross.append("circle").attr("r", 5).attr("fill", spec.color);
+    svg.append("rect").attr("x", 64).attr("y", 36).attr("width", w - 90).attr("height", h - 84).attr("fill", "transparent").style("cursor", "crosshair").on("mousemove", function(ev) {
+      const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
+      const d = data.find(r => r.year === yr);
+      if (!d) return;
+      cross.style("opacity", 1).select("line").attr("x1", x(d.year)).attr("x2", x(d.year));
+      dot.attr("cx", x(d.year)).attr("cy", y(d.value));
+      showTip(ev, `<b>${d.year}</b><br>${d.value.toFixed(spec.dp)} ${spec.units}`);
+    }).on("mouseleave", () => {
+      cross.style("opacity", 0);
+      hideTip();
+    });
+  },
+  response(el, step) {
+    const {svg: svg, w: w, h: h} = stage(el);
+    svg.selectAll("*").remove();
+    if (step === 0) {
+      const rows = [ ...SAMPLE.drr ].sort((a, b) => b.value - a.value);
+      const maxCols = w < 460 ? 3 : w < 700 ? 4 : 4;
+      const cols = Math.min(maxCols, rows.length);
+      const nRows = Math.ceil(rows.length / cols);
+      const padTop = 34;
+      const cellW = (w - 16) / cols, cellH = (h - padTop - 10) / nRows;
+      const waffleSize = Math.min(cellW - 30, cellH - 50, 96);
+      const grid = 10, sq = waffleSize / grid - 1.4;
+      svg.append("text").attr("x", 8).attr("y", 16).attr("font-size", 12.5).attr("fill", C.mist).text("");
+      const cell = svg.selectAll("g.waffle-cell").data(rows, d => d.iso).join("g").attr("class", d => "waffle-cell" + (selectedIso && d.iso !== selectedIso ? " dim" : "")).attr("transform", (d, i) => {
+        const c = i % cols, r = Math.floor(i / cols);
+        const cx = 8 + c * cellW + (cellW - waffleSize) / 2;
+        const cy = padTop + r * cellH;
+        return `translate(${cx},${cy})`;
+      }).style("cursor", "pointer").on("click", (_, d) => {
+        selectedIso = selectedIso === d.iso ? null : d.iso;
+        repaint([ "events", "response" ]);
+      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.value.toFixed(1)}% of local governments, 2021`)).on("mouseleave", hideTip);
+      cell.append("text").attr("x", waffleSize / 2).attr("y", -10).attr("text-anchor", "middle").attr("font-size", 12.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
+      cell.append("text").attr("x", waffleSize / 2).attr("y", waffleSize + 18).attr("text-anchor", "middle").attr("font-size", 13).attr("font-weight", 600).attr("fill", d => d.iso === selectedIso ? C.sand : C.ember).text(d => d.value.toFixed(0) + "%");
+      cell.each(function(d) {
+        const filled = Math.round(d.value);
+        const squares = d3.range(100).map(i => ({
+          x: i % grid * (sq + 1.4),
+          y: Math.floor(i / grid) * (sq + 1.4),
+          on: i < filled
+        }));
+        d3.select(this).selectAll("rect").data(squares).join("rect").attr("x", s => s.x).attr("y", s => waffleSize - sq - s.y).attr("width", sq).attr("height", sq).attr("rx", 1).attr("fill", s => s.on ? d.iso === selectedIso ? C.sand : C.ember : "rgba(240,248,246,.1)");
+      });
+      return;
+    }
+    if (step === 1) {
+      const data = SAMPLE.renew;
+      const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([ 64, w - 26 ]);
+      const y = d3.scaleLinear().domain([ 0, d3.max(data, d => d.value) ]).nice().range([ h - 48, 36 ]);
+      svg.append("g").attr("transform", `translate(0,${h - 48})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
+      svg.append("g").attr("transform", "translate(64,0)").call(d3.axisLeft(y).ticks(5)).call(axStyle);
+      const drawLayer = svg.append("g");
+      const grouped = d3.group(data, d => d.name);
+      const line = d3.line().x(d => x(d.year)).y(d => y(d.value)).curve(d3.curveMonotoneX);
+      Array.from(grouped.entries()).forEach(([name, values]) => {
+        const p = drawLayer.append("path").datum(values).attr("fill", "none").attr("stroke", C.ember).attr("stroke-width", selectedIso ? values[0].iso === selectedIso ? 2.6 : 1.3 : 1.5).attr("opacity", selectedIso ? values[0].iso === selectedIso ? 1 : .18 : .6).attr("d", line);
+        const L = p.node().getTotalLength();
+        p.attr("stroke-dasharray", `${L} ${L}`).attr("stroke-dashoffset", L).transition().duration(1e3).ease(d3.easeCubicOut).attr("stroke-dashoffset", 0);
+      });
+      svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", C.mist).text("renewable share of final energy consumption (%)");
+      svg.append("text").attr("x", 64 + (w - 90) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
+      svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Renewable share of final energy consumption (%)");
+      const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
+      cross.append("line").attr("y1", 36).attr("y2", h - 48).attr("stroke", "rgba(240,248,246,.3)");
+      const dot = cross.append("circle").attr("r", 5).attr("fill", C.sand);
+      svg.append("rect").attr("x", 64).attr("y", 36).attr("width", w - 90).attr("height", h - 84).attr("fill", "transparent").style("cursor", "crosshair").on("mousemove", function(ev) {
+        const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
+        const vals = data.filter(r => r.year === yr);
+        if (!vals.length) return;
+        const my = d3.pointer(ev, svg.node())[1], valY = y.invert(my);
+        let closest = vals[0], minDist = Infinity;
+        vals.forEach(v => {
+          const dist = Math.abs(v.value - valY);
+          if (dist < minDist) {
+            minDist = dist;
+            closest = v;
+          }
+        });
+        cross.style("opacity", 1).select("line").attr("x1", x(yr)).attr("x2", x(yr));
+        dot.attr("cx", x(yr)).attr("cy", y(closest.value));
+        drawLayer.selectAll("path").attr("opacity", d => d[0].name === closest.name ? 1 : .12).attr("stroke-width", d => d[0].name === closest.name ? 2.6 : 1.3).attr("stroke", d => d[0].name === closest.name ? C.sand : C.ember).filter(d => d[0].name === closest.name).raise();
+        showTip(ev, `<b>${closest.name} · ${yr}</b><br>${closest.value.toFixed(1)}% renewable`);
+      }).on("mouseleave", () => {
+        cross.style("opacity", 0);
+        hideTip();
+        drawLayer.selectAll("path").attr("opacity", .6).attr("stroke-width", 1.5).attr("stroke", C.ember);
+      }).on("click", function(ev) {
+        const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
+        const vals = data.filter(r => r.year === yr);
+        if (!vals.length) return;
+        const my = d3.pointer(ev, svg.node())[1], valY = y.invert(my);
+        let closest = vals[0], minDist = Infinity;
+        vals.forEach(v => {
+          const dist = Math.abs(v.value - valY);
+          if (dist < minDist) {
+            minDist = dist;
+            closest = v;
+          }
+        });
+        selectedIso = selectedIso === closest.iso ? null : closest.iso;
+        repaint([ "events", "response" ]);
+      });
+      return;
+    }
+    const rows = [ ...SAMPLE.envtax ].sort((a, b) => b.value - a.value);
+    const y2 = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).padding(.32);
+    const x2 = d3.scaleLinear().domain([ 0, d3.max(rows, d => d.value) ]).nice().range([ 176, w - 46 ]);
+    svg.selectAll("rect").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIso && d.iso !== selectedIso ? " dim" : "")).attr("x", 176).attr("y", d => y2(d.name)).attr("height", y2.bandwidth()).attr("rx", 2).attr("fill", d => d.iso === selectedIso ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (_, d) => {
+      selectedIso = selectedIso === d.iso ? null : d.iso;
+      repaint([ "events", "response" ]);
+    }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.value.toFixed(2)}% of GDP, 2020`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x2(d.value) - 176));
+    svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y2(d.name) + y2.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
+    svg.selectAll("text.val").data(rows, d => d.iso).join("text").attr("class", "val").attr("y", d => y2(d.name) + y2.bandwidth() / 2 + 5).attr("font-size", 12.5).attr("fill", C.mist).text(d => d.value.toFixed(2) + "%").transition(T()).attr("x", d => x2(d.value) + 8);
+    svg.append("g").attr("transform", `translate(0,${h - 46})`).call(d3.axisBottom(x2).ticks(5)).call(axStyle);
+    svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("environmental tax revenue (% of GDP), 2020 -only 4 of 22 PICTs report this");
+    svg.append("text").attr("x", 176 + (w - 176 - 46) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Environmental tax revenue (% of GDP)");
+    svg.append("text").attr("x", 166).attr("y", y2.range()[0] - 12).attr("text-anchor", "end").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
+  }
+};
+
+const FIGS = {
+  map: "fig-map",
+  events: "fig-events",
+  drivers: "fig-drivers",
+  response: "fig-response"
+};
+
+const state = {};
+
+function repaint(keys) {
+  (keys ?? Object.keys(FIGS)).forEach(v => {
+    const el = document.getElementById(FIGS[v]);
+    if (el) PLOTS[v](el, state[v] ?? 0);
+  });
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const stepEl = e.target;
+    const viz = stepEl.parentElement.dataset.viz, step = +stepEl.dataset.step;
+    stepEl.parentElement.querySelectorAll(".step").forEach(s => s.classList.toggle("is-active", s === stepEl));
+    if (state[viz] === step) return;
+    state[viz] = step;
+    PLOTS[viz](document.getElementById(FIGS[viz]), step);
+  });
+}, {
+  rootMargin: "-45% 0px -45% 0px",
+  threshold: 0
+});
+
+document.querySelectorAll(".step").forEach(s => io.observe(s));
+
+const wavesEl = document.getElementById("waves");
+
+new IntersectionObserver(es => es.forEach(e => wavesEl.classList.toggle("hidden", e.isIntersecting)), {
+  rootMargin: "-10% 0px -10% 0px"
+}).observe(document.getElementById("sec-map"));
+
+const rail = document.getElementById("rail");
+
+const sections = [ ...document.querySelectorAll("[data-label]") ];
+
+sections.forEach(sec => {
+  const b = document.createElement("button");
+  b.title = sec.dataset.label;
+  b.setAttribute("aria-label", sec.dataset.label);
+  b.onclick = () => sec.scrollIntoView({
+    behavior: "smooth"
+  });
+  rail.appendChild(b);
+});
+
+const railIo = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const i = sections.indexOf(e.target);
+  [ ...rail.children ].forEach((b, j) => b.setAttribute("aria-current", i === j));
+}), {
+  rootMargin: "-50% 0px -50% 0px"
+});
+
+sections.forEach(s => railIo.observe(s));
+
+addEventListener("load", () => repaint());
+
+addEventListener("resize", debounce(() => {
+  clearStages();
+  repaint();
+}, 220));
+
+function debounce(fn, ms) {
+  let t;
+  return (...a) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...a), ms);
+  };
+}
+
+(function waves() {
+  const cv = wavesEl, ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  let t = 0;
+  const bands = [ {
+    y: .42,
+    a: .15,
+    c: "159,230,220"
+  }, {
+    y: .5,
+    a: .12,
+    c: "87,216,207"
+  }, {
+    y: .58,
+    a: .13,
+    c: "230,215,184"
+  }, {
+    y: .66,
+    a: .09,
+    c: "31,162,180"
+  }, {
+    y: .74,
+    a: .08,
+    c: "212,180,122"
+  } ];
+  function size() {
+    cv.width = innerWidth * devicePixelRatio;
+    cv.height = innerHeight * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  }
+  function draw() {
+    const w = innerWidth, h = innerHeight, drift = scrollY * .0014;
+    ctx.clearRect(0, 0, w, h);
+    bands.forEach((b, k) => {
+      ctx.beginPath();
+      const base = h * b.y;
+      for (let px = 0; px <= w; px += 7) {
+        const yy = base + Math.sin(px * .0045 + t * .55 + k * .6 + drift) * (8 + k * 1.3);
+        px ? ctx.lineTo(px, yy) : ctx.moveTo(px, yy);
+      }
+      ctx.strokeStyle = `rgba(${b.c},${b.a})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    });
+    if (!reduce) requestAnimationFrame(() => {
+      t += .006;
+      draw();
+    });
+  }
+  size();
+  draw();
+  addEventListener("resize", () => {
+    size();
+    if (reduce) draw();
+  });
+  if (reduce) addEventListener("scroll", draw, {
+    passive: true
+  });
+})();
+
+fetch("data/land-10m.json").then(r => r.json()).then(gj => {
+  LAND = gj;
+  PLOTS.map(document.getElementById("fig-map"), state.map ?? 0);
+}).catch(() => console.warn("Coastlines unavailable -map falls back to markers only."));
+
+fetch("data/pict-eez-final.geojson").then(r => {
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}).then(gj => {
+  EEZ = gj;
+  const summed = {};
+  gj.features.forEach(f => {
+    const iso = f.properties.iso;
+    if (!iso || !f.properties.AREA_KM2) return;
+    summed[iso] = (summed[iso] ?? 0) + f.properties.AREA_KM2;
+  });
+  PICT.forEach(p => {
+    if (summed[p.iso]) {
+      p.eez = summed[p.iso] / 1e3;
+      p.ratio = p.eez * 1e3 / p.land;
+    }
+  });
+  PLOTS.map(document.getElementById("fig-map"), state.map ?? 0);
+}).catch(e => console.warn("EEZ layer unavailable -map falls back to circle markers.", e));
+
+fetch("data/events.json").then(r => {
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}).then(rows => {
+  SAMPLE.events = rows;
+  repaint([ "events" ]);
+}).catch(e => console.warn("Real disaster data unavailable -showing placeholder events.", e));
+
+fetch("data/anomalies.json").then(r => {
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}).then(d => {
+  SAMPLE.anomaliesSst = d.sst;
+  SAMPLE.anomaliesSea = d.sea;
+  SAMPLE.anomaliesRain = d.rain;
+  repaint([ "drivers" ]);
+}).catch(e => console.warn("Real climate-anomaly data unavailable - showing placeholder curves.", e));
+
+fetch("data/governance.json").then(r => {
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}).then(d => {
+  SAMPLE.loss = d.loss;
+  SAMPLE.drr = d.drr;
+  SAMPLE.renew = d.renew;
+  SAMPLE.envtax = d.envtax;
+  repaint([ "events", "response" ]);
+}).catch(e => console.warn("Real governance data unavailable -showing placeholder bars.", e));
+
+fetch("data/ghg_emissions.json").then(r => {
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}).then(d => {
+  SAMPLE.ghg_series = d;
+  repaint([ "drivers" ]);
+}).catch(e => console.warn("Real GHG data unavailable -showing placeholder curve.", e));
+</script>
+</body>
+</html>
