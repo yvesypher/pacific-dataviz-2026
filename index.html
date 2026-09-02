@@ -144,7 +144,7 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
 
 <section class="chapter" id="sec-map" data-label="The region">
   <div class="wrap"><h2>A region measured in water, not land</h2>
-  <p><em>The Pacific is defined less by the land its countries occupy than by the ocean that surrounds them. This geography brings enormous economic and strategic value, but it also places much of everyday life directly along an exposed coastline.</em></p>
+  <p><em>Despite their limited land areas, Pacific Islands are surrounded by vast expanses of ocean. This geography provides significant economic and strategic value, while also concentrating communities, infrastructure, and economic activity along exposed coastlines.</em></p>
   </div>
   <div class="wrap scrolly">
     <div class="sticky"><div class="figure" id="fig-map"></div></div>
@@ -214,7 +214,7 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
       <div class="step" data-step="0"><h3>Who has a plan at the local level</h3>
         <p>Each chart in this section displays a grid of one hundred squares, arranged in ten rows of ten, with each filled square representing one percentage point. The grids show the proportion of a country's local governments, the administrative level responsible for organising evacuations and coordinating immediate disaster response, that had adopted and were implementing a disaster risk reduction strategy as of 2021. Palau, Vanuatu, Tuvalu and Nauru report full coverage across their local governments. Other countries report considerably lower levels of implementation, and several report none at all. A national strategy establishes policy; these figures indicate the extent to which that policy has been adopted at the level of government responsible for acting on it.</p>
         <span class="hint">Each square is one percentage point. Click a country to follow it.</span></div>
-        <div class="step" data-step="0"><h3>The shift to renewable energy</h3>
+        <div class="step" data-step="1"><h3>The shift to renewable energy</h3>
           <p>Beyond institutional planning, preparing for disasters also involves securing the resources that keep a country running. This line chart tracks renewable energy's share of total final energy consumption for each country in the region from 2000 to the present. Trends vary substantially: several countries show a steady increase in renewable share over two decades, while others remain close to their starting levels. Papua New Guinea and Solomon Islands report the highest renewable shares in the region, largely driven by hydropower generation. Meanwhile, several smaller island economies remain below ten percent, continuing to rely primarily on imported diesel. Shifting to renewables does not protect a country from cyclones or rising seas; rather, it cuts dependence on fuel imports that can easily be disrupted by the exact disasters tracked across this data.</p>
           <span class="hint">Hover over the lines to compare countries.</span></div>
       <div class="step" data-step="2"><h3>Environmental taxes as a fiscal tool</h3>
@@ -614,7 +614,7 @@ const PLOTS = {
       }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>US${d.valueM.toFixed(1)}M average annual loss<br>` + `from ${d.nYears} estimate${d.nYears === 1 ? "" : "s"} since 2010`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x(d.valueM) - 176));
       svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y(d.name) + y.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
       svg.append("g").attr("transform", `translate(0,${h - 46})`).call(d3.axisBottom(x).ticks(5).tickFormat(d => "$" + d + "M")).call(axStyle);
-      svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("average annual loss, US$ millions, 2010 onward");
+      svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("Average annual loss, US$ millions, 2010 onward");
       svg.append("text").attr("x", 176 + (w - 176 - 40) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Average annual loss (US$ millions)");
       svg.append("text").attr("x", 166).attr("y", y.range()[0] - 12).attr("text-anchor", "end").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
       return;
@@ -678,7 +678,7 @@ const PLOTS = {
     g.selectAll("rect").data(cells, d => d.key).join(enter => enter.append("rect").attr("class", "mark").attr("x", c => geom(c).x).attr("y", base).attr("width", c => geom(c).w).attr("height", 0).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", 0).call(s => s.transition(T()).delay(c => c.yi * 8).attr("y", c => geom(c).y).attr("height", c => geom(c).h).attr("opacity", .94)), update => update.call(s => s.transition(T()).delay(c => step === 2 ? c.idx * 1.4 + c.yi * 6 : c.yi * 6).attr("x", c => geom(c).x).attr("y", c => geom(c).y).attr("width", c => geom(c).w).attr("height", c => geom(c).h).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", .94)), exit => exit.call(s => s.transition(T()).attr("y", base).attr("height", 0).attr("opacity", 0).remove())).on("mousemove", (ev, c) => showTip(ev, step === 2 ? `<b>${c.y} · ${c.type}</b><br>one square = 10,000 people<br>${fmt(c.n * 1e4)} affected this year` : step === 1 ? `<b>${c.y} · ${c.type}</b><br>${cells.filter(x => x.y === c.y && x.type === c.type).length} ${c.type.toLowerCase()} events` : `<b>${c.y}</b><br>${cells.filter(x => x.y === c.y).length} events reported`)).on("mouseleave", hideTip);
     const ax = svg.selectAll("g.ax").data([ 0 ]).join("g").attr("class", "ax").attr("transform", `translate(0,${h - 32})`);
     ax.call(d3.axisBottom(d3.scaleLinear().domain([ minYr, maxYr ]).range([ left + colW / 2, left + colW * (years.length - .5) ])).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
-    svg.selectAll("text.unit").data([ 0 ]).join("text").attr("class", "unit").attr("x", left).attr("y", 10).attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "reported events per year" : step === 1 ? "reported events per year, by disaster subgroup" : "one square = 10,000 people affected");
+    svg.selectAll("text.unit").data([ 0 ]).join("text").attr("class", "unit").attr("x", left).attr("y", 10).attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "Reported events per year" : step === 1 ? "Reported events per year, by disaster" : "one square = 10,000 people affected");
     svg.selectAll("text.axis-x").data([ 0 ]).join("text").attr("class", "axis-x").attr("x", left + (w - left - 12) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
     svg.selectAll("text.axis-y").data([ 0 ]).join("text").attr("class", "axis-y").attr("transform", `translate(13,${top + (base - top) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text(step === 2 ? "Number of people affected (×10,000)" : "Number of events");
   },
@@ -963,7 +963,7 @@ const PLOTS = {
         const L = p.node().getTotalLength();
         p.attr("stroke-dasharray", `${L} ${L}`).attr("stroke-dashoffset", L).transition().duration(1e3).ease(d3.easeCubicOut).attr("stroke-dashoffset", 0);
       });
-      svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", C.mist).text("renewable share of final energy consumption (%)");
+      svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", C.mist).text("Renewable share of final energy consumption (%)");
       svg.append("text").attr("x", 64 + (w - 90) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
       svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Renewable share of final energy consumption (%)");
       const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
@@ -1018,7 +1018,7 @@ const PLOTS = {
     svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y2(d.name) + y2.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
     svg.selectAll("text.val").data(rows, d => d.iso).join("text").attr("class", "val").attr("y", d => y2(d.name) + y2.bandwidth() / 2 + 5).attr("font-size", 12.5).attr("fill", C.mist).text(d => d.value.toFixed(2) + "%").transition(T()).attr("x", d => x2(d.value) + 8);
     svg.append("g").attr("transform", `translate(0,${h - 46})`).call(d3.axisBottom(x2).ticks(5)).call(axStyle);
-    svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("environmental tax revenue (% of GDP) in 2020");
+    svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("Environmental tax revenue (% of GDP) in 2020");
     svg.append("text").attr("x", 176 + (w - 176 - 46) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Environmental tax revenue (% of GDP)");
     svg.append("text").attr("x", 166).attr("y", y2.range()[0] - 12).attr("text-anchor", "end").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
   }
