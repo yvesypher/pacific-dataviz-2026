@@ -83,7 +83,7 @@ h1{font-size:clamp(46px,9vw,120px);line-height:.94;margin:0 0 18px;letter-spacin
 .step.is-active{opacity:1;background:rgba(5,32,47,.5);backdrop-filter:blur(4px)}
 .step h3{font-size:25px;line-height:1.2;margin:0 0 10px;color:var(--sand)}
 .step p{font-size:17px;margin:0;color:#dceeeb}
-.hint{display:block;margin-top:10px;font-size:13.5px;color:var(--mist)}
+.hint{font-style: italic;display:block;margin-top:10px;font-size:13.5px;color:var(--mist)}
 
 #tip{
   position:fixed !important;pointer-events:none;z-index:999;opacity:0;
@@ -101,6 +101,7 @@ h1{font-size:clamp(46px,9vw,120px);line-height:.94;margin:0 0 18px;letter-spacin
 .chrome button:focus-visible{outline:2px solid var(--lagoon);outline-offset:3px}
 .chrome label{display:flex;gap:10px;align-items:center;color:var(--mist)}
 .swatch{width:11px;height:11px;border-radius:2px;display:inline-block}
+.chrome input[type=range]{accent-color:var(--ember);height:4px}
 .mark{cursor:pointer}
 .dim{opacity:.16}
 
@@ -115,10 +116,11 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
 
 @media (max-width:860px){
   .scrolly{grid-template-columns:1fr;gap:0}
-  
-  .sticky{position:static;height:auto;margin:0 -24px 24px;padding:0 12px;
-    background:linear-gradient(rgba(5,32,47,.55),rgba(5,32,47,.55))}
-  .figure{aspect-ratio:1/1;max-height:52svh}
+
+  .sticky{position:sticky;top:0;height:46svh;margin:0 -24px 0;padding:0 12px;
+    background:linear-gradient(rgba(5,32,47,.88),rgba(5,32,47,.88));
+    z-index:2;box-shadow:0 16px 24px -18px rgba(5,32,47,.9)}
+  .figure{aspect-ratio:1/1;max-height:42svh}
   .steps{padding:3vh 0 10vh}
   .step{margin-bottom:28vh}
 }
@@ -170,12 +172,20 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
         <p>The chart shows the number of disasters reported in Pacific Islands each year over two decades. The figure fluctuates considerably, with 2015 witnessing the highest number of disastrous events. This region has not experienced a disaster-free year since this record began.</p></div>
       <div class="step" data-step="1"><h3>A spectrum of hazards</h3>
         <p>Examining disasters by hazard type reveals the distinct forces shaping the region’s disaster profile. Meteorological events, including cyclones and severe storms, account for the largest share of disasters in most years. Hydrological hazards, such as floods, and climatological hazards, including prolonged droughts, accounts for much of the remaining share and have become increasingly prominent over time. The region is also exposed to geophysical hazards such as earthquakes and tsunamis, alongside biological hazards such as disease outbreaks and pest infestations.</p>
-        <span class="hint">Click the legend or bar chart to explore each type of disasters.</span></div>
+        <span class="hint">Click on legend or bar chart to select a category.<br>
+          Hold "Shift" key and click to filter multiple categories.<br>
+        Pres "Esc" or click on blank space to clear the filter.</span></div>
       <div class="step" data-step="2"><h3>Measuring impact on human</h3>
-        <p>Counting events tells us how often disasters strike, but counting people affected reveals the true scale of the crisis. When each unit represents ten thousand affected individuals, the true distribution of impact becomes clear. A massive surge of climatological impact in 2015 dominates the record. Yet the surrounding pattern is equally significant: the baseline of human impact has expanded in recent years. The past decade displays concentrated clusters of meteorological and geophysical devastation that far outpace the relatively quiet period of the early 2000s.</p></div>
-      <div class="step" data-step="3"><h3>The economic burden</h3>
+        <p>Counting events tells us how often disasters strike, but counting people affected reveals the true scale of the crisis. When each unit represents ten thousand affected individuals, the true distribution of impact becomes clear. A massive surge of climatological impact in 2015 dominates the record. Yet the surrounding pattern is equally significant: the baseline of human impact has expanded in recent years. The past decade displays concentrated clusters of meteorological and geophysical devastation that far outpace the relatively quiet period of the early 2000s.</p>
+        <span class="hint">Click on legend or bar chart to select a category.<br>
+          Hold "Shift" key and click to filter multiple categories.<br>
+        Pres "Esc" or click on blank space to clear the filter.</span>
+      </div>
+        <div class="step" data-step="3"><h3>The economic burden</h3>
         <p>Disasters not only disrupt lives but also drain economies. Transitioning from human impact to financial cost, this chart presents the average annual loss in few countries of Pacific Islands. Fiji experiences the largest economic burden, with costs extending into the hundreds of millions. While most other nations face average annual losses measured in the millions of US dollars, this massive gap is driven by a combination of Fiji's frequent exposure to the hazards shown above and the dense, high-value infrastructure at risk within a larger economy.</p>
-        <span class="hint">Click a country to follow it into the next chapter.</span></div>
+        <span class="hint">Click on a bar to select and follow a country throughout the story.<br>
+          Hold "Shift" key and click to select multiple countries. <br>
+          Press "Esc" or click on blank space to clear the filter.</span></div>
     </div>
   </div>
 </section>
@@ -191,14 +201,16 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
     <div class="steps" data-viz="drivers">
       <div class="step" data-step="0"><h3>The sea is warmer ...</h3>
         <p>Records of sea surface temperature anomalies since 1850 show a distinct break from the past. For most of this period, annual values remained close to the long-term average, fluctuating within a relatively narrow band. In recent decades, however, temperatures have surged well above this historical range. This excess heat is critical, as warmer surface water increases the energy available to tropical cyclones, driving their formation and intensification.</p>
-          <span class="hint">Move across the chart to read any year.</span></div>
+         </div>
       <div class="step" data-step="1"><h3>... and higher ...</h3>
         <p>Sea level in the western Pacific has risen faster than the global average over the same period. As a result, coastal flooding and storm surge now originate from a higher baseline than in previous decades. While an annual increase measured in millimetres might sound insignificant, the cumulative effect is severe: a storm of comparable strength today produces greater coastal impact than an equivalent storm several decades ago.</p></div>
       <div class="step" data-step="2"><h3>... and more erratic</h3>
         <p>Rainfall data does not simply show a steady decline or increase in precipitation; it reveals a pattern of growing volatility. While earlier decades saw anomalies fluctuate within a relatively contained band, recent years display increasingly violent swings. Deep deficits are now abruptly followed by massive surpluses, punctuated by an unprecedented positive spike near 2020. This erratic behavior severely affects communities that rely on predictable rainfall for drinking water and agriculture. Preparing for a drier climate or a wetter one is feasible; planning for amplified extremes swinging wildly in both directions is a profoundly greater challenge.</p></div>
       <div class="step" data-step="3"><h3>A disproportionate burden</h3>
-        <p>The erratic weather and warming oceans might be the consequences of global human activity. Transitioning to these human catalysts, this chart traces greenhouse gas emissions per capita over fifty years on a logarithmic scale. Overall, most Pacific nations produce negligible emissions per person, maintaining that low baseline for decades. While Palau registers the highest in the region, it is still much lower compared to the worldwide average. The paradox is clear: the countries experiencing the worst of these environmental extremes contribute the least to the human causes.</p>
-        <span class="hint">Hover over the chart to highlight a specific country.</span></div>
+        <p>The erratic weather and warming oceans might be the consequences of global human activity. Transitioning to these human catalysts, this chart traces greenhouse gas emissions per capita over fifty years on a logarithmic scale. Most Pacific nations produce negligible emissions per person, maintaining a low baseline for decades. Palau and New Caledonia are notable exceptions, with per-capita emissions significantly outweighing the rest of the region. In New Caledonia, emissions are largely associated with its coal- and oil-powered nickel mining and processing industry, while Palau's higher per-capita figure reflects its reliance on diesel for electricity generation and fuel-intensive transport and tourism. Apart from these two outliers, the countries experiencing the worst of these environmental extremes contribute relatively little to the human causes.</p>
+        <span class="hint">Click on a line or legend to select a country. <br>
+          Hold "Shift" key and click to select multiple countries.<br>
+          Press "Esc" or click on blank space to clear the filter.</span></div>
     </div>
   </div>
 </section>
@@ -211,23 +223,32 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
   <div class="wrap scrolly">
     <div class="sticky"><div class="figure" id="fig-response"></div></div>
     <div class="steps" data-viz="response">
-      <div class="step" data-step="0"><h3>Who has a plan at the local level</h3>
-        <p>Each chart in this section displays a grid of one hundred squares, arranged in ten rows of ten, with each filled square representing one percentage point. The grids show the proportion of a country's local governments, the administrative level responsible for organising evacuations and coordinating immediate disaster response, that had adopted and were implementing a disaster risk reduction strategy as of 2021. Palau, Vanuatu, Tuvalu and Nauru report full coverage across their local governments. Other countries report considerably lower levels of implementation, and several report none at all. A national strategy establishes policy; these figures indicate the extent to which that policy has been adopted at the level of government responsible for acting on it.</p>
-        <span class="hint">Each square is one percentage point. Click a country to follow it.</span></div>
-        <div class="step" data-step="1"><h3>The shift to renewable energy</h3>
-          <p>Beyond institutional planning, preparing for disasters also involves securing the resources that keep a country running. This line chart tracks renewable energy's share of total final energy consumption for each country in the region from 2000 to the present. Trends vary substantially: several countries show a steady increase in renewable share over two decades, while others remain close to their starting levels. Papua New Guinea and Solomon Islands report the highest renewable shares in the region, largely driven by hydropower generation. Meanwhile, several smaller island economies remain below ten percent, continuing to rely primarily on imported diesel. Shifting to renewables does not protect a country from cyclones or rising seas; rather, it cuts dependence on fuel imports that can easily be disrupted by the exact disasters tracked across this data.</p>
-          <span class="hint">Hover over the lines to compare countries.</span></div>
-      <div class="step" data-step="2"><h3>Environmental taxes as a fiscal tool</h3>
-        <p>Moving to fiscal policy, the chart compares environmental tax revenue as a share of GDP across selected Pacific nations in 2020. Solomon Islands stands out with revenue equivalent to 3.80% of GDP, followed by Fiji, Nauru, and Papua New Guinea, each recording less than 0.5% of GDP. Environmental taxes on fuel, vehicles, waste, and resource extraction provide governments with a fiscal instrument to address environmental risks and strengthen resilience, yet their limited use across the region suggests that this policy tool remains largely underutilised.
+      <div class="step" data-step="0"><h3>Environmental taxes as a fiscal tool</h3>
+        <p>One of the clearest levers a government controls is its own tax system. The chart compares environmental tax revenue as a share of GDP across selected Pacific nations in 2020. Solomon Islands stands out with revenue equivalent to 3.80% of GDP, followed by Fiji, Nauru, and Papua New Guinea, each recording less than 0.5% of GDP. Environmental taxes on fuel, vehicles, waste, and resource extraction provide governments with a fiscal instrument to address environmental risks and strengthen resilience, yet their limited use across the region suggests that this policy tool remains largely underutilised.
         </p> 
+        <span class="hint">Click on a bar to select a country. <br>
+          Hold "Shift" key and click to select multiple countries.<br>
+          Press "Esc" or click on blank space to clear the filter.</span>
       </div>
+        <div class="step" data-step="1"><h3>The shift to renewable energy</h3>
+          <p>Raising revenue is one lever; changing what a country runs on is another. Preparing for disasters also means securing the energy supply that keeps a country going. This chart illustrates the share of renewable energy in total final energy consumption for each country in the region from 2000 to the present. Several countries show a steady increase in the share of renewables over two decades, while others remain close to their starting levels. Papua New Guinea and the Solomon Islands report the highest renewable shares in the region, while countries such as Fiji, Kiribati, and Tuvalu remain below 10%. These lower shares reflect continued reliance on imported fuels, particularly diesel. Expanding renewable energy can reduce this dependence and strengthen energy security when disasters disrupt fuel supply.</p>
+          <span class="hint">Drag the slider to explore other years. <br>
+            Click a country to select it. <br>
+            Hold "Shift" key and click to select multiple countries.<br>
+            Press "Esc" or click on blank space to clear the filter.</span></div>
+      <div class="step" data-step="2"><h3>Disaster planning at the local level</h3>
+        <p>Effective disaster preparation depends not only on national policy but also on the implementation by local governments. The charts show the proportion of local governments that had adopted and were implementing a disaster risk reduction strategy as of 2021. Each grid contains 100 squares, with each filled square representing 1 percentage point. Palau, Vanuatu, Tuvalu, and Nauru report full coverage, while other countries show substantially lower levels of implementation, with several reporting no local governments with an active strategy. These differences highlight how unevenly national disaster preparedness has been translated into action at the local level, where evacuations and immediate disaster responses are coordinated.</p>
+        <span class="hint">Each square is one percentage point. <br>
+          Click on a country to select and follow it throughout the story.<br>
+          Hold "Shift" key and click to select multiple countries.<br>
+          Press "Esc" or click on blank space to clear the filter.</span></div>
   </div>
 </section>
 
 <section class="outro" id="sec-outro" data-label="Close">
   <div class="wrap">
     <h2>The paradox</h2>
-    <p>The Pacific Islands’ relationship with the ocean is defined by a fundamental paradox. The same waters that provide food, trade, and vast maritime territories also expose its twenty-two countries and territories to persistent disasters, rising sea levels, warmer temperatures, and increasingly erratic rainfall. These risks carry substantial human and economic costs, yet the countries facing them contribute little to the greenhouse gas emissions driving global climate change. Governments are responding through disaster risk reduction planning, renewable energy adoption, and environmental taxation, but the extent and capacity of these measures vary considerably across the region. Taken together, the evidence points to a region that is highly exposed, unequally equipped to respond, and largely affected by forces beyond its control. The ocean remains both the Pacific’s greatest asset and its greatest vulnerability.</p>  
+    <p>The Pacific Islands’ relationship with the ocean is defined by a fundamental paradox. The same waters that provide food, trade, and vast maritime territories also expose its twenty-two countries and territories to persistent disasters, rising sea levels, warmer temperatures, and increasingly erratic rainfall. These risks carry significant human and economic costs to many Pacific nations, despite their minor contributions to the greenhouse gas emissions driving global climate change. Governments are responding through disaster risk reduction planning, renewable energy adoption, and environmental taxation, but the extent and capacity of these measures vary considerably across the region. Taken together, the evidence points to a region that is highly exposed, unequally equipped to respond, and largely affected by forces beyond its control. The ocean remains both the Pacific’s greatest asset and its greatest vulnerability.</p>  
   </div>
 </section>
 
@@ -385,47 +406,64 @@ const SAMPLE = {
     value: 0,
     year: 2020
   } ],
-  renew: [ {
-    iso: "PG",
-    name: "Papua New Guinea",
-    value: 48,
-    year: 2022
-  }, {
-    iso: "SB",
-    name: "Solomon Islands",
-    value: 47,
-    year: 2022
-  }, {
-    iso: "KI",
-    name: "Kiribati",
-    value: 39,
-    year: 2022
-  }, {
-    iso: "WS",
-    name: "Samoa",
-    value: 29,
-    year: 2022
-  }, {
-    iso: "VU",
-    name: "Vanuatu",
-    value: 26,
-    year: 2022
-  }, {
-    iso: "FJ",
-    name: "Fiji",
-    value: 25,
-    year: 2022
-  }, {
-    iso: "MH",
-    name: "Marshall Islands",
-    value: 11,
-    year: 2022
-  }, {
-    iso: "NC",
-    name: "New Caledonia",
-    value: 9,
-    year: 2022
-  } ],
+  renew: (() => {
+    const targets = [ {
+      iso: "PG",
+      name: "Papua New Guinea",
+      start: 34,
+      end: 48
+    }, {
+      iso: "SB",
+      name: "Solomon Islands",
+      start: 41,
+      end: 47
+    }, {
+      iso: "KI",
+      name: "Kiribati",
+      start: 21,
+      end: 39
+    }, {
+      iso: "WS",
+      name: "Samoa",
+      start: 26,
+      end: 29
+    }, {
+      iso: "VU",
+      name: "Vanuatu",
+      start: 16,
+      end: 26
+    }, {
+      iso: "FJ",
+      name: "Fiji",
+      start: 19,
+      end: 25
+    }, {
+      iso: "MH",
+      name: "Marshall Islands",
+      start: 6,
+      end: 11
+    }, {
+      iso: "NC",
+      name: "New Caledonia",
+      start: 3,
+      end: 9
+    } ];
+    const res = [];
+    targets.forEach(t => {
+      d3.range(2000, 2023).forEach(y => {
+        const frac = (y - 2000) / 22;
+        const base = t.start + (t.end - t.start) * frac;
+        const noise = (rnd() - .5) * 3;
+        res.push({
+          iso: t.iso,
+          name: t.name,
+          year: y,
+          value: Math.max(0, +(base + noise).toFixed(1))
+        });
+      });
+    });
+    return res;
+  })(),
   envtax: [ {
     iso: "SB",
     name: "Solomon Islands",
@@ -471,9 +509,36 @@ const C = {
 
 const fmt = n => d3.format(",")(Math.round(n));
 
-let selectedIso = null;
+let selectedIsos = new Set();
+
+let renewYear = null;
+
+const isSelected = iso => selectedIsos.has(iso);
+
+const toggleSelect = (iso, additive) => {
+  if (additive) {
+    selectedIsos.has(iso) ? selectedIsos.delete(iso) : selectedIsos.add(iso);
+  } else if (selectedIsos.size === 1 && selectedIsos.has(iso)) {
+    selectedIsos.clear();
+  } else {
+    selectedIsos.clear();
+    selectedIsos.add(iso);
+  }
+};
 
 const hazardFilter = new Set(HAZARDS);
+
+const toggleHazard = (type, additive) => {
+  if (additive) {
+    hazardFilter.has(type) ? hazardFilter.delete(type) : hazardFilter.add(type);
+    if (!hazardFilter.size) HAZARDS.forEach(x => hazardFilter.add(x));
+  } else if (hazardFilter.size === 1 && hazardFilter.has(type)) {
+    HAZARDS.forEach(x => hazardFilter.add(x));
+  } else {
+    hazardFilter.clear();
+    hazardFilter.add(type);
+  }
+};
 
 let LAND = null;
 
@@ -494,18 +559,32 @@ document.addEventListener("scroll", hideTip, {
   passive: true
 });
 
+document.addEventListener("keydown", ev => {
+  if (ev.key !== "Escape") return;
+  let changed = false;
+  if (selectedIsos.size) {
+    selectedIsos.clear();
+    changed = true;
+  }
+  if (hazardFilter.size !== HAZARDS.length) {
+    HAZARDS.forEach(x => hazardFilter.add(x));
+    changed = true;
+  }
+  if (changed) repaint();
+});
+
 function stage(el, opts = {}) {
   const w = el.clientWidth || 640;
   if (el.__stage && el.__stage.w === w && el.__stage.chromeOn === !!opts.chrome) return el.__stage;
   el.innerHTML = "";
+  const h = (el.clientHeight || 480) - (opts.chrome ? 30 : 0);
+  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMidYMid meet");
   let chrome = null;
   if (opts.chrome) {
     chrome = document.createElement("div");
     chrome.className = "chrome";
     el.appendChild(chrome);
   }
-  const h = (el.clientHeight || 480) - (opts.chrome ? 30 : 0);
-  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMidYMid meet");
   el.__stage = {
     svg: svg,
     w: w,
@@ -594,7 +673,7 @@ const PLOTS = {
     }));
     d3.forceSimulation(nodes).force("x", d3.forceX(d => d.cx).strength(.4)).force("y", d3.forceY(d => d.cy - 8).strength(.7)).force("collide", d3.forceCollide(d => d.rx).strength(.95).iterations(4)).stop().tick(220);
     svg.append("g").attr("class", "country-labels").selectAll("text").data(nodes).join("text").attr("x", d => d.x).attr("y", d => d.y).attr("text-anchor", "middle").attr("pointer-events", "none").attr("font-size", 10).attr("font-family", "'Public Sans',sans-serif").attr("fill", C.foam).attr("stroke", "rgba(4,24,35,.85)").attr("stroke-width", 3).attr("paint-order", "stroke").text(d => d.name);
-    svg.append("text").attr("x", 20).attr("y", h - 8).attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "22 countries and territories" : EEZ ? "Exclusive economic zones, shaded by ocean area per unit of land" : "Loading exclusive economic zones…");
+    svg.append("text").attr("x", w - 20).attr("y", h - 8).attr("text-anchor", "end").attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "22 countries and territories" : EEZ ? "Exclusive economic zones, shaded by ocean area per unit of land" : "Loading exclusive economic zones…");
   },
   events(el, step) {
     const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
@@ -606,17 +685,23 @@ const PLOTS = {
     el.__eventsMode = mode;
     if (step === 3) {
       const rows = [ ...SAMPLE.loss ].sort((a, b) => b.valueM - a.valueM);
-      const y = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).padding(.32);
+      const y = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).paddingInner(.32).paddingOuter(.08);
       const x = d3.scaleLinear().domain([ 0, d3.max(rows, d => d.valueM) ]).nice().range([ 176, w - 40 ]);
-      svg.selectAll("rect").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIso && d.iso !== selectedIso ? " dim" : "")).attr("x", 176).attr("y", d => y(d.name)).attr("height", y.bandwidth()).attr("rx", 2).attr("fill", d => d.iso === selectedIso ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (_, d) => {
-        selectedIso = selectedIso === d.iso ? null : d.iso;
+      svg.selectAll("rect.blank-catcher").data([ 0 ]).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
+        if (!selectedIsos.size) return;
+        selectedIsos.clear();
         repaint([ "events", "response" ]);
-      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>US${d.valueM.toFixed(1)}M average annual loss<br>` + `from ${d.nYears} estimate${d.nYears === 1 ? "" : "s"} since 2010`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x(d.valueM) - 176));
-      svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y(d.name) + y.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
+      });
+      svg.selectAll("rect.mark").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("x", 176).attr("y", d => y(d.name)).attr("height", y.bandwidth()).attr("rx", 2).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (ev, d) => {
+        ev.stopPropagation();
+        toggleSelect(d.iso, ev.shiftKey);
+        repaint([ "events", "response" ]);
+      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>USD ${d.valueM.toFixed(1)}M annual loss<br>` + `averaged by ${d.nYears}-year data since 2010`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x(d.valueM) - 176));
+      svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y(d.name) + y.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => isSelected(d.iso) ? C.sand : C.foam).text(d => d.name);
       svg.append("g").attr("transform", `translate(0,${h - 46})`).call(d3.axisBottom(x).ticks(5).tickFormat(d => "$" + d + "M")).call(axStyle);
-      svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("Average annual loss, US$ millions, 2010 onward");
+      svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 15).attr("fill", C.mist).text("Average annual loss, US$ millions, 2010 onward");
       svg.append("text").attr("x", 176 + (w - 176 - 40) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Average annual loss (US$ millions)");
-      svg.append("text").attr("x", 166).attr("y", y.range()[0] - 12).attr("text-anchor", "end").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
+      svg.append("text").attr("transform", `translate(15,${(28 + (h - 46)) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
       return;
     }
     const [minYr, maxYr] = d3.extent(SAMPLE.events, d => d.year);
@@ -624,17 +709,16 @@ const PLOTS = {
     if (step >= 1) {
       HAZARDS.forEach(t => {
         const b = document.createElement("button");
-        b.setAttribute("aria-pressed", hazardFilter.has(t));
+        b.setAttribute("aria-pressed", hazardFilter.has(t) && hazardFilter.size < HAZARDS.length);
         b.innerHTML = `<i class="swatch" style="background:${HAZ_COLOR[t]}"></i>${t}`;
-        b.onclick = () => {
-          hazardFilter.has(t) ? hazardFilter.delete(t) : hazardFilter.add(t);
-          if (!hazardFilter.size) HAZARDS.forEach(x => hazardFilter.add(x));
+        b.onclick = ev => {
+          toggleHazard(t, ev.shiftKey);
           PLOTS.events(el, state.events ?? 0);
         };
         chrome.appendChild(b);
       });
     }
-    const left = 40, base = h - 40, top = 14;
+    const left = 40, base = h - 40, top = step === 2 ? 42 : 28;
     const colW = (w - left - 12) / years.length;
     const active = step === 0 ? HAZARDS : HAZARDS.filter(t => hazardFilter.has(t));
     const cells = [];
@@ -674,18 +758,47 @@ const PLOTS = {
       r: 1
     };
     const fill = c => step === 0 ? C.turq : HAZ_COLOR[c.type];
+    svg.selectAll("rect.blank-catcher").data(step >= 1 ? [ 0 ] : []).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
+      if (hazardFilter.size === HAZARDS.length) return;
+      HAZARDS.forEach(x => hazardFilter.add(x));
+      PLOTS.events(el, state.events ?? 0);
+    });
     const g = svg.selectAll("g.plot").data([ 0 ]).join("g").attr("class", "plot");
-    g.selectAll("rect").data(cells, d => d.key).join(enter => enter.append("rect").attr("class", "mark").attr("x", c => geom(c).x).attr("y", base).attr("width", c => geom(c).w).attr("height", 0).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", 0).call(s => s.transition(T()).delay(c => c.yi * 8).attr("y", c => geom(c).y).attr("height", c => geom(c).h).attr("opacity", .94)), update => update.call(s => s.transition(T()).delay(c => step === 2 ? c.idx * 1.4 + c.yi * 6 : c.yi * 6).attr("x", c => geom(c).x).attr("y", c => geom(c).y).attr("width", c => geom(c).w).attr("height", c => geom(c).h).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", .94)), exit => exit.call(s => s.transition(T()).attr("y", base).attr("height", 0).attr("opacity", 0).remove())).on("mousemove", (ev, c) => showTip(ev, step === 2 ? `<b>${c.y} · ${c.type}</b><br>one square = 10,000 people<br>${fmt(c.n * 1e4)} affected this year` : step === 1 ? `<b>${c.y} · ${c.type}</b><br>${cells.filter(x => x.y === c.y && x.type === c.type).length} ${c.type.toLowerCase()} events` : `<b>${c.y}</b><br>${cells.filter(x => x.y === c.y).length} events reported`)).on("mouseleave", hideTip);
+    g.selectAll("rect").data(cells, d => d.key).join(enter => enter.append("rect").attr("class", "mark").attr("x", c => geom(c).x).attr("y", base).attr("width", c => geom(c).w).attr("height", 0).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", 0).call(s => s.transition(T()).delay(c => c.yi * 8).attr("y", c => geom(c).y).attr("height", c => geom(c).h).attr("opacity", .94)), update => update.call(s => s.transition(T()).delay(c => step === 2 ? c.idx * 1.4 + c.yi * 6 : c.yi * 6).attr("x", c => geom(c).x).attr("y", c => geom(c).y).attr("width", c => geom(c).w).attr("height", c => geom(c).h).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", .94)), exit => exit.call(s => s.transition(T()).attr("y", base).attr("height", 0).attr("opacity", 0).remove())).on("click", (ev, c) => {
+      if (step === 0) return;
+      ev.stopPropagation();
+      toggleHazard(c.type, ev.shiftKey);
+      PLOTS.events(el, state.events ?? 0);
+    }).on("mousemove", (ev, c) => showTip(ev, step === 2 ? `<b>${c.y} · ${c.type}</b><br>${fmt(c.n * 1e4)} people affected` : step === 1 ? `<b>${c.y} · ${c.type}</b><br>${cells.filter(x => x.y === c.y && x.type === c.type).length} ${c.type.toLowerCase()} disasters` : `<b>${c.y}</b><br>${cells.filter(x => x.y === c.y).length} disasters`)).on("mouseleave", hideTip);
     const ax = svg.selectAll("g.ax").data([ 0 ]).join("g").attr("class", "ax").attr("transform", `translate(0,${h - 32})`);
     ax.call(d3.axisBottom(d3.scaleLinear().domain([ minYr, maxYr ]).range([ left + colW / 2, left + colW * (years.length - .5) ])).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
-    svg.selectAll("text.unit").data([ 0 ]).join("text").attr("class", "unit").attr("x", left).attr("y", 10).attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "Reported events per year" : step === 1 ? "Reported events per year, by disaster" : "one square = 10,000 people affected");
+    svg.selectAll("text.unit").data([ 0 ]).join("text").attr("class", "unit").attr("x", left).attr("y", 14).attr("font-size", 15).attr("fill", C.mist).text(step === 0 ? "Number of disasters (2000-2026)" : step === 1 ? "Number of disasters by types (2000-2026)" : "Number of people affected by disasters");
+    svg.selectAll("text.unit-sub").data(step === 2 ? [ 0 ] : []).join("text").attr("class", "unit-sub").attr("x", left).attr("y", 30).attr("font-size", 11.5).attr("fill", C.mist).text("One square = 10,000 people affected");
     svg.selectAll("text.axis-x").data([ 0 ]).join("text").attr("class", "axis-x").attr("x", left + (w - left - 12) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
     svg.selectAll("text.axis-y").data([ 0 ]).join("text").attr("class", "axis-y").attr("transform", `translate(13,${top + (base - top) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text(step === 2 ? "Number of people affected (×10,000)" : "Number of events");
   },
   drivers(el, step) {
-    const {svg: svg, w: w, h: h} = stage(el);
+    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
+      chrome: step === 3
+    });
     svg.selectAll("*").remove();
     if (step === 3) {
+      chrome.innerHTML = "";
+      const ghgCountries = [ "Fiji", "Vanuatu", "Samoa", "Tonga", "Papua New Guinea", "Palau", "New Caledonia" ];
+      const ghgPalette = [ C.ember, C.lagoon, C.sand, C.rain, C.dune, "#e15b8f", C.shallow ];
+      const ghgColor = d3.scaleOrdinal().domain(ghgCountries).range(ghgPalette);
+      const isoOf = name => PICT.find(p => p.name === name)?.iso ?? name;
+      ghgCountries.forEach(name => {
+        const iso = isoOf(name);
+        const b = document.createElement("button");
+        b.setAttribute("aria-pressed", isSelected(iso));
+        b.innerHTML = `<i class="swatch" style="background:${ghgColor(name)}"></i>${name}`;
+        b.onclick = ev => {
+          toggleSelect(iso, ev.shiftKey);
+          repaint([ "events", "drivers", "response" ]);
+        };
+        chrome.appendChild(b);
+      });
       const data = SAMPLE.ghg_series.map(d => ({
         ...d,
         logValue: Math.log10(Math.max(d.value, .05))
@@ -697,14 +810,18 @@ const PLOTS = {
       const drawLayer = svg.append("g");
       const grouped = d3.group(data, d => d.country);
       const line = d3.line().x(d => x(d.year)).y(d => y(d.logValue)).curve(d3.curveMonotoneX);
+      const styleLines = () => {
+        drawLayer.selectAll("path").attr("class", d => "mark" + (selectedIsos.size && !isSelected(isoOf(d[0].country)) ? " dim" : "")).attr("stroke", d => ghgColor(d[0].country)).attr("stroke-width", d => isSelected(isoOf(d[0].country)) ? 3.4 : 2.4).filter(d => isSelected(isoOf(d[0].country))).raise();
+      };
       Array.from(grouped.entries()).forEach(([name, values]) => {
-        const p = drawLayer.append("path").datum(values).attr("fill", "none").attr("stroke", C.ember).attr("stroke-width", 1.5).attr("opacity", .6).attr("d", line);
+        const p = drawLayer.append("path").datum(values).attr("fill", "none").attr("stroke", ghgColor(name)).attr("stroke-width", 2.4).style("pointer-events", "none").attr("d", line);
         const L = p.node().getTotalLength();
         p.attr("stroke-dasharray", `${L} ${L}`).attr("stroke-dashoffset", L).transition().duration(1200).ease(d3.easeCubicOut).attr("stroke-dashoffset", 0);
       });
-      svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", C.mist).text("Tonnes CO₂e per person per year");
+      styleLines();
+      svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 15).attr("fill", C.mist).text("CO₂ emission per capita (1970-2024)");
       svg.append("text").attr("x", 64 + (w - 90) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
-      svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Tonnes CO₂e per person (in log transformation)");
+      svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("CO₂ emission per capita (in log transformation)");
       const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
       cross.append("line").attr("y1", 36).attr("y2", h - 48).attr("stroke", "rgba(240,248,246,.3)");
       const dot = cross.append("circle").attr("r", 5).attr("fill", C.sand);
@@ -725,28 +842,55 @@ const PLOTS = {
         });
         cross.style("opacity", 1).select("line").attr("x1", x(yr)).attr("x2", x(yr));
         dot.attr("cx", x(yr)).attr("cy", y(closest.logValue));
-        drawLayer.selectAll("path").attr("opacity", d => d[0].country === closest.country ? 1 : .15).attr("stroke-width", d => d[0].country === closest.country ? 2.5 : 1.5).attr("stroke", d => d[0].country === closest.country ? C.sand : C.ember).filter(d => d[0].country === closest.country).raise();
-        showTip(ev, `<b>${closest.country} · ${yr}</b><br>${closest.value.toFixed(1)} t CO₂e per person<br>log₁₀ = ${closest.logValue.toFixed(2)}`);
+        drawLayer.selectAll("path").attr("class", d => "mark" + (d[0].country !== closest.country ? " dim" : "")).attr("stroke-width", d => d[0].country === closest.country ? 3.4 : 2.4).attr("stroke", d => ghgColor(d[0].country)).filter(d => d[0].country === closest.country).raise();
+        showTip(ev, `<b>${closest.country} · ${yr}</b><br>${closest.value.toFixed(1)} tonnes of CO₂ emission<br>(log(${closest.value.toFixed(1)}) = ${closest.logValue.toFixed(2)})`);
       }).on("mouseleave", () => {
         cross.style("opacity", 0);
         hideTip();
-        drawLayer.selectAll("path").attr("opacity", .6).attr("stroke-width", 1.5).attr("stroke", C.ember);
+        styleLines();
+      }).on("click", ev => {
+        const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
+        const vals = data.filter(r => r.year === yr);
+        if (vals.length) {
+          const my = d3.pointer(ev, svg.node())[1];
+          const valY = y.invert(my);
+          let closest = vals[0], minDist = Infinity;
+          vals.forEach(v => {
+            const dist = Math.abs(v.logValue - valY);
+            if (dist < minDist) {
+              minDist = dist;
+              closest = v;
+            }
+          });
+          const pxDist = Math.abs(y(closest.logValue) - my);
+          if (pxDist <= 14) {
+            toggleSelect(isoOf(closest.country), ev.shiftKey);
+            repaint([ "events", "drivers", "response" ]);
+            return;
+          }
+        }
+        if (!selectedIsos.size) return;
+        selectedIsos.clear();
+        repaint([ "events", "drivers", "response" ]);
       });
       return;
     }
     const spec = [ {
       key: "sst",
       color: C.ember,
+      title: "Sea surface temperature anomalies (1990-2024)",
       units: "°C above baseline",
       dp: 2
     }, {
       key: "sea",
       color: C.lagoon,
+      title: "Sea level anomalies (1990-2024)",
       units: "mm above baseline",
       dp: 0
     }, {
       key: "rain",
       color: C.rain,
+      title: "Rainfall anomalies (1990-2024)",
       units: "mm from normal",
       dp: 0
     } ][step];
@@ -896,7 +1040,7 @@ const PLOTS = {
     }
     svg.append("g").attr("transform", `translate(0,${h - 48})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
     svg.append("g").attr("transform", "translate(64,0)").call(d3.axisLeft(y).ticks(5)).call(axStyle);
-    svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", spec.color).text(spec.units);
+    svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 15).attr("fill", C.mist).text(spec.title);
     svg.append("text").attr("x", 64 + (w - 90) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
     svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text(spec.units);
     const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
@@ -915,29 +1059,49 @@ const PLOTS = {
     });
   },
   response(el, step) {
-    const {svg: svg, w: w, h: h} = stage(el);
+    const isDesktopLayout = !matchMedia("(max-width:860px)").matches;
+    if (step === 1 && isDesktopLayout) {
+      el.style.aspectRatio = "auto";
+      el.style.height = "90svh";
+      el.style.maxHeight = "90svh";
+    } else {
+      el.style.aspectRatio = "";
+      el.style.height = "";
+      el.style.maxHeight = "";
+    }
+    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
+      chrome: step === 1
+    });
     svg.selectAll("*").remove();
-    if (step === 0) {
+    if (step === 2) {
       const rows = [ ...SAMPLE.drr ].sort((a, b) => b.value - a.value);
       const maxCols = w < 460 ? 3 : w < 700 ? 4 : 4;
       const cols = Math.min(maxCols, rows.length);
       const nRows = Math.ceil(rows.length / cols);
-      const padTop = 34;
+      const padTop = 52;
       const cellW = (w - 16) / cols, cellH = (h - padTop - 10) / nRows;
       const waffleSize = Math.min(cellW - 30, cellH - 50, 96);
       const grid = 10, sq = waffleSize / grid - 1.4;
-      svg.append("text").attr("x", 8).attr("y", 16).attr("font-size", 12.5).attr("fill", C.mist).text("");
-      const cell = svg.selectAll("g.waffle-cell").data(rows, d => d.iso).join("g").attr("class", d => "waffle-cell" + (selectedIso && d.iso !== selectedIso ? " dim" : "")).attr("transform", (d, i) => {
+      const leftEdge = 8 + (cellW - waffleSize) / 2;
+      svg.append("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
+        if (!selectedIsos.size) return;
+        selectedIsos.clear();
+        repaint([ "events", "response" ]);
+      });
+      svg.append("text").attr("x", leftEdge).attr("y", 18).attr("font-size", 15).attr("fill", C.mist).text("Local governments with an active DRR strategy (%), 2021");
+      svg.append("text").attr("x", leftEdge).attr("y", h - 8).attr("font-size", 11.5).attr("fill", C.mist).text("Each square is one percentage point");
+      const cell = svg.selectAll("g.waffle-cell").data(rows, d => d.iso).join("g").attr("class", d => "waffle-cell" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("transform", (d, i) => {
         const c = i % cols, r = Math.floor(i / cols);
         const cx = 8 + c * cellW + (cellW - waffleSize) / 2;
         const cy = padTop + r * cellH;
         return `translate(${cx},${cy})`;
-      }).style("cursor", "pointer").on("click", (_, d) => {
-        selectedIso = selectedIso === d.iso ? null : d.iso;
+      }).style("cursor", "pointer").on("click", (ev, d) => {
+        ev.stopPropagation();
+        toggleSelect(d.iso, ev.shiftKey);
         repaint([ "events", "response" ]);
       }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.value.toFixed(1)}% of local governments, 2021`)).on("mouseleave", hideTip);
-      cell.append("text").attr("x", waffleSize / 2).attr("y", -10).attr("text-anchor", "middle").attr("font-size", 12.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
-      cell.append("text").attr("x", waffleSize / 2).attr("y", waffleSize + 18).attr("text-anchor", "middle").attr("font-size", 13).attr("font-weight", 600).attr("fill", d => d.iso === selectedIso ? C.sand : C.ember).text(d => d.value.toFixed(0) + "%");
+      cell.append("text").attr("x", waffleSize / 2).attr("y", -10).attr("text-anchor", "middle").attr("font-size", 12.5).attr("fill", d => isSelected(d.iso) ? C.sand : C.foam).text(d => d.name);
+      cell.append("text").attr("x", waffleSize / 2).attr("y", waffleSize + 18).attr("text-anchor", "middle").attr("font-size", 13).attr("font-weight", 600).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).text(d => d.value.toFixed(0) + "%");
       cell.each(function(d) {
         const filled = Math.round(d.value);
         const squares = d3.range(100).map(i => ({
@@ -945,82 +1109,147 @@ const PLOTS = {
           y: Math.floor(i / grid) * (sq + 1.4),
           on: i < filled
         }));
-        d3.select(this).selectAll("rect").data(squares).join("rect").attr("x", s => s.x).attr("y", s => waffleSize - sq - s.y).attr("width", sq).attr("height", sq).attr("rx", 1).attr("fill", s => s.on ? d.iso === selectedIso ? C.sand : C.ember : "rgba(240,248,246,.1)");
+        d3.select(this).selectAll("rect").data(squares).join("rect").attr("x", s => s.x).attr("y", s => waffleSize - sq - s.y).attr("width", sq).attr("height", sq).attr("rx", 1).attr("fill", s => s.on ? isSelected(d.iso) ? C.sand : C.ember : "rgba(240,248,246,.1)");
       });
       return;
     }
     if (step === 1) {
-      const data = SAMPLE.renew;
-      const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([ 64, w - 26 ]);
-      const y = d3.scaleLinear().domain([ 0, d3.max(data, d => d.value) ]).nice().range([ h - 48, 36 ]);
-      svg.append("g").attr("transform", `translate(0,${h - 48})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
-      svg.append("g").attr("transform", "translate(64,0)").call(d3.axisLeft(y).ticks(5)).call(axStyle);
-      const drawLayer = svg.append("g");
-      const grouped = d3.group(data, d => d.name);
-      const line = d3.line().x(d => x(d.year)).y(d => y(d.value)).curve(d3.curveMonotoneX);
-      Array.from(grouped.entries()).forEach(([name, values]) => {
-        const p = drawLayer.append("path").datum(values).attr("fill", "none").attr("stroke", C.ember).attr("stroke-width", selectedIso ? values[0].iso === selectedIso ? 2.6 : 1.3 : 1.5).attr("opacity", selectedIso ? values[0].iso === selectedIso ? 1 : .18 : .6).attr("d", line);
-        const L = p.node().getTotalLength();
-        p.attr("stroke-dasharray", `${L} ${L}`).attr("stroke-dashoffset", L).transition().duration(1e3).ease(d3.easeCubicOut).attr("stroke-dashoffset", 0);
+      let sliderRow = chrome.querySelector(".slider-row");
+      if (!sliderRow) {
+        chrome.innerHTML = "";
+        sliderRow = document.createElement("div");
+        sliderRow.className = "slider-row";
+        sliderRow.style.display = "flex";
+        sliderRow.style.alignItems = "center";
+        sliderRow.style.gap = "10px";
+        sliderRow.style.width = "100%";
+        chrome.appendChild(sliderRow);
+      }
+
+      const years = Array.from(new Set(SAMPLE.renew.map(d => d.year))).sort((a, b) => a - b);
+      const minYr = years[0], maxYr = years[years.length - 1];
+      if (renewYear == null || renewYear < minYr || renewYear > maxYr) renewYear = maxYr;
+
+      const countries = [];
+      const seenIso = new Set();
+      SAMPLE.renew.forEach(d => {
+        if (!seenIso.has(d.iso)) {
+          seenIso.add(d.iso);
+          countries.push({
+            iso: d.iso,
+            name: d.name
+          });
+        }
       });
-      svg.append("text").attr("x", 64).attr("y", 22).attr("font-size", 12.5).attr("fill", C.mist).text("Renewable share of final energy consumption (%)");
-      svg.append("text").attr("x", 64 + (w - 90) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
-      svg.append("text").attr("transform", `translate(15,${36 + (h - 84) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Renewable share of final energy consumption (%)");
-      const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
-      cross.append("line").attr("y1", 36).attr("y2", h - 48).attr("stroke", "rgba(240,248,246,.3)");
-      const dot = cross.append("circle").attr("r", 5).attr("fill", C.sand);
-      svg.append("rect").attr("x", 64).attr("y", 36).attr("width", w - 90).attr("height", h - 84).attr("fill", "transparent").style("cursor", "crosshair").on("mousemove", function(ev) {
-        const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
-        const vals = data.filter(r => r.year === yr);
-        if (!vals.length) return;
-        const my = d3.pointer(ev, svg.node())[1], valY = y.invert(my);
-        let closest = vals[0], minDist = Infinity;
-        vals.forEach(v => {
-          const dist = Math.abs(v.value - valY);
-          if (dist < minDist) {
-            minDist = dist;
-            closest = v;
+      const byIso = d3.group(SAMPLE.renew, d => d.iso);
+      byIso.forEach(rows => rows.sort((a, b) => a.year - b.year));
+      const valueForYear = (iso, year) => {
+        const rows = byIso.get(iso);
+        if (!rows || !rows.length) return 0;
+        let best = rows[0], bestDiff = Math.abs(rows[0].year - year);
+        rows.forEach(r => {
+          const diff = Math.abs(r.year - year);
+          if (diff < bestDiff) {
+            best = r;
+            bestDiff = diff;
           }
         });
-        cross.style("opacity", 1).select("line").attr("x1", x(yr)).attr("x2", x(yr));
-        dot.attr("cx", x(yr)).attr("cy", y(closest.value));
-        drawLayer.selectAll("path").attr("opacity", d => d[0].name === closest.name ? 1 : .12).attr("stroke-width", d => d[0].name === closest.name ? 2.6 : 1.3).attr("stroke", d => d[0].name === closest.name ? C.sand : C.ember).filter(d => d[0].name === closest.name).raise();
-        showTip(ev, `<b>${closest.name} · ${yr}</b><br>${closest.value.toFixed(1)}% renewable`);
-      }).on("mouseleave", () => {
-        cross.style("opacity", 0);
-        hideTip();
-        drawLayer.selectAll("path").attr("opacity", .6).attr("stroke-width", 1.5).attr("stroke", C.ember);
-      }).on("click", function(ev) {
-        const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
-        const vals = data.filter(r => r.year === yr);
-        if (!vals.length) return;
-        const my = d3.pointer(ev, svg.node())[1], valY = y.invert(my);
-        let closest = vals[0], minDist = Infinity;
-        vals.forEach(v => {
-          const dist = Math.abs(v.value - valY);
-          if (dist < minDist) {
-            minDist = dist;
-            closest = v;
-          }
-        });
-        selectedIso = selectedIso === closest.iso ? null : closest.iso;
+        return best.value;
+      };
+      const displayPct = v => v > 0 && v < 1 ? 1 : Math.round(v);
+
+      if (!sliderRow.querySelector("input")) {
+        const yearLabel = document.createElement("span");
+        yearLabel.className = "year-label";
+        yearLabel.style.color = "var(--ember)";
+        yearLabel.style.fontSize = "13px";
+        yearLabel.style.minWidth = "36px";
+        yearLabel.textContent = renewYear;
+        const slider = document.createElement("input");
+        slider.type = "range";
+        slider.min = minYr;
+        slider.max = maxYr;
+        slider.step = 1;
+        slider.value = renewYear;
+        slider.style.flex = "1";
+        slider.setAttribute("aria-label", "Select year");
+        slider.oninput = () => {
+          renewYear = +slider.value;
+          yearLabel.textContent = renewYear;
+          PLOTS.response(el, 1);
+        };
+        sliderRow.appendChild(yearLabel);
+        sliderRow.appendChild(slider);
+      } else {
+        const slider = sliderRow.querySelector("input");
+        const yearLabel = sliderRow.querySelector(".year-label");
+        if (+slider.value !== renewYear) slider.value = renewYear;
+        if (yearLabel) yearLabel.textContent = renewYear;
+      }
+
+      const rows = countries.map(c => ({
+        ...c,
+        value: valueForYear(c.iso, renewYear)
+      }));
+      const maxCols = w < 460 ? 3 : w < 700 ? 4 : w < 960 ? 5 : 6;
+      const cols = Math.min(maxCols, rows.length);
+      const nRows = Math.ceil(rows.length / cols);
+      const padTop = 52;
+      const cellW = (w - 16) / cols, cellH = (h - padTop - 10) / nRows;
+      const waffleSize = Math.min(cellW - 30, cellH - 50, 96);
+      const grid = 10, sq = waffleSize / grid - 1.4;
+      const leftEdge = 8 + (cellW - waffleSize) / 2;
+
+      svg.selectAll("rect.blank-catcher").data([ 0 ]).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
+        if (!selectedIsos.size) return;
+        selectedIsos.clear();
         repaint([ "events", "response" ]);
+      });
+      svg.append("text").attr("x", leftEdge).attr("y", 18).attr("font-size", 15).attr("fill", C.mist).text(`Renewable share of final energy consumption, ${renewYear}`);
+      svg.append("text").attr("x", leftEdge).attr("y", h - 8).attr("font-size", 11.5).attr("fill", C.mist).text("Each square is one percentage point (values under 1% still show one square)");
+
+      const cell = svg.selectAll("g.waffle-cell").data(rows, d => d.iso).join("g").attr("class", d => "waffle-cell" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("transform", (d, i) => {
+        const c = i % cols, r = Math.floor(i / cols);
+        const cx = 8 + c * cellW + (cellW - waffleSize) / 2;
+        const cy = padTop + r * cellH;
+        return `translate(${cx},${cy})`;
+      }).style("cursor", "pointer").on("click", (ev, d) => {
+        ev.stopPropagation();
+        toggleSelect(d.iso, ev.shiftKey);
+        repaint([ "events", "response" ]);
+      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${displayPct(d.value)}% renewable, ${renewYear}`)).on("mouseleave", hideTip);
+      cell.append("text").attr("x", waffleSize / 2).attr("y", -10).attr("text-anchor", "middle").attr("font-size", 12.5).attr("fill", d => isSelected(d.iso) ? C.sand : C.foam).text(d => d.name);
+      cell.append("text").attr("x", waffleSize / 2).attr("y", waffleSize + 18).attr("text-anchor", "middle").attr("font-size", 13).attr("font-weight", 600).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).text(d => displayPct(d.value) + "%");
+      cell.each(function(d) {
+        const filled = displayPct(d.value);
+        const squares = d3.range(100).map(i => ({
+          x: i % grid * (sq + 1.4),
+          y: Math.floor(i / grid) * (sq + 1.4),
+          on: i < filled
+        }));
+        d3.select(this).selectAll("rect").data(squares).join("rect").attr("x", s => s.x).attr("y", s => waffleSize - sq - s.y).attr("width", sq).attr("height", sq).attr("rx", 1).attr("fill", s => s.on ? isSelected(d.iso) ? C.sand : C.ember : "rgba(240,248,246,.1)");
       });
       return;
     }
     const rows = [ ...SAMPLE.envtax ].sort((a, b) => b.value - a.value);
-    const y2 = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).padding(.32);
+    const y2 = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).paddingInner(.32).paddingOuter(.08);
     const x2 = d3.scaleLinear().domain([ 0, d3.max(rows, d => d.value) ]).nice().range([ 176, w - 46 ]);
-    svg.selectAll("rect").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIso && d.iso !== selectedIso ? " dim" : "")).attr("x", 176).attr("y", d => y2(d.name)).attr("height", y2.bandwidth()).attr("rx", 2).attr("fill", d => d.iso === selectedIso ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (_, d) => {
-      selectedIso = selectedIso === d.iso ? null : d.iso;
+    svg.append("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
+      if (!selectedIsos.size) return;
+      selectedIsos.clear();
       repaint([ "events", "response" ]);
-    }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.value.toFixed(2)}% of GDP, 2020`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x2(d.value) - 176));
-    svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y2(d.name) + y2.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => d.iso === selectedIso ? C.sand : C.foam).text(d => d.name);
+    });
+    svg.selectAll("rect.mark").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("x", 176).attr("y", d => y2(d.name)).attr("height", y2.bandwidth()).attr("rx", 2).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (ev, d) => {
+      ev.stopPropagation();
+      toggleSelect(d.iso, ev.shiftKey);
+      repaint([ "events", "response" ]);
+    }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.value.toFixed(2)}% of GDP`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x2(d.value) - 176));
+    svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y2(d.name) + y2.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => isSelected(d.iso) ? C.sand : C.foam).text(d => d.name);
     svg.selectAll("text.val").data(rows, d => d.iso).join("text").attr("class", "val").attr("y", d => y2(d.name) + y2.bandwidth() / 2 + 5).attr("font-size", 12.5).attr("fill", C.mist).text(d => d.value.toFixed(2) + "%").transition(T()).attr("x", d => x2(d.value) + 8);
     svg.append("g").attr("transform", `translate(0,${h - 46})`).call(d3.axisBottom(x2).ticks(5)).call(axStyle);
-    svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 12.5).attr("fill", C.mist).text("Environmental tax revenue (% of GDP) in 2020");
+    svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 15).attr("fill", C.mist).text("Environmental tax revenue (% of GDP) in 2020");
     svg.append("text").attr("x", 176 + (w - 176 - 46) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Environmental tax revenue (% of GDP)");
-    svg.append("text").attr("x", 166).attr("y", y2.range()[0] - 12).attr("text-anchor", "end").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
+    svg.append("text").attr("transform", `translate(15,${(28 + (h - 46)) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
   }
 };
 
