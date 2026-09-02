@@ -673,7 +673,7 @@ const PLOTS = {
     }));
     d3.forceSimulation(nodes).force("x", d3.forceX(d => d.cx).strength(.4)).force("y", d3.forceY(d => d.cy - 8).strength(.7)).force("collide", d3.forceCollide(d => d.rx).strength(.95).iterations(4)).stop().tick(220);
     svg.append("g").attr("class", "country-labels").selectAll("text").data(nodes).join("text").attr("x", d => d.x).attr("y", d => d.y).attr("text-anchor", "middle").attr("pointer-events", "none").attr("font-size", 10).attr("font-family", "'Public Sans',sans-serif").attr("fill", C.foam).attr("stroke", "rgba(4,24,35,.85)").attr("stroke-width", 3).attr("paint-order", "stroke").text(d => d.name);
-    svg.append("text").attr("x", w - 20).attr("y", h - 8).attr("text-anchor", "end").attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "22 countries and territories" : EEZ ? "Exclusive economic zones, shaded by ocean area per unit of land" : "Loading exclusive economic zones…");
+    svg.append("text").attr("x", w - 20).attr("y", h - 8).attr("text-anchor", "end").attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "" : EEZ ? "" : "");
   },
   events(el, step) {
     const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
