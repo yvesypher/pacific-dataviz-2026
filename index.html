@@ -182,7 +182,7 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
         Pres "Esc" or click on blank space to clear the filter.</span>
       </div>
         <div class="step" data-step="3"><h3>The economic burden</h3>
-        <p>Disasters not only disrupt lives but also drain economies. Transitioning from human impact to financial cost, this chart presents the average annual loss in few countries of Pacific Islands. Fiji experiences the largest economic burden, with costs extending into the hundreds of millions. While most other nations face average annual losses measured in the millions of US dollars, this massive gap is driven by a combination of Fiji's frequent exposure to the hazards shown above and the dense, high-value infrastructure at risk within a larger economy.</p>
+        <p>Disasters not only disrupt lives but also drain economies. Transitioning from human impact to financial cost, this chart presents the average annual loss in few countries of Pacific Islands. Fiji has experienced the largest economic burden, with a cost of approximately 88 millions USD on average. While most other nations face average annual losses under 50 millions of US dollars on average, this massive gap is driven by a combination of Fiji's frequent exposure to the hazards shown above and the dense, high-value infrastructure at risk within a larger economy.</p>
         <span class="hint">Click on a bar to select and follow a country throughout the story.<br>
           Hold "Shift" key and click to select multiple countries. <br>
           Press "Esc" or click on blank space to clear the filter.</span></div>
@@ -205,7 +205,7 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
       <div class="step" data-step="1"><h3>... and higher ...</h3>
         <p>Sea level in the western Pacific has risen faster than the global average over the same period. As a result, coastal flooding and storm surge now originate from a higher baseline than in previous decades. While an annual increase measured in millimetres might sound insignificant, the cumulative effect is severe: a storm of comparable strength today produces greater coastal impact than an equivalent storm several decades ago.</p></div>
       <div class="step" data-step="2"><h3>... and more erratic</h3>
-        <p>Rainfall data does not simply show a steady decline or increase in precipitation; it reveals a pattern of growing volatility. While earlier decades saw anomalies fluctuate within a relatively contained band, recent years display increasingly violent swings. Deep deficits are now abruptly followed by massive surpluses, punctuated by an unprecedented positive spike near 2020. This erratic behavior severely affects communities that rely on predictable rainfall for drinking water and agriculture. Preparing for a drier climate or a wetter one is feasible; planning for amplified extremes swinging wildly in both directions is a profoundly greater challenge.</p></div>
+        <p>Rainfall data does not simply show a steady decline or increase in precipitation; it reveals a pattern of growing volatility. While earlier decades saw anomalies fluctuate within a relatively contained band, recent years display increasingly violent swings. Deep deficits are now abruptly followed by massive surpluses, punctuated by an unprecedented positive spike near 2020. This erratic behaviour severely affects communities that rely on predictable rainfall for drinking water and agriculture. Preparing for a drier climate or a wetter one is feasible; planning for amplified extremes swinging wildly in both directions is a profoundly greater challenge.</p></div>
       <div class="step" data-step="3"><h3>A disproportionate burden</h3>
         <p>The erratic weather and warming oceans might be the consequences of global human activity. Transitioning to these human catalysts, this chart traces greenhouse gas emissions per capita over fifty years on a logarithmic scale. Most Pacific nations produce negligible emissions per person, maintaining a low baseline for decades. Palau and New Caledonia are notable exceptions, with per-capita emissions significantly outweighing the rest of the region. In New Caledonia, emissions are largely associated with its coal- and oil-powered nickel mining and processing industry, while Palau's higher per-capita figure reflects its reliance on diesel for electricity generation and fuel-intensive transport and tourism. Apart from these two outliers, the countries experiencing the worst of these environmental extremes contribute relatively little to the human causes.</p>
         <span class="hint">Click on a line or legend to select a country. <br>
@@ -247,14 +247,14 @@ code{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
 
 <section class="outro" id="sec-outro" data-label="Close">
   <div class="wrap">
-    <h2>The paradox</h2>
-    <p>The Pacific Islands’ relationship with the ocean is defined by a fundamental paradox. The same waters that provide food, trade, and vast maritime territories also expose its twenty-two countries and territories to persistent disasters, rising sea levels, warmer temperatures, and increasingly erratic rainfall. These risks carry significant human and economic costs to many Pacific nations, despite their minor contributions to the greenhouse gas emissions driving global climate change. Governments are responding through disaster risk reduction planning, renewable energy adoption, and environmental taxation, but the extent and capacity of these measures vary considerably across the region. Taken together, the evidence points to a region that is highly exposed, unequally equipped to respond, and largely affected by forces beyond its control. The ocean remains both the Pacific’s greatest asset and its greatest vulnerability.</p>  
+    <h2>The Challenge Ahead</h2>
+    <p>Across the Pacific, the data reveals a region facing persistent and interconnected environmental, economic, and social pressures. The same waters that provide food, trade, and vast maritime territories also expose its twenty-two countries and territories to persistent disasters, rising sea levels, warmer temperatures, and increasingly erratic rainfall. These risks carry significant human and economic costs to many Pacific nations, despite their minor contributions to the greenhouse gas emissions driving global climate change. Governments are responding through disaster risk reduction planning, renewable energy adoption, and environmental taxation, but the extent and capacity of these measures vary considerably across the region. Taken together, the evidence points to a region that is highly exposed, unequally equipped to respond, and largely affected by forces beyond its control. The ocean remains both the Pacific’s greatest asset and its greatest vulnerability.</p>  
   </div>
 </section>
 
 <footer class="credits">
   <div class="wrap">
-    <p>This project is built with JavaScript and <a href="https://d3js.org/">D3.js</a>. The data is sourced from the <a href="https://pacificdata.org/">Pacific Data Hub</a>.</p>
+    <p>This data visualisation is built with <a href="https://d3js.org/">D3.js</a>. The data is sourced from the <a href="https://pacificdata.org/">Pacific Data Hub</a>, <a href="https://pacific-data.sprep.org/">Pacific Environment Data Portal</a>, and <a href="https://public.emdat.be/data">Public EM-DAT</a>.</p>
     <p>Made by Minh Nguyen for the <a href="https://pacificdatavizchallenge.org/">Pacific Data Visualisation Challenge</a>.</p>
   </div>
 </footer>
@@ -281,11 +281,9 @@ const HAZ_COLOR = {
 };
 
 let seed = 42;
-
 const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
 
 const EVENTS = [];
-
 d3.range(1995, 2025).forEach(year => {
   const n = 3 + Math.floor(rnd() * 11);
   d3.range(n).forEach(() => {
@@ -329,125 +327,10 @@ const SAMPLE = {
     });
     return res;
   })(),
-  loss: [ {
-    iso: "FJ",
-    name: "Fiji",
-    valueM: 12.4,
-    nYears: 5
-  }, {
-    iso: "VU",
-    name: "Vanuatu",
-    valueM: 8.1,
-    nYears: 4
-  }, {
-    iso: "TO",
-    name: "Tonga",
-    valueM: 5.6,
-    nYears: 3
-  }, {
-    iso: "SB",
-    name: "Solomon Islands",
-    valueM: 3.2,
-    nYears: 3
-  }, {
-    iso: "WS",
-    name: "Samoa",
-    valueM: 2.9,
-    nYears: 2
-  }, {
-    iso: "PG",
-    name: "Papua New Guinea",
-    valueM: 1.8,
-    nYears: 3
-  } ],
-  drr: [ {
-    iso: "VU",
-    name: "Vanuatu",
-    value: 72,
-    year: 2021
-  }, {
-    iso: "TV",
-    name: "Tuvalu",
-    value: 64,
-    year: 2022
-  }, {
-    iso: "MH",
-    name: "Marshall Islands",
-    value: 41,
-    year: 2022
-  }, {
-    iso: "KI",
-    name: "Kiribati",
-    value: 22,
-    year: 2021
-  }, {
-    iso: "FM",
-    name: "Micronesia (FS)",
-    value: 9,
-    year: 2021
-  }, {
-    iso: "WS",
-    name: "Samoa",
-    value: 5,
-    year: 2023
-  }, {
-    iso: "FJ",
-    name: "Fiji",
-    value: 0,
-    year: 2022
-  }, {
-    iso: "NR",
-    name: "Nauru",
-    value: 0,
-    year: 2022
-  }, {
-    iso: "PG",
-    name: "Papua New Guinea",
-    value: 0,
-    year: 2020
-  } ],
+  loss: [ { iso: "FJ", name: "Fiji", valueM: 12.4, nYears: 5 }, { iso: "VU", name: "Vanuatu", valueM: 8.1, nYears: 4 }, { iso: "TO", name: "Tonga", valueM: 5.6, nYears: 3 }, { iso: "SB", name: "Solomon Islands", valueM: 3.2, nYears: 3 }, { iso: "WS", name: "Samoa", valueM: 2.9, nYears: 2 }, { iso: "PG", name: "Papua New Guinea", valueM: 1.8, nYears: 3 } ],
+  drr: [ { iso: "VU", name: "Vanuatu", value: 72, year: 2021 }, { iso: "TV", name: "Tuvalu", value: 64, year: 2022 }, { iso: "MH", name: "Marshall Islands", value: 41, year: 2022 }, { iso: "KI", name: "Kiribati", value: 22, year: 2021 }, { iso: "FM", name: "Micronesia (FS)", value: 9, year: 2021 }, { iso: "WS", name: "Samoa", value: 5, year: 2023 }, { iso: "FJ", name: "Fiji", value: 0, year: 2022 }, { iso: "NR", name: "Nauru", value: 0, year: 2022 }, { iso: "PG", name: "Papua New Guinea", value: 0, year: 2020 } ],
   renew: (() => {
-    const targets = [ {
-      iso: "PG",
-      name: "Papua New Guinea",
-      start: 34,
-      end: 48
-    }, {
-      iso: "SB",
-      name: "Solomon Islands",
-      start: 41,
-      end: 47
-    }, {
-      iso: "KI",
-      name: "Kiribati",
-      start: 21,
-      end: 39
-    }, {
-      iso: "WS",
-      name: "Samoa",
-      start: 26,
-      end: 29
-    }, {
-      iso: "VU",
-      name: "Vanuatu",
-      start: 16,
-      end: 26
-    }, {
-      iso: "FJ",
-      name: "Fiji",
-      start: 19,
-      end: 25
-    }, {
-      iso: "MH",
-      name: "Marshall Islands",
-      start: 6,
-      end: 11
-    }, {
-      iso: "NC",
-      name: "New Caledonia",
-      start: 3,
-      end: 9
-    } ];
+    const targets = [ { iso: "PG", name: "Papua New Guinea", start: 34, end: 48 }, { iso: "SB", name: "Solomon Islands", start: 41, end: 47 }, { iso: "KI", name: "Kiribati", start: 21, end: 39 }, { iso: "WS", name: "Samoa", start: 26, end: 29 }, { iso: "VU", name: "Vanuatu", start: 16, end: 26 }, { iso: "FJ", name: "Fiji", start: 19, end: 25 }, { iso: "MH", name: "Marshall Islands", start: 6, end: 11 }, { iso: "NC", name: "New Caledonia", start: 3, end: 9 } ];
     const res = [];
     targets.forEach(t => {
       d3.range(2000, 2023).forEach(y => {
@@ -464,53 +347,16 @@ const SAMPLE = {
     });
     return res;
   })(),
-  envtax: [ {
-    iso: "SB",
-    name: "Solomon Islands",
-    value: 3.6,
-    year: 2020
-  }, {
-    iso: "FJ",
-    name: "Fiji",
-    value: .4,
-    year: 2020
-  }, {
-    iso: "WS",
-    name: "Samoa",
-    value: .15,
-    year: 2008
-  }, {
-    iso: "NR",
-    name: "Nauru",
-    value: .14,
-    year: 2020
-  }, {
-    iso: "PG",
-    name: "Papua New Guinea",
-    value: .01,
-    year: 2020
-  } ]
+  envtax: [ { iso: "SB", name: "Solomon Islands", value: 3.6, year: 2020 }, { iso: "FJ", name: "Fiji", value: .4, year: 2020 }, { iso: "WS", name: "Samoa", value: .15, year: 2008 }, { iso: "NR", name: "Nauru", value: .14, year: 2020 }, { iso: "PG", name: "Papua New Guinea", value: .01, year: 2020 } ]
 };
 
 const C = {
-  abyss: "#05202f",
-  deep: "#0a3a54",
-  sea: "#0f6a86",
-  turq: "#1fa2b4",
-  lagoon: "#57d8cf",
-  shallow: "#9fe6dc",
-  rain: "#a9d8ef",
-  sand: "#e6d7b8",
-  dune: "#d4b47a",
-  ember: "#e8894a",
-  foam: "#f0f8f6",
-  mist: "rgba(240,248,246,.6)"
+  abyss: "#05202f", deep: "#0a3a54", sea: "#0f6a86", turq: "#1fa2b4", lagoon: "#57d8cf", shallow: "#9fe6dc", rain: "#a9d8ef", sand: "#e6d7b8", dune: "#d4b47a", ember: "#e8894a", foam: "#f0f8f6", mist: "rgba(240,248,246,.6)"
 };
 
 const fmt = n => d3.format(",")(Math.round(n));
 
 let selectedIsos = new Set();
-
 let renewYear = null;
 
 const isSelected = iso => selectedIsos.has(iso);
@@ -541,24 +387,18 @@ const toggleHazard = (type, additive) => {
 };
 
 let LAND = null;
-
 let EEZ = null;
 
 const tip = document.getElementById("tip");
-
 function showTip(ev, html) {
   tip.innerHTML = html;
   tip.style.left = ev.clientX + "px";
   tip.style.top = ev.clientY - 10 + "px";
   tip.style.opacity = "1";
 }
-
 const hideTip = () => tip.style.opacity = "0";
 
-document.addEventListener("scroll", hideTip, {
-  passive: true
-});
-
+document.addEventListener("scroll", hideTip, { passive: true });
 document.addEventListener("keydown", ev => {
   if (ev.key !== "Escape") return;
   let changed = false;
@@ -575,23 +415,42 @@ document.addEventListener("keydown", ev => {
 
 function stage(el, opts = {}) {
   const w = el.clientWidth || 640;
-  if (el.__stage && el.__stage.w === w && el.__stage.chromeOn === !!opts.chrome) return el.__stage;
+  
+  if (el.__stage && el.__stage.w === w && el.__stage.chromeOn === !!opts.chrome && el.__stage.chromePos === opts.chromePosition) return el.__stage;
+  
   el.innerHTML = "";
-  const h = (el.clientHeight || 480) - (opts.chrome ? 30 : 0);
-  const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMidYMid meet");
+  
+  const chromeOffset = opts.chromeOffset !== undefined ? opts.chromeOffset : (opts.chrome ? 30 : 0);
+  const h = (el.clientHeight || 480) - chromeOffset;
+  
   let chrome = null;
-  if (opts.chrome) {
+  
+  if (opts.chrome && opts.chromePosition !== "bottom") {
     chrome = document.createElement("div");
     chrome.className = "chrome";
     el.appendChild(chrome);
   }
+  
+  const svg = d3.select(el).append("svg")
+    .attr("viewBox", `0 0 ${w} ${h}`)
+    .attr("preserveAspectRatio", "xMidYMid meet");
+    
+  if (opts.chrome && opts.chromePosition === "bottom") {
+    chrome = document.createElement("div");
+    chrome.className = "chrome";
+    chrome.style.marginTop = "14px"; 
+    el.appendChild(chrome);
+  }
+  
   el.__stage = {
     svg: svg,
     w: w,
     h: h,
     chrome: chrome,
-    chromeOn: !!opts.chrome
+    chromeOn: !!opts.chrome,
+    chromePos: opts.chromePosition
   };
+  
   return el.__stage;
 }
 
@@ -603,7 +462,6 @@ function clearStages() {
 }
 
 const T = () => d3.transition().duration(750).ease(d3.easeCubicInOut);
-
 const axStyle = g => {
   g.selectAll("text").attr("fill", C.mist).attr("font-size", 12);
   g.selectAll(".domain,.tick line").attr("stroke", "rgba(159,230,220,.22)");
@@ -659,57 +517,64 @@ const PLOTS = {
       if (cx == null || !Number.isFinite(cx)) {
         [cx, cy] = proj([ p.lon, p.lat ]);
       }
-      return {
-        ...p,
-        cx: cx,
-        cy: cy
-      };
+      return { ...p, cx: cx, cy: cy };
     });
     const nodes = labelPos.map(p => ({
-      ...p,
-      x: p.cx,
-      y: p.cy - 8,
-      rx: Math.max(16, p.name.length * 3)
+      ...p, x: p.cx, y: p.cy - 8, rx: Math.max(16, p.name.length * 3)
     }));
     d3.forceSimulation(nodes).force("x", d3.forceX(d => d.cx).strength(.4)).force("y", d3.forceY(d => d.cy - 8).strength(.7)).force("collide", d3.forceCollide(d => d.rx).strength(.95).iterations(4)).stop().tick(220);
     svg.append("g").attr("class", "country-labels").selectAll("text").data(nodes).join("text").attr("x", d => d.x).attr("y", d => d.y).attr("text-anchor", "middle").attr("pointer-events", "none").attr("font-size", 10).attr("font-family", "'Public Sans',sans-serif").attr("fill", C.foam).attr("stroke", "rgba(4,24,35,.85)").attr("stroke-width", 3).attr("paint-order", "stroke").text(d => d.name);
-    svg.append("text").attr("x", w - 20).attr("y", h - 8).attr("text-anchor", "end").attr("font-size", 12.5).attr("fill", C.mist).text(step === 0 ? "" : EEZ ? "" : "");
   },
+  
   events(el, step) {
-    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
-      chrome: true
+    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, { 
+      chrome: true,
+      chromePosition: "bottom",
+      chromeOffset: 55 
     });
     chrome.innerHTML = "";
+    
     const mode = step === 3 ? "loss" : "waffle";
     if (el.__eventsMode !== mode) svg.selectAll("*").remove();
     el.__eventsMode = mode;
+    
     if (step === 3) {
       const rows = [ ...SAMPLE.loss ].sort((a, b) => b.valueM - a.valueM);
       const y = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).paddingInner(.32).paddingOuter(.08);
       const x = d3.scaleLinear().domain([ 0, d3.max(rows, d => d.valueM) ]).nice().range([ 176, w - 40 ]);
-      svg.selectAll("rect.blank-catcher").data([ 0 ]).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
-        if (!selectedIsos.size) return;
-        selectedIsos.clear();
-        repaint([ "events", "response" ]);
-      });
+      
+      svg.selectAll("rect.blank-catcher").data([ 0 ]).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent")
+        .lower()
+        .on("click", () => {
+          if (!selectedIsos.size) return;
+          selectedIsos.clear();
+          repaint([ "events", "response" ]);
+        });
+        
       svg.selectAll("rect.mark").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("x", 176).attr("y", d => y(d.name)).attr("height", y.bandwidth()).attr("rx", 2).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (ev, d) => {
         ev.stopPropagation();
         toggleSelect(d.iso, ev.shiftKey);
         repaint([ "events", "response" ]);
-      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>USD ${d.valueM.toFixed(1)}M annual loss<br>` + `averaged by ${d.nYears}-year data since 2010`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x(d.valueM) - 176));
+      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.valueM.toFixed(1)} million USD annual loss averaged by ${d.nYears}-year data since 2010`)).on("mouseleave", hideTip).transition(T()).attr("width", d => Math.max(1.5, x(d.valueM) - 176));
       svg.selectAll("text.lab").data(rows, d => d.iso).join("text").attr("class", "lab").attr("x", 166).attr("y", d => y(d.name) + y.bandwidth() / 2 + 5).attr("text-anchor", "end").attr("font-size", 13.5).attr("fill", d => isSelected(d.iso) ? C.sand : C.foam).text(d => d.name);
       svg.append("g").attr("transform", `translate(0,${h - 46})`).call(d3.axisBottom(x).ticks(5).tickFormat(d => "$" + d + "M")).call(axStyle);
-      svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 15).attr("fill", C.mist).text("Average annual loss, US$ millions, 2010 onward");
-      svg.append("text").attr("x", 176 + (w - 176 - 40) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Average annual loss (US$ millions)");
+      svg.append("text").attr("x", 176).attr("y", 14).attr("font-size", 15).attr("fill", C.mist).text("Direct disaster annual economic loss on average");
+      svg.append("text").attr("x", 176 + (w - 176 - 40) / 2).attr("y", h - 6).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Average annual loss (million USD)");
       svg.append("text").attr("transform", `translate(15,${(28 + (h - 46)) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Country");
       return;
     }
+    
     const [minYr, maxYr] = d3.extent(SAMPLE.events, d => d.year);
     const years = d3.range(minYr, maxYr + 1);
+    
     if (step >= 1) {
       HAZARDS.forEach(t => {
         const b = document.createElement("button");
-        b.setAttribute("aria-pressed", hazardFilter.has(t) && hazardFilter.size < HAZARDS.length);
+        const isFilterActive = hazardFilter.size < HAZARDS.length;
+        b.setAttribute("aria-pressed", isFilterActive && hazardFilter.has(t));
+        if (isFilterActive && !hazardFilter.has(t)) {
+          b.classList.add("dim");
+        }
         b.innerHTML = `<i class="swatch" style="background:${HAZ_COLOR[t]}"></i>${t}`;
         b.onclick = ev => {
           toggleHazard(t, ev.shiftKey);
@@ -718,6 +583,7 @@ const PLOTS = {
         chrome.appendChild(b);
       });
     }
+    
     const left = 40, base = h - 40, top = step === 2 ? 42 : 28;
     const colW = (w - left - 12) / years.length;
     const active = step === 0 ? HAZARDS : HAZARDS.filter(t => hazardFilter.has(t));
@@ -728,13 +594,7 @@ const PLOTS = {
         const evs = SAMPLE.events.filter(e => e.year === y && e.type === type);
         const n = step === 2 ? Math.round(d3.sum(evs, e => e.affected) / 1e4) : evs.length;
         for (let i = 0; i < Math.min(n, 260); i++, k++) cells.push({
-          key: `${y}-${type}-${i}`,
-          y: y,
-          yi: yi,
-          type: type,
-          idx: k,
-          n: n,
-          country: evs[i]?.country ?? ""
+          key: `${y}-${type}-${i}`, y: y, yi: yi, type: type, idx: k, n: n, country: evs[i]?.country ?? ""
         });
       });
     });
@@ -745,31 +605,34 @@ const PLOTS = {
     const rows = Math.ceil(maxStack / perRow) || 1;
     const ch = Math.max(2, Math.min(cw, (base - top) / rows - 1));
     const geom = c => step <= 1 ? {
-      x: left + c.yi * colW,
-      y: base - (c.idx + 1) * barUnit,
-      w: Math.max(3, colW - 3),
-      h: barUnit + .6,
-      r: 0
+      x: left + c.yi * colW, y: base - (c.idx + 1) * barUnit, w: Math.max(3, colW - 3), h: barUnit + .6, r: 0
     } : {
-      x: left + c.yi * colW + c.idx % perRow * (cw + 1),
-      y: base - Math.floor(c.idx / perRow) * (ch + 1) - ch,
-      w: cw,
-      h: ch,
-      r: 1
+      x: left + c.yi * colW + c.idx % perRow * (cw + 1), y: base - Math.floor(c.idx / perRow) * (ch + 1) - ch, w: cw, h: ch, r: 1
     };
     const fill = c => step === 0 ? C.turq : HAZ_COLOR[c.type];
-    svg.selectAll("rect.blank-catcher").data(step >= 1 ? [ 0 ] : []).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
-      if (hazardFilter.size === HAZARDS.length) return;
-      HAZARDS.forEach(x => hazardFilter.add(x));
-      PLOTS.events(el, state.events ?? 0);
-    });
+    
+    svg.selectAll("rect.blank-catcher").data(step >= 1 ? [ 0 ] : []).join("rect")
+      .attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent")
+      .lower()
+      .on("click", () => {
+        if (hazardFilter.size === HAZARDS.length) return;
+        HAZARDS.forEach(x => hazardFilter.add(x));
+        PLOTS.events(el, state.events ?? 0);
+      });
+      
     const g = svg.selectAll("g.plot").data([ 0 ]).join("g").attr("class", "plot");
-    g.selectAll("rect").data(cells, d => d.key).join(enter => enter.append("rect").attr("class", "mark").attr("x", c => geom(c).x).attr("y", base).attr("width", c => geom(c).w).attr("height", 0).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", 0).call(s => s.transition(T()).delay(c => c.yi * 8).attr("y", c => geom(c).y).attr("height", c => geom(c).h).attr("opacity", .94)), update => update.call(s => s.transition(T()).delay(c => step === 2 ? c.idx * 1.4 + c.yi * 6 : c.yi * 6).attr("x", c => geom(c).x).attr("y", c => geom(c).y).attr("width", c => geom(c).w).attr("height", c => geom(c).h).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", .94)), exit => exit.call(s => s.transition(T()).attr("y", base).attr("height", 0).attr("opacity", 0).remove())).on("click", (ev, c) => {
+    g.selectAll("rect").data(cells, d => d.key).join(
+      enter => enter.append("rect").attr("class", "mark").attr("x", c => geom(c).x).attr("y", base).attr("width", c => geom(c).w).attr("height", 0).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", 0)
+        .call(s => s.transition(T()).delay(c => c.yi * 8).attr("y", c => geom(c).y).attr("height", c => geom(c).h).attr("opacity", .94)), 
+      update => update.call(s => s.transition(T()).delay(c => step === 2 ? c.idx * 1.4 + c.yi * 6 : c.yi * 6).attr("x", c => geom(c).x).attr("y", c => geom(c).y).attr("width", c => geom(c).w).attr("height", c => geom(c).h).attr("rx", c => geom(c).r).attr("fill", fill).attr("opacity", .94)), 
+      exit => exit.call(s => s.transition(T()).attr("y", base).attr("height", 0).attr("opacity", 0).remove())
+    ).on("click", (ev, c) => {
       if (step === 0) return;
       ev.stopPropagation();
       toggleHazard(c.type, ev.shiftKey);
       PLOTS.events(el, state.events ?? 0);
     }).on("mousemove", (ev, c) => showTip(ev, step === 2 ? `<b>${c.y} · ${c.type}</b><br>${fmt(c.n * 1e4)} people affected` : step === 1 ? `<b>${c.y} · ${c.type}</b><br>${cells.filter(x => x.y === c.y && x.type === c.type).length} ${c.type.toLowerCase()} disasters` : `<b>${c.y}</b><br>${cells.filter(x => x.y === c.y).length} disasters`)).on("mouseleave", hideTip);
+    
     const ax = svg.selectAll("g.ax").data([ 0 ]).join("g").attr("class", "ax").attr("transform", `translate(0,${h - 32})`);
     ax.call(d3.axisBottom(d3.scaleLinear().domain([ minYr, maxYr ]).range([ left + colW / 2, left + colW * (years.length - .5) ])).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
     svg.selectAll("text.unit").data([ 0 ]).join("text").attr("class", "unit").attr("x", left).attr("y", 14).attr("font-size", 15).attr("fill", C.mist).text(step === 0 ? "Number of disasters (2000-2026)" : step === 1 ? "Number of disasters by types (2000-2026)" : "Number of people affected by disasters");
@@ -777,21 +640,43 @@ const PLOTS = {
     svg.selectAll("text.axis-x").data([ 0 ]).join("text").attr("class", "axis-x").attr("x", left + (w - left - 12) / 2).attr("y", h - 8).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text("Year");
     svg.selectAll("text.axis-y").data([ 0 ]).join("text").attr("class", "axis-y").attr("transform", `translate(13,${top + (base - top) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.mist).text(step === 2 ? "Number of people affected (×10,000)" : "Number of events");
   },
+  
   drivers(el, step) {
-    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
-      chrome: step === 3
+    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, { 
+      chrome: step === 3,
+      chromePosition: step === 3 ? "bottom" : undefined,
+      chromeOffset: step === 3 ? 100 : undefined
     });
+    
     svg.selectAll("*").remove();
+    
     if (step === 3) {
       chrome.innerHTML = "";
-      const ghgCountries = [ "Fiji", "Vanuatu", "Samoa", "Tonga", "Papua New Guinea", "Palau", "New Caledonia" ];
-      const ghgPalette = [ C.ember, C.lagoon, C.sand, C.rain, C.dune, "#e15b8f", C.shallow ];
+      
+      const data = SAMPLE.ghg_series.map(d => ({
+        ...d,
+        logValue: Math.log10(Math.max(d.value, .05))
+      }));
+      
+      const ghgCountries = Array.from(new Set(data.map(d => d.country)));
+      const ghgPalette = [ 
+        C.ember, C.lagoon, C.sand, C.rain, C.dune, "#e15b8f", C.shallow, 
+        C.turq, C.sea, C.foam, "#b48ebd", "#a4c2f4", "#f6b26b", "#ffd966", 
+        "#93c47d", "#76a5af", "#8e7cc3", "#e06666", "#c9daf8", "#d9d2e9", "#ead1dc" 
+      ];
+      
       const ghgColor = d3.scaleOrdinal().domain(ghgCountries).range(ghgPalette);
       const isoOf = name => PICT.find(p => p.name === name)?.iso ?? name;
+      
       ghgCountries.forEach(name => {
         const iso = isoOf(name);
         const b = document.createElement("button");
         b.setAttribute("aria-pressed", isSelected(iso));
+        
+        if (selectedIsos.size > 0 && !isSelected(iso)) {
+          b.classList.add("dim");
+        }
+        
         b.innerHTML = `<i class="swatch" style="background:${ghgColor(name)}"></i>${name}`;
         b.onclick = ev => {
           toggleSelect(iso, ev.shiftKey);
@@ -799,10 +684,7 @@ const PLOTS = {
         };
         chrome.appendChild(b);
       });
-      const data = SAMPLE.ghg_series.map(d => ({
-        ...d,
-        logValue: Math.log10(Math.max(d.value, .05))
-      }));
+      
       const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([ 64, w - 26 ]);
       const y = d3.scaleLinear().domain(d3.extent(data, d => d.logValue)).nice().range([ h - 48, 36 ]);
       svg.append("g").attr("transform", `translate(0,${h - 48})`).call(d3.axisBottom(x).ticks(6).tickFormat(d3.format("d"))).call(axStyle);
@@ -825,6 +707,7 @@ const PLOTS = {
       const cross = svg.append("g").style("opacity", 0).style("pointer-events", "none");
       cross.append("line").attr("y1", 36).attr("y2", h - 48).attr("stroke", "rgba(240,248,246,.3)");
       const dot = cross.append("circle").attr("r", 5).attr("fill", C.sand);
+      
       svg.append("rect").attr("x", 64).attr("y", 36).attr("width", w - 90).attr("height", h - 84).attr("fill", "transparent").style("cursor", "crosshair").on("mousemove", function(ev) {
         const yr = Math.round(x.invert(d3.pointer(ev, svg.node())[0]));
         const vals = data.filter(r => r.year === yr);
@@ -835,10 +718,7 @@ const PLOTS = {
         let minDist = Infinity;
         vals.forEach(v => {
           const dist = Math.abs(v.logValue - valY);
-          if (dist < minDist) {
-            minDist = dist;
-            closest = v;
-          }
+          if (dist < minDist) { minDist = dist; closest = v; }
         });
         cross.style("opacity", 1).select("line").attr("x1", x(yr)).attr("x2", x(yr));
         dot.attr("cx", x(yr)).attr("cy", y(closest.logValue));
@@ -857,10 +737,7 @@ const PLOTS = {
           let closest = vals[0], minDist = Infinity;
           vals.forEach(v => {
             const dist = Math.abs(v.logValue - valY);
-            if (dist < minDist) {
-              minDist = dist;
-              closest = v;
-            }
+            if (dist < minDist) { minDist = dist; closest = v; }
           });
           const pxDist = Math.abs(y(closest.logValue) - my);
           if (pxDist <= 14) {
@@ -875,57 +752,22 @@ const PLOTS = {
       });
       return;
     }
+    
     const spec = [ {
-      key: "sst",
-      color: C.ember,
-      title: "Sea surface temperature anomalies (1990-2024)",
-      units: "°C above baseline",
-      dp: 2
+      key: "sst", color: C.ember, title: "Sea surface temperature anomalies (1990-2024)", units: "°C above baseline", dp: 2
     }, {
-      key: "sea",
-      color: C.lagoon,
-      title: "Sea level anomalies (1990-2024)",
-      units: "mm above baseline",
-      dp: 0
+      key: "sea", color: C.lagoon, title: "Sea level anomalies (1990-2024)", units: "mm above baseline", dp: 0
     }, {
-      key: "rain",
-      color: C.rain,
-      title: "Rainfall anomalies (1990-2024)",
-      units: "mm from normal",
-      dp: 0
+      key: "rain", color: C.rain, title: "Rainfall anomalies (1990-2024)", units: "mm from normal", dp: 0
     } ][step];
     const data = [ SAMPLE.anomaliesSst, SAMPLE.anomaliesSea, SAMPLE.anomaliesRain ][step];
     const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([ 64, w - 26 ]);
     const y = d3.scaleLinear().domain(d3.extent(data, d => d.value)).nice().range([ h - 48, 36 ]);
     const defs = svg.append("defs");
     const gradSst = defs.append("linearGradient").attr("id", "grad-sst").attr("x1", "0%").attr("y1", "100%").attr("x2", "0%").attr("y2", "0%");
-    gradSst.selectAll("stop").data([ {
-      o: "0%",
-      c: "#fff4d4",
-      op: .95
-    }, {
-      o: "35%",
-      c: "#ff7326",
-      op: .8
-    }, {
-      o: "75%",
-      c: "#f9312f",
-      op: .4
-    }, {
-      o: "100%",
-      c: "#ab1324",
-      op: 0
-    } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
+    gradSst.selectAll("stop").data([ { o: "0%", c: "#fff4d4", op: .95 }, { o: "35%", c: "#ff7326", op: .8 }, { o: "75%", c: "#f9312f", op: .4 }, { o: "100%", c: "#ab1324", op: 0 } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
     const gradSea = defs.append("linearGradient").attr("id", "grad-sea").attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
-    gradSea.selectAll("stop").data([ {
-      o: "0%",
-      c: C.lagoon,
-      op: .7
-    }, {
-      o: "100%",
-      c: "#05202f",
-      op: .1
-    } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
+    gradSea.selectAll("stop").data([ { o: "0%", c: C.lagoon, op: .7 }, { o: "100%", c: "#05202f", op: .1 } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
     const wipeClipId = "wipe-clip";
     defs.append("clipPath").attr("id", wipeClipId).append("rect").attr("x", 64).attr("y", 0).attr("width", 0).attr("height", h).transition().duration(1400).ease(d3.easeCubicInOut).attr("width", w - 64);
     const drawLayer = svg.append("g").attr("clip-path", `url(#${wipeClipId})`);
@@ -946,71 +788,18 @@ const PLOTS = {
       const seaClipId = "sea-clip";
       defs.append("clipPath").attr("id", seaClipId).append("path").datum(data).attr("d", d3.area().x(d => x(d.year)).y1(d => y(d.value)).y0(h - 48).curve(d3.curveMonotoneX));
       const waveLayer = drawLayer.append("g").attr("clip-path", `url(#${seaClipId})`).style("mix-blend-mode", "screen");
-      const bands = [ {
-        yFrac: .1,
-        amp: 6,
-        len: 50,
-        speed: 1300,
-        c: C.shallow,
-        top: .3,
-        band: 74
-      }, {
-        yFrac: .28,
-        amp: 9,
-        len: 66,
-        speed: 980,
-        c: C.lagoon,
-        top: .34,
-        band: 88
-      }, {
-        yFrac: .46,
-        amp: 7,
-        len: 40,
-        speed: 720,
-        c: C.foam,
-        top: .2,
-        band: 60
-      }, {
-        yFrac: .62,
-        amp: 11,
-        len: 78,
-        speed: 1100,
-        c: C.turq,
-        top: .38,
-        band: 100
-      }, {
-        yFrac: .78,
-        amp: 8,
-        len: 52,
-        speed: 640,
-        c: C.lagoon,
-        top: .3,
-        band: 70
-      }, {
-        yFrac: .92,
-        amp: 13,
-        len: 94,
-        speed: 1450,
-        c: C.shallow,
-        top: .32,
-        band: 110
-      } ];
+      const bands = [ 
+        { yFrac: .1, amp: 6, len: 50, speed: 1300, c: C.shallow, top: .3, band: 74 }, 
+        { yFrac: .28, amp: 9, len: 66, speed: 980, c: C.lagoon, top: .34, band: 88 }, 
+        { yFrac: .46, amp: 7, len: 40, speed: 720, c: C.foam, top: .2, band: 60 }, 
+        { yFrac: .62, amp: 11, len: 78, speed: 1100, c: C.turq, top: .38, band: 100 }, 
+        { yFrac: .78, amp: 8, len: 52, speed: 640, c: C.lagoon, top: .3, band: 70 }, 
+        { yFrac: .92, amp: 13, len: 94, speed: 1450, c: C.shallow, top: .32, band: 110 } 
+      ];
       bands.forEach((b, i) => {
         const gradId = `wave-grad-${step}-${i}`;
         const grad = defs.append("linearGradient").attr("id", gradId).attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
-        grad.selectAll("stop").data([ {
-          o: "0%",
-          c: b.c,
-          op: b.top
-        }, {
-          o: "55%",
-          c: b.c,
-          op: b.top * .35
-        }, {
-          o: "100%",
-          c: b.c,
-          op: 0
-        } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
+        grad.selectAll("stop").data([ { o: "0%", c: b.c, op: b.top }, { o: "55%", c: b.c, op: b.top * .35 }, { o: "100%", c: b.c, op: 0 } ]).join("stop").attr("offset", d => d.o).attr("stop-color", d => d.c).attr("stop-opacity", d => d.op);
         const baseY = 36 + (h - 84) * b.yFrac;
         const totalW = w - 64 + b.len * 2;
         const pts = d3.range(0, totalW + b.len, 4).map(px => [ px, baseY + Math.sin(px / b.len * Math.PI * 2) * b.amp ]);
@@ -1058,6 +847,7 @@ const PLOTS = {
       hideTip();
     });
   },
+  
   response(el, step) {
     const isDesktopLayout = !matchMedia("(max-width:860px)").matches;
     if (step === 1 && isDesktopLayout) {
@@ -1069,10 +859,15 @@ const PLOTS = {
       el.style.height = "";
       el.style.maxHeight = "";
     }
-    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, {
-      chrome: step === 1
+    
+    const {svg: svg, w: w, h: h, chrome: chrome} = stage(el, { 
+      chrome: step === 1,
+      chromePosition: step === 1 ? "bottom" : undefined,
+      chromeOffset: step === 1 ? 40 : undefined
     });
+    
     svg.selectAll("*").remove();
+    
     if (step === 2) {
       const rows = [ ...SAMPLE.drr ].sort((a, b) => b.value - a.value);
       const maxCols = w < 460 ? 3 : w < 700 ? 4 : 4;
@@ -1083,12 +878,16 @@ const PLOTS = {
       const waffleSize = Math.min(cellW - 30, cellH - 50, 96);
       const grid = 10, sq = waffleSize / grid - 1.4;
       const leftEdge = 8 + (cellW - waffleSize) / 2;
-      svg.append("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
-        if (!selectedIsos.size) return;
-        selectedIsos.clear();
-        repaint([ "events", "response" ]);
-      });
-      svg.append("text").attr("x", leftEdge).attr("y", 18).attr("font-size", 15).attr("fill", C.mist).text("Local governments with an active DRR strategy (%), 2021");
+      
+      svg.append("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent")
+        .lower()
+        .on("click", () => {
+          if (!selectedIsos.size) return;
+          selectedIsos.clear();
+          repaint([ "events", "response" ]);
+        });
+        
+      svg.append("text").attr("x", leftEdge).attr("y", 18).attr("font-size", 15).attr("fill", C.mist).text("Proportions of local governments with active DRR strategies in 2021");
       svg.append("text").attr("x", leftEdge).attr("y", h - 8).attr("font-size", 11.5).attr("fill", C.mist).text("Each square is one percentage point");
       const cell = svg.selectAll("g.waffle-cell").data(rows, d => d.iso).join("g").attr("class", d => "waffle-cell" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("transform", (d, i) => {
         const c = i % cols, r = Math.floor(i / cols);
@@ -1099,20 +898,19 @@ const PLOTS = {
         ev.stopPropagation();
         toggleSelect(d.iso, ev.shiftKey);
         repaint([ "events", "response" ]);
-      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.value.toFixed(1)}% of local governments, 2021`)).on("mouseleave", hideTip);
+      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${d.value.toFixed(1)}% of local governments`)).on("mouseleave", hideTip);
       cell.append("text").attr("x", waffleSize / 2).attr("y", -10).attr("text-anchor", "middle").attr("font-size", 12.5).attr("fill", d => isSelected(d.iso) ? C.sand : C.foam).text(d => d.name);
       cell.append("text").attr("x", waffleSize / 2).attr("y", waffleSize + 18).attr("text-anchor", "middle").attr("font-size", 13).attr("font-weight", 600).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).text(d => d.value.toFixed(0) + "%");
       cell.each(function(d) {
         const filled = Math.round(d.value);
         const squares = d3.range(100).map(i => ({
-          x: i % grid * (sq + 1.4),
-          y: Math.floor(i / grid) * (sq + 1.4),
-          on: i < filled
+          x: i % grid * (sq + 1.4), y: Math.floor(i / grid) * (sq + 1.4), on: i < filled
         }));
         d3.select(this).selectAll("rect").data(squares).join("rect").attr("x", s => s.x).attr("y", s => waffleSize - sq - s.y).attr("width", sq).attr("height", sq).attr("rx", 1).attr("fill", s => s.on ? isSelected(d.iso) ? C.sand : C.ember : "rgba(240,248,246,.1)");
       });
       return;
     }
+    
     if (step === 1) {
       let sliderRow = chrome.querySelector(".slider-row");
       if (!sliderRow) {
@@ -1135,10 +933,7 @@ const PLOTS = {
       SAMPLE.renew.forEach(d => {
         if (!seenIso.has(d.iso)) {
           seenIso.add(d.iso);
-          countries.push({
-            iso: d.iso,
-            name: d.name
-          });
+          countries.push({ iso: d.iso, name: d.name });
         }
       });
       const byIso = d3.group(SAMPLE.renew, d => d.iso);
@@ -1149,10 +944,7 @@ const PLOTS = {
         let best = rows[0], bestDiff = Math.abs(rows[0].year - year);
         rows.forEach(r => {
           const diff = Math.abs(r.year - year);
-          if (diff < bestDiff) {
-            best = r;
-            bestDiff = diff;
-          }
+          if (diff < bestDiff) { best = r; bestDiff = diff; }
         });
         return best.value;
       };
@@ -1187,10 +979,7 @@ const PLOTS = {
         if (yearLabel) yearLabel.textContent = renewYear;
       }
 
-      const rows = countries.map(c => ({
-        ...c,
-        value: valueForYear(c.iso, renewYear)
-      }));
+      const rows = countries.map(c => ({ ...c, value: valueForYear(c.iso, renewYear) }));
       const maxCols = w < 460 ? 3 : w < 700 ? 4 : w < 960 ? 5 : 6;
       const cols = Math.min(maxCols, rows.length);
       const nRows = Math.ceil(rows.length / cols);
@@ -1200,12 +989,15 @@ const PLOTS = {
       const grid = 10, sq = waffleSize / grid - 1.4;
       const leftEdge = 8 + (cellW - waffleSize) / 2;
 
-      svg.selectAll("rect.blank-catcher").data([ 0 ]).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
-        if (!selectedIsos.size) return;
-        selectedIsos.clear();
-        repaint([ "events", "response" ]);
-      });
-      svg.append("text").attr("x", leftEdge).attr("y", 18).attr("font-size", 15).attr("fill", C.mist).text(`Renewable share of final energy consumption, ${renewYear}`);
+      svg.selectAll("rect.blank-catcher").data([ 0 ]).join("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent")
+        .lower()
+        .on("click", () => {
+          if (!selectedIsos.size) return;
+          selectedIsos.clear();
+          repaint([ "events", "response" ]);
+        });
+        
+      svg.append("text").attr("x", leftEdge).attr("y", 18).attr("font-size", 15).attr("fill", C.mist).text(`Renewable energy share in the total final energy consumption in ${renewYear}`);
       svg.append("text").attr("x", leftEdge).attr("y", h - 8).attr("font-size", 11.5).attr("fill", C.mist).text("Each square is one percentage point (values under 1% still show one square)");
 
       const cell = svg.selectAll("g.waffle-cell").data(rows, d => d.iso).join("g").attr("class", d => "waffle-cell" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("transform", (d, i) => {
@@ -1217,28 +1009,31 @@ const PLOTS = {
         ev.stopPropagation();
         toggleSelect(d.iso, ev.shiftKey);
         repaint([ "events", "response" ]);
-      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${displayPct(d.value)}% renewable, ${renewYear}`)).on("mouseleave", hideTip);
+      }).on("mousemove", (ev, d) => showTip(ev, `<b>${d.name}</b><br>${displayPct(d.value)}% of ${renewYear} total energy consumption`)).on("mouseleave", hideTip);
       cell.append("text").attr("x", waffleSize / 2).attr("y", -10).attr("text-anchor", "middle").attr("font-size", 12.5).attr("fill", d => isSelected(d.iso) ? C.sand : C.foam).text(d => d.name);
       cell.append("text").attr("x", waffleSize / 2).attr("y", waffleSize + 18).attr("text-anchor", "middle").attr("font-size", 13).attr("font-weight", 600).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).text(d => displayPct(d.value) + "%");
       cell.each(function(d) {
         const filled = displayPct(d.value);
         const squares = d3.range(100).map(i => ({
-          x: i % grid * (sq + 1.4),
-          y: Math.floor(i / grid) * (sq + 1.4),
-          on: i < filled
+          x: i % grid * (sq + 1.4), y: Math.floor(i / grid) * (sq + 1.4), on: i < filled
         }));
         d3.select(this).selectAll("rect").data(squares).join("rect").attr("x", s => s.x).attr("y", s => waffleSize - sq - s.y).attr("width", sq).attr("height", sq).attr("rx", 1).attr("fill", s => s.on ? isSelected(d.iso) ? C.sand : C.ember : "rgba(240,248,246,.1)");
       });
       return;
     }
+    
     const rows = [ ...SAMPLE.envtax ].sort((a, b) => b.value - a.value);
     const y2 = d3.scaleBand().domain(rows.map(d => d.name)).range([ 28, h - 46 ]).paddingInner(.32).paddingOuter(.08);
     const x2 = d3.scaleLinear().domain([ 0, d3.max(rows, d => d.value) ]).nice().range([ 176, w - 46 ]);
-    svg.append("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent").on("click", () => {
-      if (!selectedIsos.size) return;
-      selectedIsos.clear();
-      repaint([ "events", "response" ]);
-    });
+    
+    svg.append("rect").attr("class", "blank-catcher").attr("x", 0).attr("y", 0).attr("width", w).attr("height", h).attr("fill", "transparent")
+      .lower()
+      .on("click", () => {
+        if (!selectedIsos.size) return;
+        selectedIsos.clear();
+        repaint([ "events", "response" ]);
+      });
+      
     svg.selectAll("rect.mark").data(rows, d => d.iso).join("rect").attr("class", d => "mark" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("x", 176).attr("y", d => y2(d.name)).attr("height", y2.bandwidth()).attr("rx", 2).attr("fill", d => isSelected(d.iso) ? C.sand : C.ember).attr("width", 0).style("cursor", "pointer").on("click", (ev, d) => {
       ev.stopPropagation();
       toggleSelect(d.iso, ev.shiftKey);
@@ -1253,13 +1048,7 @@ const PLOTS = {
   }
 };
 
-const FIGS = {
-  map: "fig-map",
-  events: "fig-events",
-  drivers: "fig-drivers",
-  response: "fig-response"
-};
-
+const FIGS = { map: "fig-map", events: "fig-events", drivers: "fig-drivers", response: "fig-response" };
 const state = {};
 
 function repaint(keys) {
@@ -1279,30 +1068,23 @@ const io = new IntersectionObserver(entries => {
     state[viz] = step;
     PLOTS[viz](document.getElementById(FIGS[viz]), step);
   });
-}, {
-  rootMargin: "-45% 0px -45% 0px",
-  threshold: 0
-});
+}, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
 
 document.querySelectorAll(".step").forEach(s => io.observe(s));
 
 const wavesEl = document.getElementById("waves");
-
 new IntersectionObserver(es => es.forEach(e => wavesEl.classList.toggle("hidden", e.isIntersecting)), {
   rootMargin: "-10% 0px -10% 0px"
 }).observe(document.getElementById("sec-map"));
 
 const rail = document.getElementById("rail");
-
 const sections = [ ...document.querySelectorAll("[data-label]") ];
 
 sections.forEach(sec => {
   const b = document.createElement("button");
   b.title = sec.dataset.label;
   b.setAttribute("aria-label", sec.dataset.label);
-  b.onclick = () => sec.scrollIntoView({
-    behavior: "smooth"
-  });
+  b.onclick = () => sec.scrollIntoView({ behavior: "smooth" });
   rail.appendChild(b);
 });
 
@@ -1310,52 +1092,29 @@ const railIo = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return;
   const i = sections.indexOf(e.target);
   [ ...rail.children ].forEach((b, j) => b.setAttribute("aria-current", i === j));
-}), {
-  rootMargin: "-50% 0px -50% 0px"
-});
+}), { rootMargin: "-50% 0px -50% 0px" });
 
 sections.forEach(s => railIo.observe(s));
 
 addEventListener("load", () => repaint());
-
-addEventListener("resize", debounce(() => {
-  clearStages();
-  repaint();
-}, 220));
+addEventListener("resize", debounce(() => { clearStages(); repaint(); }, 220));
 
 function debounce(fn, ms) {
   let t;
-  return (...a) => {
-    clearTimeout(t);
-    t = setTimeout(() => fn(...a), ms);
-  };
+  return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
 }
 
 (function waves() {
   const cv = wavesEl, ctx = cv.getContext("2d");
   const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
   let t = 0;
-  const bands = [ {
-    y: .42,
-    a: .15,
-    c: "159,230,220"
-  }, {
-    y: .5,
-    a: .12,
-    c: "87,216,207"
-  }, {
-    y: .58,
-    a: .13,
-    c: "230,215,184"
-  }, {
-    y: .66,
-    a: .09,
-    c: "31,162,180"
-  }, {
-    y: .74,
-    a: .08,
-    c: "212,180,122"
-  } ];
+  const bands = [ 
+    { y: .42, a: .15, c: "159,230,220" }, 
+    { y: .5, a: .12, c: "87,216,207" }, 
+    { y: .58, a: .13, c: "230,215,184" }, 
+    { y: .66, a: .09, c: "31,162,180" }, 
+    { y: .74, a: .08, c: "212,180,122" } 
+  ];
   function size() {
     cv.width = innerWidth * devicePixelRatio;
     cv.height = innerHeight * devicePixelRatio;
@@ -1375,20 +1134,12 @@ function debounce(fn, ms) {
       ctx.lineWidth = 1.2;
       ctx.stroke();
     });
-    if (!reduce) requestAnimationFrame(() => {
-      t += .006;
-      draw();
-    });
+    if (!reduce) requestAnimationFrame(() => { t += .006; draw(); });
   }
   size();
   draw();
-  addEventListener("resize", () => {
-    size();
-    if (reduce) draw();
-  });
-  if (reduce) addEventListener("scroll", draw, {
-    passive: true
-  });
+  addEventListener("resize", () => { size(); if (reduce) draw(); });
+  if (reduce) addEventListener("scroll", draw, { passive: true });
 })();
 
 fetch("data/land-10m.json").then(r => r.json()).then(gj => {
@@ -1408,10 +1159,7 @@ fetch("data/pict-eez-final.geojson").then(r => {
     summed[iso] = (summed[iso] ?? 0) + f.properties.AREA_KM2;
   });
   PICT.forEach(p => {
-    if (summed[p.iso]) {
-      p.eez = summed[p.iso] / 1e3;
-      p.ratio = p.eez * 1e3 / p.land;
-    }
+    if (summed[p.iso]) { p.eez = summed[p.iso] / 1e3; p.ratio = p.eez * 1e3 / p.land; }
   });
   PLOTS.map(document.getElementById("fig-map"), state.map ?? 0);
 }).catch(e => console.warn("EEZ layer unavailable -map falls back to circle markers.", e));
