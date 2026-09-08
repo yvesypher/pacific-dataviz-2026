@@ -1,4 +1,4 @@
-import { loadPict, buildPlaceholderSample, initDataLoaders } from "./data.js";
+import { loadPict, initDataLoaders } from "./data.js";
 import { PLOTS, repaint } from "./state.js";
 import { initScrollEngine, initWaves } from "./ui.js";
 
@@ -37,7 +37,6 @@ PLOTS.response = (el, step) => {
 
 (async function bootstrap() {
   await loadPict();
-  buildPlaceholderSample();
   initScrollEngine();
   initWaves();
   repaint();

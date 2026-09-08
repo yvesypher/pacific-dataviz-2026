@@ -103,7 +103,7 @@ export function renderReWaffle(el) {
     });
 
   svg.append("text").attr("x", leftEdge).attr("y", 18).attr("font-size", 15).attr("fill", C.mist).text(`Renewable energy share in the total final energy consumption in ${renewState.year}`);
-  svg.append("text").attr("x", leftEdge).attr("y", h - 8).attr("font-size", 11.5).attr("fill", C.mist).text("Each square is one percentage point (values under 1% still show one square)");
+  svg.append("text").attr("x", leftEdge).attr("y", h - 8).attr("font-size", 11.5).attr("fill", C.mist).text("Each square is one percentage point");
 
   const cell = svg.selectAll("g.waffle-cell").data(rows, d => d.iso).join("g").attr("class", d => "waffle-cell" + (selectedIsos.size && !isSelected(d.iso) ? " dim" : "")).attr("transform", (d, i) => {
     const c = i % cols, r = Math.floor(i / cols);
