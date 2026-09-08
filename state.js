@@ -1,8 +1,6 @@
 export const PLOTS = {};
 export const FIGS = { map: "fig-map", events: "fig-events", drivers: "fig-drivers", response: "fig-response" };
-
 export const state = {};
-
 export const revealed = new Set();
 
 export function repaint(keys) {
@@ -17,8 +15,6 @@ export function repaint(keys) {
 }
 
 export const geo = { LAND: null, EEZ: null };
-
-/* cross-chart country selection */
 export const selectedIsos = new Set();
 export const isSelected = iso => selectedIsos.has(iso);
 
@@ -49,7 +45,7 @@ export const toggleHazard = (type, additive) => {
   }
 };
 
-/* waffle year slider */
+/* renewable-energy waffle year slider */
 export const renewState = { year: null };
 
 document.addEventListener("keydown", ev => {

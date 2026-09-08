@@ -1,5 +1,5 @@
 import { loadPict, buildPlaceholderSample, initDataLoaders } from "./data.js";
-import { PLOTS } from "./state.js";
+import { PLOTS, repaint } from "./state.js";
 import { initScrollEngine, initWaves } from "./ui.js";
 
 import { renderMap } from "./viz/map.js";
@@ -40,5 +40,6 @@ PLOTS.response = (el, step) => {
   buildPlaceholderSample();
   initScrollEngine();
   initWaves();
+  repaint();
   initDataLoaders();
 })();
