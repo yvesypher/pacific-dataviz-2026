@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Papua New Guinea",
+    "iso": "PG",
+    "land": 462840,
+    "eez": 2402,
+    "lat": -6.3,
+    "lon": 143.9
+  },
+  {
+    "name": "Solomon Islands",
+    "iso": "SB",
+    "land": 28896,
+    "eez": 1590,
+    "lat": -9.6,
+    "lon": 160.2
+  },
+  {
+    "name": "Vanuatu",
+    "iso": "VU",
+    "land": 12189,
+    "eez": 680,
+    "lat": -15.4,
+    "lon": 166.9
+  },
+  {
+    "name": "New Caledonia",
+    "iso": "NC",
+    "land": 18575,
+    "eez": 1423,
+    "lat": -21.3,
+    "lon": 165.5
+  },
+  {
+    "name": "Fiji",
+    "iso": "FJ",
+    "land": 18333,
+    "eez": 1282,
+    "lat": -17.7,
+    "lon": 178.0
+  },
+  {
+    "name": "Tonga",
+    "iso": "TO",
+    "land": 747,
+    "eez": 665,
+    "lat": -21.2,
+    "lon": -175.2
+  },
+  {
+    "name": "Samoa",
+    "iso": "WS",
+    "land": 2831,
+    "eez": 131,
+    "lat": -13.8,
+    "lon": -172.1
+  },
+  {
+    "name": "American Samoa",
+    "iso": "AS",
+    "land": 199,
+    "eez": 405,
+    "lat": -14.3,
+    "lon": -170.7
+  },
+  {
+    "name": "Niue",
+    "iso": "NU",
+    "land": 259,
+    "eez": 317,
+    "lat": -19.1,
+    "lon": -169.9
+  },
+  {
+    "name": "Cook Islands",
+    "iso": "CK",
+    "land": 237,
+    "eez": 1960,
+    "lat": -21.2,
+    "lon": -159.8
+  },
+  {
+    "name": "French Polynesia",
+    "iso": "PF",
+    "land": 3521,
+    "eez": 4767,
+    "lat": -17.6,
+    "lon": -149.4
+  },
+  {
+    "name": "Wallis and Futuna",
+    "iso": "WF",
+    "land": 142,
+    "eez": 258,
+    "lat": -13.3,
+    "lon": -176.2
+  },
+  {
+    "name": "Tokelau",
+    "iso": "TK",
+    "land": 12,
+    "eez": 319,
+    "lat": -9.2,
+    "lon": -171.8
+  },
+  {
+    "name": "Tuvalu",
+    "iso": "TV",
+    "land": 26,
+    "eez": 752,
+    "lat": -8.0,
+    "lon": 178.1
+  },
+  {
+    "name": "Kiribati",
+    "iso": "KI",
+    "land": 811,
+    "eez": 3441,
+    "lat": 1.9,
+    "lon": -157.4
+  },
+  {
+    "name": "Nauru",
+    "iso": "NR",
+    "land": 21,
+    "eez": 310,
+    "lat": -0.5,
+    "lon": 166.9
+  },
+  {
+    "name": "Marshall Islands",
+    "iso": "MH",
+    "land": 181,
+    "eez": 1993,
+    "lat": 7.1,
+    "lon": 171.4
+  },
+  {
+    "name": "Micronesia (FS)",
+    "iso": "FM",
+    "land": 701,
+    "eez": 2993,
+    "lat": 6.9,
+    "lon": 158.2
+  },
+  {
+    "name": "Palau",
+    "iso": "PW",
+    "land": 444,
+    "eez": 604,
+    "lat": 7.5,
+    "lon": 134.6
+  },
+  {
+    "name": "Guam",
+    "iso": "GU",
+    "land": 541,
+    "eez": 218,
+    "lat": 13.4,
+    "lon": 144.8
+  },
+  {
+    "name": "N. Mariana Islands",
+    "iso": "MP",
+    "land": 457,
+    "eez": 777,
+    "lat": 15.2,
+    "lon": 145.7
+  },
+  {
+    "name": "Pitcairn",
+    "iso": "PN",
+    "land": 47,
+    "eez": 842,
+    "lat": -25.1,
+    "lon": -130.1
+  }
+]
