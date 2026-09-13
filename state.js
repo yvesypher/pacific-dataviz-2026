@@ -14,7 +14,7 @@ export function repaint(keys) {
   });
 }
 
-export const geo = { LAND: null, EEZ: null };
+export const geo = { LAND: null, EEZ: null, PACIFIC_LAND: null };
 export const selectedIsos = new Set();
 export const isSelected = iso => selectedIsos.has(iso);
 

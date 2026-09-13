@@ -79,6 +79,23 @@ export function initScrollEngine() {
 
   document.querySelectorAll(".step").forEach(s => io.observe(s));
 
+  const earlyIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      earlyIo.unobserve(e.target);
+      const stepsEl = e.target.parentElement?.querySelector(".steps");
+      if (!stepsEl) return;
+      const viz = stepsEl.dataset.viz;
+      const key = viz + ":0";
+      if (revealed.has(key)) return;
+      revealed.add(key);
+      state[viz] = 0;
+      PLOTS[viz](document.getElementById(FIGS[viz]), 0);
+    });
+  }, { threshold: 0 });
+
+  document.querySelectorAll(".sticky").forEach(s => earlyIo.observe(s));
+
   const wavesEl = document.getElementById("waves");
   new IntersectionObserver(es => es.forEach(e =>
     wavesEl.classList.toggle("hidden", e.isIntersecting)),

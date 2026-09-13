@@ -19,26 +19,53 @@ export function renderMap(el, step) {
   const shade = d3.scaleLinear().domain(d3.extent(PICT, d => Math.log10(d.ratio))).range([.28, .62]);
   const BLUE = "31,162,180";
   const HILITE = "240,248,246";
+  const NATION = C.ember;
+
   if (geo.EEZ) {
     svg.append("g").selectAll("path").data(geo.EEZ.features).join("path").attr("class", "mark eez-zone").attr("data-iso", f => f.properties.iso).attr("d", path).attr("fill", f => {
       const p = PICT.find(x => x.iso === f.properties.iso);
       if (step === 0) return "transparent";
       if (!p) return `rgba(${BLUE},.35)`;
       return `rgba(${BLUE},${shade(Math.log10(p.ratio)).toFixed(3)})`;
-    }).attr("stroke", step === 0 ? "transparent" : `rgba(${BLUE},.7)`).attr("stroke-width", .9).style("transition", "fill .18s ease, stroke .18s ease, stroke-width .18s ease").on("mousemove", function (ev, f) {
-      const p = PICT.find(x => x.iso === f.properties.iso);
-      if (!p) return;
-      d3.select(this).attr("fill", `rgba(${HILITE},.28)`).attr("stroke", `rgba(${HILITE},.95)`).attr("stroke-width", 1.8).raise();
-      showTip(ev, `<b>${p.name}</b><br>Land ${fmt(p.land)} km²<br>` + `Ocean ${fmt(p.eez)},000 km²<br>${fmt(p.ratio)} km² of sea per km² of land`);
-    }).on("mouseleave", function (ev, f) {
-      const p = PICT.find(x => x.iso === f.properties.iso);
-      d3.select(this).attr("fill", step === 0 ? "transparent" : p ? `rgba(${BLUE},${shade(Math.log10(p.ratio)).toFixed(3)})` : `rgba(${BLUE},.35)`).attr("stroke", step === 0 ? "transparent" : `rgba(${BLUE},.7)`).attr("stroke-width", .9);
-      hideTip();
-    });
-  } else {
-    const circle = d3.geoCircle().radius(3.33);
-    svg.append("g").selectAll("path").data(PICT).join("path").attr("class", "mark").attr("d", d => path(circle.center([d.lon, d.lat])())).attr("fill", `rgba(${BLUE},.08)`).attr("stroke", `rgba(${BLUE},.3)`).attr("stroke-width", .7).attr("opacity", step === 0 ? 0 : 1);
+    }).attr("stroke", step === 0 ? "transparent" : `rgba(${BLUE},.7)`).attr("stroke-width", .9)
+      .style("pointer-events", step === 0 ? "none" : "auto")
+      .style("transition", step === 0 ? "none" : "fill .18s ease, stroke .18s ease, stroke-width .18s ease")
+      .on("mousemove", step === 0 ? null : function (ev, f) {
+        const p = PICT.find(x => x.iso === f.properties.iso);
+        if (!p) return;
+        d3.select(this).attr("fill", `rgba(${HILITE},.28)`).attr("stroke", `rgba(${HILITE},.95)`).attr("stroke-width", 1.8).raise();
+        showTip(ev, `<b>${p.name}</b><br>Land ${fmt(p.land)} km²<br>` + `Ocean ${fmt(p.eez)},000 km²<br>${fmt(p.ratio)} km² of sea per km² of land`);
+      }).on("mouseleave", step === 0 ? null : function (ev, f) {
+        const p = PICT.find(x => x.iso === f.properties.iso);
+        d3.select(this).attr("fill", p ? `rgba(${BLUE},${shade(Math.log10(p.ratio)).toFixed(3)})` : `rgba(${BLUE},.35)`).attr("stroke", `rgba(${BLUE},.7)`).attr("stroke-width", .9);
+        hideTip();
+      });
   }
+
+  
+  if (geo.PACIFIC_LAND) {
+    svg.append("g").selectAll("path.nation-land").data(geo.PACIFIC_LAND.features).join("path")
+      .attr("class", "nation-land")
+      .attr("d", path)
+      .attr("fill", NATION)
+      .attr("fill-opacity", .82)
+      .attr("stroke", "rgba(5,32,47,.5)")
+      .attr("stroke-width", .4)
+      .style("cursor", step === 0 ? "pointer" : "default")
+      .style("pointer-events", step === 0 ? "auto" : "none")
+      .style("transition", "none")
+      .on("mousemove", step === 0 ? function (ev, f) {
+        const p = PICT.find(x => x.iso === f.properties.iso);
+        if (!p) return;
+        d3.select(this).attr("fill", C.sand).raise();
+        showTip(ev, `<b>${p.name}</b><br>Land ${fmt(p.land)} km²`);
+      } : null)
+      .on("mouseleave", step === 0 ? function () {
+        d3.select(this).attr("fill", NATION);
+        hideTip();
+      } : null);
+  }
+
   const labelPos = PICT.map(p => {
     let cx, cy;
     if (geo.EEZ) {
