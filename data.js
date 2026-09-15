@@ -27,8 +27,6 @@ export const C = {
 
 export const fmt = n => d3.format(",")(Math.round(n));
 
-// The exported object name remains 'SAMPLE' to prevent breaking imports in other files, 
-// but it will now only store your real JSON data.
 export const SAMPLE = {
   events: [], anomaliesSst: [], anomaliesSea: [], anomaliesRain: [],
   ghg_series: [], loss: [], drr: [], renew: [], envtax: []
@@ -57,14 +55,6 @@ export function initDataLoaders() {
     repaint(["map"]);
   }).catch(e => console.error("EEZ layer unavailable.", e));
 
-  /* the coastline dataset above (land-10m.json) is simplified down to
-     10% of its original detail for file size, which is fine for the
-     background world outline but strips out land small enough to
-     belong to an atoll nation. This is a separate, precomputed file:
-     just the Pacific nations' own land polygons, matched against the
-     full-resolution source data and tagged with their iso code, so
-     the map can colour and hover each nation's real coastline rather
-     than the rest of the world's. */
   fetch("data/pacific-land.json").then(r => {
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     return r.json();

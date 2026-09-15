@@ -60,7 +60,8 @@
   .scrolly{position:relative;display:grid;grid-template-columns:1fr .8fr;gap:44px;align-items:start}
   .sticky{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center}
   .figure{width:100%;aspect-ratio:4/3;max-height:78svh;display:flex;flex-direction:column}
-  .figure svg{width:100%;flex:1;overflow:visible}
+  .figure svg{display: block; width: 100%; height: 100%; flex: 1 1 auto; min-width: 0; overflow: visible;}
+  .scrolly, .figure, .sticky {min-width: 0;}
   .steps{padding:32vh 0 38vh}
   .step{margin:0 0 56vh;padding:22px 26px;border-radius:4px;
     background:rgba(5,32,47,0);opacity:.28;transition:opacity .45s ease,background .45s ease}
@@ -113,3 +114,5 @@
     html{scroll-behavior:auto}
     *{transition:none!important;animation:none!important}
   }
+
+ 

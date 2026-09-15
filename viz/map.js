@@ -5,7 +5,9 @@ import { stage, showTip, hideTip } from "../ui.js";
 export function renderMap(el, step) {
   const { svg, w, h } = stage(el);
   svg.selectAll("*").remove();
-  const proj = d3.geoEquirectangular().rotate([-195, 0]).fitExtent([[20, 20], [w - 20, h - 38]], {
+  const proj = d3.geoEquirectangular()
+  .rotate([-195, 0])
+  .fitExtent([[0, 20], [w, h - 38]], {
     type: "MultiPoint",
     coordinates: PICT.map(d => [d.lon, d.lat])
   });
@@ -20,6 +22,52 @@ export function renderMap(el, step) {
   const BLUE = "31,162,180";
   const HILITE = "240,248,246";
   const NATION = C.ember;
+
+  if (geo.PACIFIC_LAND) {
+    const land = svg.append("g")
+      .selectAll("path.nation-land")
+      .data(geo.PACIFIC_LAND.features)
+      .join("path")
+      .attr("class", "nation-land")
+      .attr("d", path)
+      .attr("fill", NATION)
+      .attr("fill-opacity", .82)
+      .attr("stroke", "rgba(5,32,47,.5)")
+      .attr("stroke-width", .4)
+      .style("cursor", step === 0 ? "pointer" : "default")
+      .style("pointer-events", step === 0 ? "auto" : "none");
+  
+    land
+      .on("mouseenter", step === 0 ? function (ev, f) {
+        const iso = f.properties.iso;
+        const p = PICT.find(x => x.iso === iso);
+        if (!p) return;
+  
+        land
+          .filter(d => d.properties.iso === iso)
+          .attr("fill", C.sand);
+      } : null)
+  
+      .on("mousemove", step === 0 ? function (ev, f) {
+        const p = PICT.find(x => x.iso === f.properties.iso);
+        if (!p) return;
+  
+        showTip(
+          ev,
+          `<b>${p.name}</b><br>Land ${fmt(p.land)} km²`
+        );
+      } : null)
+  
+      .on("mouseleave", step === 0 ? function (ev, f) {
+        const iso = f.properties.iso;
+  
+        land
+          .filter(d => d.properties.iso === iso)
+          .attr("fill", NATION);
+  
+        hideTip();
+      } : null);
+  }
 
   if (geo.EEZ) {
     svg.append("g").selectAll("path").data(geo.EEZ.features).join("path").attr("class", "mark eez-zone").attr("data-iso", f => f.properties.iso).attr("d", path).attr("fill", f => {
@@ -40,30 +88,6 @@ export function renderMap(el, step) {
         d3.select(this).attr("fill", p ? `rgba(${BLUE},${shade(Math.log10(p.ratio)).toFixed(3)})` : `rgba(${BLUE},.35)`).attr("stroke", `rgba(${BLUE},.7)`).attr("stroke-width", .9);
         hideTip();
       });
-  }
-
-  
-  if (geo.PACIFIC_LAND) {
-    svg.append("g").selectAll("path.nation-land").data(geo.PACIFIC_LAND.features).join("path")
-      .attr("class", "nation-land")
-      .attr("d", path)
-      .attr("fill", NATION)
-      .attr("fill-opacity", .82)
-      .attr("stroke", "rgba(5,32,47,.5)")
-      .attr("stroke-width", .4)
-      .style("cursor", step === 0 ? "pointer" : "default")
-      .style("pointer-events", step === 0 ? "auto" : "none")
-      .style("transition", "none")
-      .on("mousemove", step === 0 ? function (ev, f) {
-        const p = PICT.find(x => x.iso === f.properties.iso);
-        if (!p) return;
-        d3.select(this).attr("fill", C.sand).raise();
-        showTip(ev, `<b>${p.name}</b><br>Land ${fmt(p.land)} km²`);
-      } : null)
-      .on("mouseleave", step === 0 ? function () {
-        d3.select(this).attr("fill", NATION);
-        hideTip();
-      } : null);
   }
 
   const labelPos = PICT.map(p => {
